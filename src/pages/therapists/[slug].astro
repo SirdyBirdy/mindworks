@@ -1,0 +1,133 @@
+---
+import Base from '../../layouts/Base.astro';
+import settings from '../../content/settings.json';
+
+export async function getStaticPaths() {
+  const files = import.meta.glob('../../content/therapists/*.md', { eager: true });
+  return Object.entries(files).map(([filepath, mod]: [string, any]) => ({
+    params: { slug: filepath.split('/').pop()!.replace('.md', '') },
+    props: { t: mod.frontmatter, html: mod.compiledContent() }
+  }));
+}
+
+const { t, html } = Astro.props;
+const waBook = `https://wa.me/${t.whatsapp || settings.whatsappNumber}?text=Hi%2C%20I%27d%20like%20to%20book%20with%20${encodeURIComponent(t.name)}.`;
+const waDiscover = `https://wa.me/${t.whatsapp || settings.whatsappNumber}?text=Hi%2C%20I%27d%20like%20a%20free%20discovery%20call%20with%20${encodeURIComponent(t.name)}.`;
+---
+<Base title={`${t.name} — Mindworks Counselling`} description={t.shortBio}>
+<article class="profile">
+  <div class="profile-hero">
+    <div class="profile-left">
+      <a href="/therapists" class="back-link">← All therapists</a>
+      <div class="eyebrow reveal" style="margin-top:2rem"><span class="eyebrow-line"></span>The team</div>
+      <h1 class="p-name reveal reveal-d1">{t.name}</h1>
+      <div class="p-title reveal reveal-d2">{t.title}</div>
+      <div class="p-creds reveal reveal-d2">{t.credentials}</div>
+      <div class="p-meta reveal reveal-d3">
+        <div class="meta-row"><span class="ml">Languages</span><span class="mv">{t.languages}</span></div>
+        <div class="meta-row"><span class="ml">Format</span><span class="mv">{t.format}</span></div>
+        <div class="meta-row"><span class="ml">Available</span><span class="mv">{t.availability}</span></div>
+        <div class="meta-row"><span class="ml">Session fee</span><span class="mv price-val">₹{t.price?.toLocaleString()} / session</span></div>
+      </div>
+      <div class="p-actions reveal reveal-d4">
+        <a href={waBook} target="_blank" rel="noopener" class="btn-primary">
+          Book with {t.name.split(' ')[0]}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+        <a href={waDiscover} target="_blank" rel="noopener" class="btn-secondary">
+          Free discovery call
+          <span class="tooltip-wrap">
+            <span class="tooltip-icon">i</span>
+            <span class="tooltip-bubble">A free 15-min call to answer your questions. Not a session — just a conversation before you commit.</span>
+          </span>
+        </a>
+      </div>
+    </div>
+    <div class="profile-right reveal reveal-d2">
+      <div class="p-portrait" style={`background:${t.avatarColor || '#9BABB5'}33`}>
+        {t.photo ? <img src={t.photo} alt={t.name} /> : <span class="p-initials">{t.initials}</span>}
+      </div>
+    </div>
+  </div>
+  <div class="profile-body">
+    <div class="profile-main">
+      <div class="p-section reveal">
+        <div class="eyebrow" style="margin-bottom:1.5rem"><span class="eyebrow-line"></span>About</div>
+        <div class="p-bio" set:html={html}></div>
+      </div>
+      {t.modalities?.length > 0 && (
+        <div class="p-section reveal">
+          <div class="eyebrow" style="margin-bottom:1.25rem"><span class="eyebrow-line"></span>How I work</div>
+          <div class="tag-list">
+            {(t.modalities as string[]).map((m: string) => <span class="tag">{m}</span>)}
+          </div>
+        </div>
+      )}
+      {t.goodFitFor?.length > 0 && (
+        <div class="p-section reveal">
+          <div class="eyebrow" style="margin-bottom:1.25rem"><span class="eyebrow-line"></span>Good fit for</div>
+          <ul class="fit-list">
+            {(t.goodFitFor as string[]).map((item: string) => <li>{item}</li>)}
+          </ul>
+        </div>
+      )}
+    </div>
+    <aside class="profile-aside">
+      <div class="aside-card">
+        <div class="aside-price">₹{t.price?.toLocaleString()}</div>
+        <div class="aside-price-label">per session</div>
+        <a href={waBook} target="_blank" rel="noopener" class="btn-primary aside-btn">
+          Book with {t.name.split(' ')[0]}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+        <a href={waDiscover} target="_blank" rel="noopener" class="btn-secondary aside-btn">
+          Free discovery call
+          <span class="tooltip-wrap"><span class="tooltip-icon">i</span><span class="tooltip-bubble">A free 15-min call. No commitment.</span></span>
+        </a>
+        <div style="height:1px;background:var(--border);margin:0.25rem 0"></div>
+        <div class="aside-row"><span class="arl">Format</span><span>{t.format}</span></div>
+        <div class="aside-row"><span class="arl">Languages</span><span>{t.languages}</span></div>
+        <div class="aside-row"><span class="arl">Available</span><span>{t.availability}</span></div>
+        <div class="aside-row"><span class="arl">Experience</span><span>{t.experience} years</span></div>
+      </div>
+    </aside>
+  </div>
+</article>
+</Base>
+<style>
+.profile{max-width:1280px;margin:0 auto}
+.back-link{font-size:0.8rem;color:var(--slate);transition:color 0.2s}
+.back-link:hover{color:var(--ink)}
+.profile-hero{display:grid;grid-template-columns:7fr 5fr;gap:4rem;padding:5rem 2.5rem 4rem;border-bottom:1px solid var(--border);align-items:start}
+.p-name{font-family:var(--font-display);font-size:clamp(2.5rem,4vw,4rem);font-weight:400;letter-spacing:-0.03em;line-height:1.05;margin-top:0.75rem}
+.p-title{font-size:1rem;color:var(--slate);margin-top:0.35rem}
+.p-creds{font-size:0.8rem;color:var(--slate-light);margin-top:0.2rem}
+.p-meta{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:2rem;padding:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:1rem}
+.meta-row{display:flex;flex-direction:column;gap:0.2rem}
+.ml{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--slate-light)}
+.mv{font-size:0.85rem}
+.price-val{font-family:var(--font-display);font-style:italic;font-size:1rem}
+.p-actions{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap}
+.profile-right{display:flex;justify-content:center;padding-top:1rem}
+.p-portrait{width:100%;max-width:320px;aspect-ratio:4/5;border-radius:2rem;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.p-portrait img{width:100%;height:100%;object-fit:cover}
+.p-initials{font-family:var(--font-display);font-size:4rem;font-style:italic;color:var(--slate)}
+.profile-body{display:grid;grid-template-columns:7fr 3fr;gap:4rem;padding:4rem 2.5rem;align-items:start}
+.profile-main{display:flex;flex-direction:column;gap:3rem}
+.p-bio{font-size:1rem;line-height:1.8;color:var(--slate)}
+.p-bio p{margin-bottom:1.25rem}
+.tag-list{display:flex;flex-wrap:wrap;gap:0.5rem}
+.tag{font-size:0.75rem;padding:0.35rem 0.9rem;border:1px solid var(--border);border-radius:100px;color:var(--slate);background:var(--card)}
+.fit-list{display:flex;flex-direction:column;gap:0.65rem}
+.fit-list li{font-size:0.9rem;color:var(--slate);padding-left:1.25rem;position:relative;line-height:1.5}
+.fit-list li::before{content:'↗';position:absolute;left:0;color:var(--clay);font-size:0.75rem}
+.profile-aside{position:sticky;top:5.5rem}
+.aside-card{background:var(--card);border:1px solid var(--border);border-radius:1.5rem;padding:1.75rem;display:flex;flex-direction:column;gap:0.75rem}
+.aside-price{font-family:var(--font-display);font-size:2rem;font-style:italic;letter-spacing:-0.02em}
+.aside-price-label{font-size:0.7rem;color:var(--slate-light);margin-top:-0.5rem}
+.aside-btn{justify-content:center;width:100%}
+.aside-row{display:flex;justify-content:space-between;font-size:0.78rem;color:var(--slate);padding:0.2rem 0}
+.arl{color:var(--slate-light)}
+@media(max-width:1024px){.profile-body{grid-template-columns:1fr}.profile-aside{position:static}}
+@media(max-width:768px){.profile-hero{grid-template-columns:1fr;padding:3rem 1.25rem}.profile-right{display:none}.profile-body{padding:3rem 1.25rem}.p-meta{grid-template-columns:1fr}}
+</style>

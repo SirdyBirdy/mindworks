@@ -1,0 +1,63 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "therapists"
+    label: "Therapists"
+    folder: "src/content/therapists"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Full Name", name: "name", widget: "string" }
+      - { label: "Initials", name: "initials", widget: "string" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Credentials", name: "credentials", widget: "string" }
+      - { label: "Languages", name: "languages", widget: "string" }
+      - { label: "Session Price", name: "price", widget: "number" }
+      - { label: "Format", name: "format", widget: "string" }
+      - { label: "Years Experience", name: "experience", widget: "number" }
+      - { label: "Availability", name: "availability", widget: "string" }
+      - { label: "WhatsApp Number", name: "whatsapp", widget: "string" }
+      - { label: "Avatar Colour", name: "avatarColor", widget: "string", default: "#9BABB5" }
+      - { label: "Short Bio", name: "shortBio", widget: "text" }
+      - label: "Specialisms"
+        name: "specialisms"
+        widget: "list"
+        field: { label: "Specialism", name: "specialism", widget: "string" }
+      - label: "Modalities"
+        name: "modalities"
+        widget: "list"
+        field: { label: "Modality", name: "modality", widget: "string" }
+      - label: "Good Fit For"
+        name: "goodFitFor"
+        widget: "list"
+        field: { label: "Topic", name: "topic", widget: "string" }
+      - { label: "Full Bio", name: "body", widget: "markdown" }
+
+  - name: "journal"
+    label: "Journal"
+    folder: "src/content/journal"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", default: "Mindworks" }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "Settings"
+        name: "settings"
+        file: "src/content/settings.json"
+        fields:
+          - { label: "WhatsApp Number", name: "whatsappNumber", widget: "string" }
+          - { label: "Phone Display", name: "phoneDisplay", widget: "string" }
+          - { label: "Instagram URL", name: "instagram", widget: "string" }
+          - { label: "Next Available", name: "nextAvailable", widget: "string" }

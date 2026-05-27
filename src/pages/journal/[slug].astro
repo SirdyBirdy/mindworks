@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const files = import.meta.glob('../../content/journal/*.md', { eager: true });
+  return Object.entries(files).map(([filepath, mod]: [string, any]) => ({
+    params: { slug: filepath.split('/').pop()!.replace('.md', '') },
+    props: { post: mod.frontmatter, html: mod.compiledContent() }
+  }));
+}
+
+const { post, html } = Astro.props;
+const date = new Date(post.date as string).toLocaleDateString('en-IN', {day:'numeric',month:'long',year:'numeric'});
+---
+<Base title={`${post.title} — Mindworks Journal`} description={post.excerpt as string}>
+<article class="post">
+  <a href="/journal" class="post-back">← Back to journal</a>
+  <div class="eyebrow reveal" style="margin-top:2rem"><span class="eyebrow-line"></span>{date} · {post.author}</div>
+  <h1 class="post-title reveal reveal-d1">{post.title}</h1>
+  {post.excerpt && <p class="post-excerpt reveal reveal-d2">{post.excerpt}</p>}
+  <div class="post-body reveal" set:html={html}></div>
+</article>
+</Base>
+<style>
+.post{max-width:720px;margin:0 auto;padding:4rem 2.5rem}
+.post-back{font-size:0.8rem;color:var(--slate);transition:color 0.2s}
+.post-back:hover{color:var(--ink)}
+.post-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.1;letter-spacing:-0.03em;margin-top:0.75rem}
+.post-excerpt{font-size:1.05rem;color:var(--slate);line-height:1.7;margin-top:1rem;font-weight:300}
+.post-body{font-size:1rem;line-height:1.85;color:var(--slate);margin-top:2.5rem}
+.post-body h2{font-family:var(--font-display);font-size:1.6rem;font-weight:400;color:var(--ink);margin:2.5rem 0 1rem;letter-spacing:-0.02em}
+.post-body p{margin-bottom:1.4rem}
+.post-body a{color:var(--clay);text-decoration:underline}
+.post-body ul,.post-body ol{padding-left:1.5rem;margin-bottom:1.4rem}
+.post-body li{margin-bottom:0.5rem}
+@media(max-width:768px){.post{padding:3rem 1.25rem}}
+</style>

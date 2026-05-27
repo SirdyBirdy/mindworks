@@ -1,0 +1,481 @@
+---
+import Base from '../layouts/Base.astro';
+import homepage from '../content/homepage.json';
+import settings from '../content/settings.json';
+
+const waBook = `https://wa.me/${settings.whatsappNumber}?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%20discovery%20call.`;
+const waLink = `https://wa.me/${settings.whatsappNumber}`;
+
+const therapistFiles_raw = import.meta.glob('../content/therapists/*.md', { eager: true });
+const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [string, any]) => ({
+  ...mod.frontmatter,
+  slug: filepath.split('/').pop()!.replace('.md', '')
+}));
+---
+<Base title="Mindworks Counselling — Pune & Online Therapy">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow reveal">
+      <span class="eyebrow-line"></span>
+      01 — Pune &amp; Online · Est. 2016
+    </div>
+    <h1 class="hero-h1 reveal reveal-d1">
+      {homepage.heroLine1}<br />
+      {homepage.heroLine2}<br />
+      <em class="accent">{homepage.heroAccent}</em>
+    </h1>
+    <p class="hero-body reveal reveal-d2">{homepage.heroBody}</p>
+    <div class="hero-actions reveal reveal-d3">
+      <a href={waBook} target="_blank" rel="noopener" class="btn-primary">
+        Book free 15-min call
+        <span class="tooltip-wrap">
+          <span class="tooltip-icon">i</span>
+          <span class="tooltip-bubble">A discovery call is a free 15-min conversation to answer your questions about therapy. No assessment, no commitment — just clarity.</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+      <a href="/therapists" class="btn-secondary">
+        Meet the team
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+    </div>
+    <div class="hero-stats reveal reveal-d4">
+      <div class="stat"><span class="stat-n">{homepage.stat1Num}</span><span class="stat-l">{homepage.stat1Label}</span></div>
+      <div class="stat"><span class="stat-n">{homepage.stat2Num}</span><span class="stat-l">{homepage.stat2Label}</span></div>
+      <div class="stat"><span class="stat-n">{homepage.stat3Num}</span><span class="stat-l">{homepage.stat3Label}</span></div>
+      <div class="stat"><span class="stat-n">{homepage.stat4Num}</span><span class="stat-l">{homepage.stat4Label}</span></div>
+    </div>
+  </div>
+  <div class="hero-right reveal reveal-d2">
+    <div class="hero-blob"></div>
+    <div class="hero-portrait">
+      <div class="portrait-placeholder">Dimple Kishnani · Founder</div>
+    </div>
+    <div class="hero-float">
+      <div class="hf-num">{homepage.stat1Num}</div>
+      <div class="hf-label">{homepage.stat1Label}</div>
+    </div>
+    <div class="hero-ticker">
+      <span class="ticker-dot"></span>
+      Next available: {settings.nextAvailable}
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    {['Burnout that won\'t quit','The relationship you keep replaying','Anger you can\'t place','Queer-affirmative','Trauma-informed','Free 15-min intro call','The version of yourself you keep putting off','Neurodivergent-affirming','Burnout that won\'t quit','The relationship you keep replaying','Anger you can\'t place','Queer-affirmative','Trauma-informed','Free 15-min intro call','The version of yourself you keep putting off','Neurodivergent-affirming'].map(item => (
+      <span class="m-item">{item}</span>
+    ))}
+  </div>
+</div>
+
+<!-- APPROACH -->
+<section class="approach">
+  <div class="approach-left reveal">
+    <div class="eyebrow"><span class="eyebrow-line"></span>02 — Approach</div>
+    <h2 class="sec-h2" style="margin-top:0.75rem">
+      {homepage.approachHeadline}<br />
+      <em class="accent">{homepage.approachAccent}</em>
+    </h2>
+    <p class="sec-body">{homepage.approachBody}</p>
+  </div>
+  <div class="approach-cards">
+    {[
+      {n:'/01', t:'Talk before you commit', b:'Free 15-minute intro call. Get a feel for the approach before spending a rupee or signing anything.'},
+      {n:'/02', t:'Matched by fit, not algorithm', b:'Paired based on what you\'re working through, your schedule, and what you\'re looking for in a therapist.'},
+      {n:'/03', t:'Sessions on your terms', b:'Video, audio, or text. Weekly or fortnightly. From wherever you are in India.'},
+      {n:'/04', t:'Track how things shift', b:'Free self-assessments between sessions. See how you\'re actually moving, not just feel it.'},
+    ].map((c,i) => (
+      <div class={`ac reveal reveal-d${i+1}`}>
+        <div class="ac-n">{c.n}</div>
+        <div class="ac-t">{c.t}</div>
+        <div class="ac-b">{c.b}</div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- TOPICS BENTO -->
+<section class="topics">
+  <div class="topics-head reveal">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span>03 — What we work on</div>
+      <h2 class="sec-h2" style="margin-top:0.75rem">
+        {homepage.topicsHeadline}<br />
+        <em class="accent">{homepage.topicsAccent}</em>
+      </h2>
+    </div>
+  </div>
+  <div class="bento">
+    <div class="bc bc-large reveal reveal-d1">
+      <div class="bc-label">Most talked about</div>
+      <div class="bc-text">Burnout that won't quit</div>
+    </div>
+    <div class="bc reveal reveal-d2"><div class="bc-label">01</div><div class="bc-text">The relationship you keep replaying</div></div>
+    <div class="bc reveal reveal-d3"><div class="bc-label">02</div><div class="bc-text">Anger you can't place</div></div>
+    <div class="bc reveal reveal-d1"><div class="bc-label">03</div><div class="bc-text">Anxiety before you even get out of bed</div></div>
+    <div class="bc reveal reveal-d2"><div class="bc-label">04</div><div class="bc-text">The version of yourself you keep putting off</div></div>
+    <div class="bc reveal reveal-d3"><div class="bc-label">05</div><div class="bc-text">Grief that doesn't follow a timeline</div></div>
+    <div class="bc bc-large reveal reveal-d4">
+      <div class="bc-label">Also</div>
+      <div class="bc-text">Queer identity, neurodivergence, family dynamics, chronic illness, performance pressure</div>
+    </div>
+  </div>
+</section>
+
+<!-- THERAPISTS -->
+<section class="therapists-sec">
+  <div class="therapists-top reveal">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span>04 — The team</div>
+      <h2 class="therapists-h">People you'll<br /><em class="accent">actually talk to</em></h2>
+    </div>
+    <a href="/therapists" class="view-all">View all <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+  </div>
+  <div class="t-grid">
+    {therapists.slice(0,4).map((t,i) => (
+      <a href={`/therapists/${t.slug}`} class={`t-card reveal reveal-d${i+1}`}>
+        <div class="t-img" style={`background:${t.avatarColor || '#9BABB5'}33`}>{t.initials}</div>
+        <div class="t-body">
+          <div class="t-name">{t.name}</div>
+          <div class="t-spec">{(t.specialisms as string[] || []).slice(0,3).join(' · ')}</div>
+          <div class="t-foot">
+            <span class="t-exp">{t.experience} yrs</span>
+            <span class="t-price">₹{(t.price as number)?.toLocaleString()}</span>
+          </div>
+          <a
+            href={`https://wa.me/${t.whatsapp || settings.whatsappNumber}?text=Hi%2C%20I%27d%20like%20to%20book%20with%20${encodeURIComponent(t.name as string)}.`}
+            target="_blank" rel="noopener" class="t-book"
+            onclick="event.stopPropagation()">
+            Book with {(t.name as string).split(' ')[0]}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+<!-- ASSESSMENTS -->
+<section class="assess-sec">
+  <div class="assess-top reveal">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span>05 — Free tools</div>
+      <h2 class="sec-h2" style="margin-top:0.75rem">Know where<br /><em class="accent">you stand</em></h2>
+    </div>
+    <p class="assess-sub">Clinically validated. Free. Use them between sessions to track how things shift over time.</p>
+  </div>
+  <div class="assess-grid">
+    {[
+      {id:'modal-dep', meta:'21 questions · PHQ format', title:'Depression check', desc:'A validated questionnaire to understand your current emotional state. Shareable with your therapist.'},
+      {id:'modal-anx', meta:'21 questions · GAD format', title:'Anxiety gauge', desc:'See how anxiety is affecting daily functioning. Instant results, track week on week.'},
+      {id:'modal-per', meta:'10 questions · Big 5 overview', title:'Personality map', desc:'Understand your patterns and tendencies — how you think, feel, and show up in the world.'},
+    ].map((a,i) => (
+      <div class={`assess-card reveal reveal-d${i+1}`} data-modal={a.id}>
+        <div class="assess-meta">{a.meta}</div>
+        <div class="assess-title">{a.title}</div>
+        <div class="assess-desc">{a.desc}</div>
+        <span class="assess-link">Take the test <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="pull-quote reveal">
+  <div class="pq-left">
+    <div class="pq-label">06 — What people say</div>
+    <div class="pq-line"></div>
+  </div>
+  <div>
+    <p class="pq-text">"{homepage.pullQuote}"</p>
+    <p class="pq-attr">— {homepage.pullQuoteAttr}</p>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<div class="fcta">
+  <div class="fcta-bg">mindworks</div>
+  <div class="fcta-eyebrow">Ready when you are</div>
+  <h2 class="fcta-h">Let's start<br /><em class="accent">talking.</em></h2>
+  <p class="fcta-sub">First 15 minutes are free.<br />No pressure, no paperwork — just a real conversation.</p>
+  <div class="fcta-actions">
+    <a href={waBook} target="_blank" rel="noopener" class="btn-cream">
+      Book free consultation
+      <span class="tooltip-wrap">
+        <span class="tooltip-icon" style="border-color:var(--ink);color:var(--ink)">i</span>
+        <span class="tooltip-bubble">A discovery call is a free 15-min conversation to answer your questions. No assessment, no commitment.</span>
+      </span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+    <a href={waLink} target="_blank" rel="noopener" class="btn-ghost-dark">WhatsApp us instead</a>
+  </div>
+</div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-dep">
+  <div class="modal-box">
+    <button class="modal-close" data-close="modal-dep" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="eyebrow" style="margin-bottom:1.25rem"><span class="eyebrow-line"></span>PHQ-9 · Depression check</div>
+    <h3 class="modal-h">How have you been feeling?</h3>
+    <p class="modal-sub">Over the last two weeks, how often have you been bothered by the following?</p>
+    <form id="phq-form">
+      {['Little interest or pleasure in doing things','Feeling down, depressed, or hopeless','Trouble falling or staying asleep, or sleeping too much','Feeling tired or having little energy','Poor appetite or overeating','Feeling bad about yourself','Trouble concentrating','Moving or speaking noticeably slowly — or being restless','Thoughts that you would be better off dead'].map((q,i) => (
+        <div class="assess-q-item">
+          <div class="assess-q-text">{i+1}. {q}</div>
+          <div class="assess-scale">
+            {([['0','Not at all'],['1','Several days'],['2','More than half'],['3','Nearly every day']] as [string,string][]).map(([v,l]) => (
+              <label><input type="radio" name={`phq${i}`} value={v} required /><span>{l}</span></label>
+            ))}
+          </div>
+        </div>
+      ))}
+      <button type="submit" class="btn-primary" style="margin-top:1rem;width:100%;justify-content:center">See my results</button>
+    </form>
+    <div class="assess-result" id="phq-result" style="display:none"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-anx">
+  <div class="modal-box">
+    <button class="modal-close" data-close="modal-anx" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="eyebrow" style="margin-bottom:1.25rem"><span class="eyebrow-line"></span>GAD-7 · Anxiety gauge</div>
+    <h3 class="modal-h">How anxious have you been?</h3>
+    <p class="modal-sub">Over the last two weeks, how often have you been bothered by the following?</p>
+    <form id="gad-form">
+      {['Feeling nervous, anxious, or on edge','Not being able to stop or control worrying','Worrying too much about different things','Trouble relaxing','Being so restless that it\'s hard to sit still','Becoming easily annoyed or irritable','Feeling afraid, as if something awful might happen'].map((q,i) => (
+        <div class="assess-q-item">
+          <div class="assess-q-text">{i+1}. {q}</div>
+          <div class="assess-scale">
+            {([['0','Not at all'],['1','Several days'],['2','More than half'],['3','Nearly every day']] as [string,string][]).map(([v,l]) => (
+              <label><input type="radio" name={`gad${i}`} value={v} required /><span>{l}</span></label>
+            ))}
+          </div>
+        </div>
+      ))}
+      <button type="submit" class="btn-primary" style="margin-top:1rem;width:100%;justify-content:center">See my results</button>
+    </form>
+    <div class="assess-result" id="gad-result" style="display:none"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-per">
+  <div class="modal-box">
+    <button class="modal-close" data-close="modal-per" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="eyebrow" style="margin-bottom:1.25rem"><span class="eyebrow-line"></span>Personality map</div>
+    <h3 class="modal-h">How do you tend to show up?</h3>
+    <p class="modal-sub">Rate each statement 1 (disagree strongly) to 5 (agree strongly).</p>
+    <form id="p5-form">
+      {['I see myself as someone who is talkative','I find it easy to approach strangers','I like to reflect on ideas','I worry a lot','I am well-organised','I feel comfortable being the centre of attention','I am interested in people','I have frequent mood changes','I have a vivid imagination','I make plans and stick to them'].map((q,i) => (
+        <div class="assess-q-item">
+          <div class="assess-q-text">{i+1}. {q}</div>
+          <div class="assess-scale">
+            {['1','2','3','4','5'].map(v => (
+              <label><input type="radio" name={`p5q${i}`} value={v} required /><span>{v}</span></label>
+            ))}
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:0.6rem;color:var(--slate-light);margin-top:0.2rem"><span>Disagree</span><span>Agree</span></div>
+        </div>
+      ))}
+      <button type="submit" class="btn-primary" style="margin-top:1rem;width:100%;justify-content:center">See my map</button>
+    </form>
+    <div class="assess-result" id="p5-result" style="display:none"></div>
+  </div>
+</div>
+
+</Base>
+
+<style>
+.hero { display:grid; grid-template-columns:7fr 5fr; min-height:91vh; padding:0 2.5rem; gap:3rem; align-items:center; border-bottom:1px solid var(--border); overflow:hidden; }
+.hero-left { padding:4rem 0; display:flex; flex-direction:column; gap:2.5rem; }
+.hero-h1 { font-family:var(--font-display); font-size:clamp(3rem,5.5vw,5.2rem); font-weight:400; line-height:1.02; letter-spacing:-0.03em; }
+.hero-body { font-size:1.05rem; font-weight:300; line-height:1.75; color:var(--slate); max-width:440px; }
+.hero-actions { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+.hero-stats { display:flex; gap:2rem; flex-wrap:wrap; padding-top:1.5rem; border-top:1px solid var(--border); }
+.stat { display:flex; flex-direction:column; gap:0.2rem; }
+.stat-n { font-family:var(--font-display); font-size:1.4rem; font-style:italic; letter-spacing:-0.02em; }
+.stat-l { font-size:0.68rem; color:var(--slate-light); letter-spacing:0.04em; }
+
+.hero-right { position:relative; display:flex; align-items:center; justify-content:center; padding:3rem 0; }
+.hero-blob { position:absolute; width:340px; height:380px; background:var(--clay-light); border-radius:60% 40% 70% 30%/50% 60% 40% 50%; top:50%; left:50%; transform:translate(-50%,-50%); animation:blobFloat 9s ease-in-out infinite; mix-blend-mode:multiply; }
+@keyframes blobFloat { 0%,100%{border-radius:60% 40% 70% 30%/50% 60% 40% 50%;transform:translate(-50%,-50%) translateY(0)} 33%{border-radius:50% 50% 40% 60%/60% 40% 60% 40%;transform:translate(-50%,-50%) translateY(-12px)} 66%{border-radius:70% 30% 50% 50%/40% 70% 30% 60%;transform:translate(-50%,-50%) translateY(6px)} }
+.hero-portrait { position:relative; z-index:1; width:280px; aspect-ratio:4/5; border-radius:2rem; overflow:hidden; background:linear-gradient(160deg,hsl(30,28%,68%),hsl(20,35%,60%)); box-shadow:var(--shadow-soft); display:flex; align-items:center; justify-content:center; }
+.portrait-placeholder { font-family:var(--font-display); font-size:1rem; font-style:italic; color:rgba(255,255,255,0.6); text-align:center; padding:2rem; line-height:1.5; }
+.hero-float { position:absolute; bottom:3rem; left:-2rem; background:var(--card); border:1px solid var(--border); border-radius:1rem; padding:1rem 1.25rem; box-shadow:var(--shadow-card); z-index:2; }
+.hf-num { font-family:var(--font-display); font-size:1.75rem; font-style:italic; line-height:1; letter-spacing:-0.02em; }
+.hf-label { font-size:0.7rem; color:var(--slate); margin-top:0.2rem; }
+.hero-ticker { position:absolute; top:2rem; right:0; background:var(--ink); color:rgba(247,243,236,0.7); font-size:0.68rem; letter-spacing:0.06em; padding:0.4rem 0.85rem; border-radius:100px 0 0 100px; display:flex; align-items:center; gap:0.5rem; z-index:2; }
+.ticker-dot { width:6px; height:6px; border-radius:50%; background:var(--clay); animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+.marquee-wrap { background:var(--ink); padding:0.9rem 0; overflow:hidden; border-top:1px solid rgba(247,243,236,0.06); border-bottom:1px solid rgba(247,243,236,0.06); }
+.marquee-track { display:flex; width:max-content; animation:marquee 38s linear infinite; }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.m-item { font-family:var(--font-display); font-size:0.95rem; font-style:italic; color:rgba(247,243,236,0.55); padding:0 2rem; white-space:nowrap; display:flex; align-items:center; gap:2rem; }
+.m-item::after { content:'✺'; color:var(--clay); font-style:normal; font-size:0.65rem; }
+
+.approach { padding:6rem 2.5rem; border-bottom:1px solid var(--border); display:grid; grid-template-columns:5fr 7fr; gap:4rem; align-items:start; }
+.approach-cards { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); border:1px solid var(--border); border-radius:1.5rem; overflow:hidden; }
+.ac { background:var(--card); padding:1.75rem; transition:background 0.2s; }
+.ac:hover { background:var(--ink); color:var(--cream); }
+.ac-n { font-size:0.65rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--slate); margin-bottom:1.5rem; }
+.ac:hover .ac-n { color:rgba(247,243,236,0.4); }
+.ac-t { font-family:var(--font-display); font-size:1.3rem; font-weight:400; letter-spacing:-0.02em; line-height:1.25; margin-bottom:0.6rem; }
+.ac-b { font-size:0.8rem; line-height:1.65; color:var(--slate); }
+.ac:hover .ac-b { color:rgba(247,243,236,0.65); }
+
+.sec-h2 { font-family:var(--font-display); font-size:clamp(2rem,3.5vw,3rem); font-weight:400; line-height:1.1; letter-spacing:-0.03em; }
+.sec-body { font-size:0.9rem; color:var(--slate); line-height:1.75; margin-top:1.25rem; max-width:280px; }
+
+.topics { padding:6rem 2.5rem; border-bottom:1px solid var(--border); }
+.topics-head { margin-bottom:2.5rem; }
+.bento { display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:minmax(120px,auto); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:1.5rem; overflow:hidden; }
+.bc { background:var(--card); padding:1.5rem; display:flex; flex-direction:column; justify-content:flex-end; transition:background 0.25s; }
+.bc:hover { background:var(--ink); }
+.bc:hover .bc-text { color:var(--cream); }
+.bc:hover .bc-label { color:rgba(247,243,236,0.3); }
+.bc-large { grid-column:span 2; grid-row:span 2; }
+.bc-label { font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--slate); margin-bottom:0.6rem; transition:color 0.2s; }
+.bc-text { font-family:var(--font-display); font-size:1.05rem; font-style:italic; line-height:1.3; transition:color 0.2s; }
+.bc-large .bc-text { font-size:1.6rem; }
+
+.therapists-sec { background:var(--ink); color:var(--cream); padding:6rem 2.5rem; }
+.therapists-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem; }
+.therapists-h { font-family:var(--font-display); font-size:clamp(2.2rem,4vw,3.5rem); font-weight:400; line-height:1.05; letter-spacing:-0.03em; margin-top:0.75rem; }
+.view-all { font-size:0.78rem; color:rgba(247,243,236,0.4); display:flex; align-items:center; gap:0.4rem; transition:color 0.2s; }
+.view-all:hover { color:rgba(247,243,236,0.8); }
+.t-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
+.t-card { background:rgba(247,243,236,0.05); border:1px solid rgba(247,243,236,0.1); border-radius:1.5rem; overflow:hidden; transition:background 0.2s; text-decoration:none; color:inherit; display:block; }
+.t-card:hover { background:rgba(247,243,236,0.09); }
+.t-card:nth-child(2), .t-card:nth-child(4) { margin-top:1.5rem; }
+.t-img { aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:2rem; font-style:italic; color:rgba(247,243,236,0.5); border-bottom:1px solid rgba(247,243,236,0.08); }
+.t-body { padding:1.25rem; }
+.t-name { font-weight:500; font-size:0.92rem; color:var(--cream); margin-bottom:0.3rem; }
+.t-spec { font-size:0.75rem; color:rgba(247,243,236,0.45); line-height:1.55; margin-bottom:1rem; }
+.t-foot { display:flex; justify-content:space-between; border-top:1px solid rgba(247,243,236,0.08); padding-top:0.85rem; margin-bottom:0.85rem; }
+.t-exp { font-size:0.68rem; color:rgba(247,243,236,0.3); }
+.t-price { font-family:var(--font-display); font-size:1rem; font-style:italic; }
+.t-book { display:inline-flex; align-items:center; justify-content:center; gap:0.35rem; width:100%; font-size:0.75rem; font-weight:500; background:rgba(247,243,236,0.1); color:rgba(247,243,236,0.75); border:1px solid rgba(247,243,236,0.15); padding:0.5rem 0.9rem; border-radius:100px; transition:background 0.2s,color 0.2s; }
+.t-book:hover { background:var(--clay); color:#fff; border-color:var(--clay); }
+.t-book svg { width:11px; height:11px; }
+
+.assess-sec { padding:6rem 2.5rem; border-bottom:1px solid var(--border); }
+.assess-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:2.5rem; }
+.assess-sub { font-size:0.82rem; color:var(--slate); max-width:260px; text-align:right; line-height:1.65; }
+.assess-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+.assess-card { border:1px solid var(--border); border-radius:1.5rem; background:var(--card); padding:2rem 1.75rem; display:flex; flex-direction:column; gap:0.85rem; transition:border-color 0.2s,transform 0.2s; cursor:pointer; }
+.assess-card:hover { border-color:var(--ink); transform:translateY(-3px); }
+.assess-meta { font-size:0.65rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:var(--slate); }
+.assess-title { font-family:var(--font-display); font-size:1.4rem; font-style:italic; letter-spacing:-0.02em; }
+.assess-desc { font-size:0.78rem; color:var(--slate); line-height:1.65; }
+.assess-link { margin-top:auto; font-size:0.78rem; font-weight:500; color:var(--clay); display:inline-flex; align-items:center; gap:0.35rem; }
+
+.pull-quote { padding:6rem 2.5rem; border-bottom:1px solid var(--border); display:grid; grid-template-columns:4fr 8fr; gap:4rem; align-items:center; background:var(--cream-mid); }
+.pq-label { font-size:0.68rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--slate); }
+.pq-line { width:30px; height:1px; background:var(--clay); margin-top:1rem; }
+.pq-text { font-family:var(--font-display); font-size:clamp(1.5rem,2.5vw,2.2rem); font-weight:300; font-style:italic; line-height:1.4; letter-spacing:-0.02em; }
+.pq-attr { margin-top:1.5rem; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--slate); }
+
+.fcta { padding:7rem 2.5rem 6rem; background:var(--ink); text-align:center; position:relative; overflow:hidden; }
+.fcta-bg { position:absolute; bottom:-4rem; left:50%; transform:translateX(-50%); font-family:var(--font-display); font-size:17vw; font-style:italic; color:rgba(247,243,236,0.04); white-space:nowrap; pointer-events:none; letter-spacing:-0.04em; line-height:1; }
+.fcta-eyebrow { font-size:0.68rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:rgba(247,243,236,0.3); margin-bottom:1.5rem; }
+.fcta-h { font-family:var(--font-display); font-size:clamp(3rem,6vw,5.5rem); font-weight:400; line-height:1.05; letter-spacing:-0.04em; color:var(--cream); margin-bottom:0.5rem; position:relative; z-index:1; }
+.fcta-sub { font-size:0.95rem; font-weight:300; color:rgba(247,243,236,0.45); line-height:1.7; margin-bottom:2.5rem; position:relative; z-index:1; }
+.fcta-actions { display:flex; gap:1rem; justify-content:center; position:relative; z-index:1; flex-wrap:wrap; }
+
+.modal-h { font-family:var(--font-display); font-size:1.5rem; font-weight:400; letter-spacing:-0.02em; margin-bottom:0.5rem; }
+.modal-sub { font-size:0.8rem; color:var(--slate); margin-bottom:1.5rem; line-height:1.65; }
+
+@media (max-width:1024px) {
+  .t-grid { grid-template-columns:repeat(2,1fr); }
+  .t-card:nth-child(2), .t-card:nth-child(4) { margin-top:0; }
+}
+@media (max-width:768px) {
+  .hero { grid-template-columns:1fr; min-height:auto; padding:3rem 1.25rem; }
+  .hero-right { display:none; }
+  .approach { grid-template-columns:1fr; padding:4rem 1.25rem; }
+  .approach-cards { grid-template-columns:1fr; }
+  .topics { padding:4rem 1.25rem; }
+  .bento { grid-template-columns:repeat(2,1fr); }
+  .bc-large { grid-column:span 2; }
+  .therapists-sec { padding:4rem 1.25rem; }
+  .t-grid { grid-template-columns:1fr 1fr; gap:0.75rem; }
+  .assess-sec { padding:4rem 1.25rem; }
+  .assess-grid { grid-template-columns:1fr; }
+  .assess-top { flex-direction:column; align-items:flex-start; gap:1rem; }
+  .assess-sub { text-align:left; }
+  .pull-quote { grid-template-columns:1fr; gap:2rem; padding:4rem 1.25rem; }
+  .fcta { padding:5rem 1.25rem 4rem; }
+}
+@media (max-width:480px) { .t-grid { grid-template-columns:1fr; } }
+</style>
+
+<script>
+document.querySelectorAll('.assess-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const id = card.getAttribute('data-modal');
+    if (id) { document.getElementById(id)?.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  });
+});
+document.querySelectorAll('.modal-close').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.getAttribute('data-close');
+    document.getElementById(id as string)?.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) { (overlay as HTMLElement).classList.remove('open'); document.body.style.overflow = ''; }
+  });
+});
+
+document.getElementById('phq-form')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const data = new FormData(e.target as HTMLFormElement);
+  let score = 0;
+  for (let i = 0; i < 9; i++) score += Number(data.get(`phq${i}`) || 0);
+  const label = score <= 4 ? 'Minimal or no depression' : score <= 9 ? 'Mild depression' : score <= 14 ? 'Moderate depression' : score <= 19 ? 'Moderately severe depression' : 'Severe depression';
+  const r = document.getElementById('phq-result');
+  if (r) { r.innerHTML = `Score: ${score}/27 — <strong>${label}</strong><br/><span style="font-size:0.75rem;font-style:normal;font-family:var(--font-body);color:var(--slate)">This is a screening tool, not a diagnosis. Consider sharing with a therapist.</span>`; r.style.display = 'block'; (e.target as HTMLElement).style.display = 'none'; }
+});
+
+document.getElementById('gad-form')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const data = new FormData(e.target as HTMLFormElement);
+  let score = 0;
+  for (let i = 0; i < 7; i++) score += Number(data.get(`gad${i}`) || 0);
+  const label = score <= 4 ? 'Minimal anxiety' : score <= 9 ? 'Mild anxiety' : score <= 14 ? 'Moderate anxiety' : 'Severe anxiety';
+  const r = document.getElementById('gad-result');
+  if (r) { r.innerHTML = `Score: ${score}/21 — <strong>${label}</strong><br/><span style="font-size:0.75rem;font-style:normal;font-family:var(--font-body);color:var(--slate)">This is a screening tool, not a diagnosis. Consider sharing with a therapist.</span>`; r.style.display = 'block'; (e.target as HTMLElement).style.display = 'none'; }
+});
+
+document.getElementById('p5-form')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const data = new FormData(e.target as HTMLFormElement);
+  const v = Array.from({length:10}, (_,i) => Number(data.get(`p5q${i}`) || 3));
+  const traits = [
+    {name:'Extraversion', hi:'Outgoing, energised by people', lo:'Reflective, energised by solitude', score:(v[0]+v[1]+v[5])/3},
+    {name:'Openness', hi:'Curious, creative, ideas-driven', lo:'Practical, grounded, prefers the concrete', score:(v[2]+v[8])/2},
+    {name:'Neuroticism', hi:'Emotionally reactive, sensitive', lo:'Emotionally stable, resilient', score:(v[3]+v[6])/2},
+    {name:'Conscientiousness', hi:'Organised, dependable, goal-oriented', lo:'Flexible, spontaneous, adaptable', score:(v[4]+v[9])/2},
+    {name:'Agreeableness', hi:'Cooperative, empathetic, trusting', lo:'Direct, competitive, sceptical', score:v[7]},
+  ];
+  const r = document.getElementById('p5-result');
+  if (r) {
+    r.innerHTML = traits.map(t => `<div style="margin-bottom:0.75rem"><strong style="font-style:normal;font-family:var(--font-body);font-size:0.82rem">${t.name}</strong> <span style="font-size:0.75rem;font-style:normal;font-family:var(--font-body);color:var(--slate)">— ${t.score >= 3 ? t.hi : t.lo}</span></div>`).join('') + `<p style="font-size:0.7rem;color:var(--slate);font-style:normal;font-family:var(--font-body);margin-top:0.75rem">A brief snapshot — not a clinical assessment. For a fuller picture, speak with a psychologist.</p>`;
+    r.style.display = 'block'; r.style.textAlign = 'left';
+    (e.target as HTMLElement).style.display = 'none';
+  }
+});
+</script>

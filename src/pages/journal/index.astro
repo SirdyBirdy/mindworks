@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const files = import.meta.glob('../../content/journal/*.md', { eager: true });
+const sorted = Object.entries(files)
+  .map(([filepath, mod]: [string, any]) => ({
+    ...mod.frontmatter,
+    slug: filepath.split('/').pop()!.replace('.md', '')
+  }))
+  .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+---
+<Base title="Journal — Mindworks Counselling" description="Honest writing about the things people bring to therapy.">
+<section class="jh">
+  <div class="eyebrow reveal"><span class="eyebrow-line"></span>From the practice</div>
+  <h1 class="jh-title reveal reveal-d1">Things worth<br /><em class="accent">reading.</em></h1>
+  <p class="jh-sub reveal reveal-d2">No wellness jargon. Honest writing about the things people bring to therapy.</p>
+</section>
+<section class="jl">
+  <div class="jl-grid">
+    {sorted.map((p, i) => (
+      <a href={`/journal/${p.slug}`} class={`jc reveal reveal-d${(i%3)+1}`}>
+        <div class="jc-cover-placeholder"></div>
+        <div class="jc-body">
+          <div class="jc-date">{new Date(p.date as string).toLocaleDateString('en-IN', {day:'numeric',month:'long',year:'numeric'})}</div>
+          <div class="jc-title">{p.title}</div>
+          <div class="jc-excerpt">{p.excerpt}</div>
+          <span class="jc-link">Read more <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+</Base>
+<style>
+.jh { padding:5rem 2.5rem 3rem; border-bottom:1px solid var(--border); }
+.jh-title { font-family:var(--font-display); font-size:clamp(2.5rem,5vw,4.5rem); font-weight:400; line-height:1.05; letter-spacing:-0.03em; margin-top:0.75rem; }
+.jh-sub { font-size:1rem; color:var(--slate); margin-top:1rem; max-width:480px; font-weight:300; line-height:1.7; }
+.jl { padding:4rem 2.5rem; }
+.jl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.jc { background:var(--card); border:1px solid var(--border); border-radius:1.5rem; overflow:hidden; text-decoration:none; color:inherit; display:flex; flex-direction:column; transition:border-color 0.2s,transform 0.2s; }
+.jc:hover { border-color:var(--ink); transform:translateY(-3px); }
+.jc-cover-placeholder { width:100%; aspect-ratio:16/9; background:var(--cream-mid); }
+.jc-body { padding:1.5rem; display:flex; flex-direction:column; gap:0.6rem; flex:1; }
+.jc-date { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--slate-light); }
+.jc-title { font-family:var(--font-display); font-size:1.2rem; font-weight:400; line-height:1.3; letter-spacing:-0.02em; }
+.jc-excerpt { font-size:0.82rem; color:var(--slate); line-height:1.65; }
+.jc-link { margin-top:auto; padding-top:0.75rem; font-size:0.78rem; font-weight:500; color:var(--clay); display:inline-flex; align-items:center; gap:0.35rem; }
+@media (max-width:1024px) { .jl-grid { grid-template-columns:1fr 1fr; } }
+@media (max-width:768px) { .jh,.jl { padding:3rem 1.25rem; } .jl-grid { grid-template-columns:1fr; } }
+</style>

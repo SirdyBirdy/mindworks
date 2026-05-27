@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+import settings from '../../content/settings.json';
+
+const files = import.meta.glob('../../content/therapists/*.md', { eager: true });
+const therapists = Object.entries(files).map(([filepath, mod]: [string, any]) => ({
+  ...mod.frontmatter,
+  slug: filepath.split('/').pop()!.replace('.md', '')
+}));
+---
+<Base title="Our Therapists — Mindworks Counselling">
+<section class="tl-hero">
+  <div class="eyebrow reveal"><span class="eyebrow-line"></span>The team</div>
+  <h1 class="tl-h reveal reveal-d1">People you'll<br/><em class="accent">actually talk to</em></h1>
+  <p class="tl-sub reveal reveal-d2">Certified, supervised, and matched by fit — not an algorithm.</p>
+</section>
+<section class="tl-section">
+  <div class="tl-grid">
+    {therapists.map((t, i) => (
+      <a href={`/therapists/${t.slug}`} class={`tc reveal reveal-d${(i%3)+1}`}>
+        <div class="tc-img" style={`background:${t.avatarColor || '#9BABB5'}33`}>{t.initials}</div>
+        <div class="tc-body">
+          <div class="tc-name">{t.name}</div>
+          <div class="tc-role">{t.title}</div>
+          <div class="tc-spec">{(t.specialisms as string[] || []).slice(0,3).join(' · ')}</div>
+          <div class="tc-foot">
+            <span class="tc-exp">{t.experience} yrs experience</span>
+            <span class="tc-price">₹{(t.price as number)?.toLocaleString()} / session</span>
+          </div>
+          <a
+            href={`https://wa.me/${t.whatsapp || settings.whatsappNumber}?text=Hi%2C%20I%27d%20like%20to%20book%20with%20${encodeURIComponent(t.name as string)}.`}
+            target="_blank" rel="noopener" class="btn-primary tc-btn"
+            onclick="event.stopPropagation()">
+            Book with {(t.name as string).split(' ')[0]}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+</Base>
+<style>
+.tl-hero { padding:5rem 2.5rem 3rem; border-bottom:1px solid var(--border); }
+.tl-h { font-family:var(--font-display); font-size:clamp(2.5rem,5vw,4.5rem); font-weight:400; line-height:1.05; letter-spacing:-0.03em; margin-top:0.75rem; }
+.tl-sub { font-size:1rem; color:var(--slate); margin-top:1rem; font-weight:300; }
+.tl-section { padding:4rem 2.5rem; }
+.tl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.tc { background:var(--card); border:1px solid var(--border); border-radius:1.5rem; overflow:hidden; text-decoration:none; color:inherit; display:block; transition:border-color 0.2s,transform 0.2s; }
+.tc:hover { border-color:var(--ink); transform:translateY(-3px); }
+.tc-img { aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:2.5rem; font-style:italic; color:var(--slate); border-bottom:1px solid var(--border); }
+.tc-body { padding:1.5rem; display:flex; flex-direction:column; gap:0.5rem; }
+.tc-name { font-weight:500; font-size:1rem; }
+.tc-role { font-size:0.75rem; color:var(--slate-light); }
+.tc-spec { font-size:0.78rem; color:var(--slate); line-height:1.55; }
+.tc-foot { display:flex; justify-content:space-between; border-top:1px solid var(--border); padding-top:0.75rem; margin-top:0.25rem; }
+.tc-exp { font-size:0.68rem; color:var(--slate-light); }
+.tc-price { font-family:var(--font-display); font-size:0.95rem; font-style:italic; }
+.tc-btn { margin-top:0.5rem; justify-content:center; width:100%; }
+@media (max-width:768px) { .tl-hero,.tl-section { padding:3rem 1.25rem; } .tl-grid { grid-template-columns:1fr 1fr; } }
+@media (max-width:480px) { .tl-grid { grid-template-columns:1fr; } }
+</style>
