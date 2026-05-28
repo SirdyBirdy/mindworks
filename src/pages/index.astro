@@ -389,14 +389,16 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
 .t-card {
   background:rgba(247,243,236,0.05); border:1px solid rgba(247,243,236,0.1);
   border-radius:1.5rem; overflow:hidden;
-  text-decoration:none; color:inherit; display:block;
-  flex:0 0 300px; scroll-snap-align:start;
+  text-decoration:none; color:inherit;
+  display:flex; flex-direction:column;
+  flex:0 0 300px; width:300px; min-width:0;
+  scroll-snap-align:start;
   transition:background 0.2s, border-color 0.2s, transform 0.2s;
 }
 .t-card:hover { background:rgba(247,243,236,0.09); border-color:rgba(247,243,236,0.2); transform:translateY(-3px); }
-.t-img { aspect-ratio:3/2; display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(247,243,236,0.08); position:relative; }
+.t-img { width:100%; aspect-ratio:3/2; display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(247,243,236,0.08); flex-shrink:0; }
 .t-initials { font-family:var(--font-display); font-size:2.5rem; font-style:italic; color:rgba(247,243,236,0.4); }
-.t-body { padding:1.4rem; }
+.t-body { padding:1.4rem; display:flex; flex-direction:column; flex:1; }
 .t-name { font-weight:500; font-size:0.95rem; color:var(--cream); margin-bottom:0.15rem; }
 .t-role { font-size:0.72rem; color:rgba(247,243,236,0.35); margin-bottom:0.6rem; }
 .t-spec { font-size:0.75rem; color:rgba(247,243,236,0.45); line-height:1.6; margin-bottom:1rem; }
@@ -407,9 +409,9 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
 .t-book:hover { background:var(--clay); color:#fff; border-color:var(--clay); }
 .t-book svg { width:11px; height:11px; transition:transform 0.2s; }
 .t-book:hover svg { transform:translate(2px,-2px); }
-.carousel-dots { display:flex; justify-content:center; gap:0.5rem; padding-top:0.5rem; }
-.cdot { width:6px; height:6px; border-radius:50%; background:rgba(247,243,236,0.2); transition:background 0.2s,width 0.2s; border:none; cursor:pointer; padding:0; }
-.cdot.active { background:var(--clay); width:18px; border-radius:3px; }
+.carousel-dots { display:flex; justify-content:center; gap:0.5rem; padding:0.75rem 0 0.25rem; }
+.cdot { width:6px; height:6px; border-radius:50%; background:rgba(247,243,236,0.2); transition:background 0.25s, width 0.25s; border:none; cursor:pointer; padding:0; min-width:6px; }
+.cdot.active { background:var(--clay); width:20px; border-radius:3px; }
 
 .assess-sec { padding:6rem 2.5rem; border-bottom:1px solid var(--border); }
 .assess-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:2.5rem; }
@@ -451,8 +453,8 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
   .bc-large { grid-column:span 2; }
   .therapists-sec { padding:4rem 0 3rem; }
   .therapists-top { padding:0 1.25rem; }
-  .t-carousel { padding:0.5rem 1.25rem 1.5rem; }
-  .t-card { flex:0 0 260px; }
+  .t-carousel { padding:0.5rem 1.25rem 1.5rem; gap:1rem; }
+  .t-card { flex:0 0 260px; width:260px; }
   .assess-sec { padding:4rem 1.25rem; }
   .assess-grid { grid-template-columns:1fr; }
   .assess-top { flex-direction:column; align-items:flex-start; gap:1rem; }
@@ -460,7 +462,7 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
   .pull-quote { grid-template-columns:1fr; gap:2rem; padding:4rem 1.25rem; }
   .fcta { padding:5rem 1.25rem 4rem; }
 }
-@media (max-width:480px) { .t-card { flex:0 0 240px; } }
+@media (max-width:480px) { .t-card { flex:0 0 220px; width:220px; } .carousel-arrows { display:none; } }
 </style>
 
 <script>
@@ -473,7 +475,11 @@ const dotsWrap = document.getElementById('carousel-dots');
 if (carousel) {
   const cards = carousel.querySelectorAll('.t-card');
   const cardCount = cards.length;
-  const cardW = () => (cards[0] as HTMLElement).offsetWidth + 20; // card + gap
+  const cardW = () => {
+    const card = cards[0] as HTMLElement;
+    const gap = 16; // 1rem gap on mobile, 1.25rem on desktop — use scrollWidth approach
+    return card.offsetWidth + gap;
+  };
 
   // Build dots
   cards.forEach((_, i) => {
