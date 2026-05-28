@@ -134,30 +134,47 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
       <div class="eyebrow"><span class="eyebrow-line"></span>04 — The team</div>
       <h2 class="therapists-h">People you'll<br /><em class="accent">actually talk to</em></h2>
     </div>
-    <a href="/therapists" class="view-all">View all <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+    <div class="therapists-controls">
+      <a href="/therapists" class="view-all">View all <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+      <div class="carousel-arrows">
+        <button class="carr carr-prev" id="carr-prev" aria-label="Previous">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="carr carr-next" id="carr-next" aria-label="Next">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
   </div>
-  <div class="t-grid">
-    {therapists.slice(0,4).map((t,i) => (
-      <a href={`/therapists/${t.slug}`} class={`t-card reveal reveal-d${i+1}`}>
-        <div class="t-img" style={`background:${t.avatarColor || '#9BABB5'}33`}>{t.initials}</div>
-        <div class="t-body">
-          <div class="t-name">{t.name}</div>
-          <div class="t-spec">{(t.specialisms as string[] || []).slice(0,3).join(' · ')}</div>
-          <div class="t-foot">
-            <span class="t-exp">{t.experience} yrs</span>
-            <span class="t-price">₹{(t.price as number)?.toLocaleString()}</span>
+  <div class="t-carousel-wrap">
+    <div class="t-carousel" id="t-carousel">
+      {therapists.map((t,i) => (
+        <a href={`/therapists/${t.slug}`} class={`t-card reveal reveal-d${Math.min(i+1,4)}`}>
+          <div class="t-img" style={`background:${t.avatarColor || '#9BABB5'}33`}>
+            <span class="t-initials">{t.initials}</span>
           </div>
-          <a
-            href={`https://wa.me/${t.whatsapp || settings.whatsappNumber}?text=Hi%2C%20I%27d%20like%20to%20book%20with%20${encodeURIComponent(t.name as string)}.`}
-            target="_blank" rel="noopener" class="t-book"
-            onclick="event.stopPropagation()">
-            Book with {(t.name as string).split(' ')[0]}
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-          </a>
-        </div>
-      </a>
-    ))}
+          <div class="t-body">
+            <div class="t-name">{t.name}</div>
+            <div class="t-role">{t.title}</div>
+            <div class="t-spec">{(t.specialisms as string[] || []).slice(0,3).join(' · ')}</div>
+            <div class="t-foot">
+              <span class="t-exp">{t.experience} yrs experience</span>
+              <span class="t-price">₹{(t.price as number)?.toLocaleString()}</span>
+            </div>
+            <a
+              href={`https://wa.me/${t.whatsapp || settings.whatsappNumber}?text=Hi%2C%20I%27d%20like%20to%20book%20with%20${encodeURIComponent(t.name as string)}.`}
+              target="_blank" rel="noopener" class="t-book"
+              onclick="event.stopPropagation()">
+              Book with {(t.name as string).split(' ')[0]}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+        </a>
+      ))}
+    </div>
+    <div class="t-fade-right"></div>
   </div>
+  <div class="carousel-dots" id="carousel-dots"></div>
 </section>
 
 <!-- ASSESSMENTS -->
@@ -349,25 +366,50 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
 .bc-text { font-family:var(--font-display); font-size:1.05rem; font-style:italic; line-height:1.3; transition:color 0.2s; }
 .bc-large .bc-text { font-size:1.6rem; }
 
-.therapists-sec { background:var(--ink); color:var(--cream); padding:6rem 2.5rem; }
-.therapists-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem; }
+.therapists-sec { background:var(--ink); color:var(--cream); padding:6rem 0 5rem; }
+.therapists-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem; padding:0 2.5rem; }
 .therapists-h { font-family:var(--font-display); font-size:clamp(2.2rem,4vw,3.5rem); font-weight:400; line-height:1.05; letter-spacing:-0.03em; margin-top:0.75rem; }
-.view-all { font-size:0.78rem; color:rgba(247,243,236,0.4); display:flex; align-items:center; gap:0.4rem; transition:color 0.2s; }
+.therapists-controls { display:flex; align-items:center; gap:1.5rem; }
+.view-all { font-size:0.78rem; color:rgba(247,243,236,0.4); display:flex; align-items:center; gap:0.4rem; transition:color 0.2s; white-space:nowrap; }
 .view-all:hover { color:rgba(247,243,236,0.8); }
-.t-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
-.t-card { background:rgba(247,243,236,0.05); border:1px solid rgba(247,243,236,0.1); border-radius:1.5rem; overflow:hidden; transition:background 0.2s; text-decoration:none; color:inherit; display:block; }
-.t-card:hover { background:rgba(247,243,236,0.09); }
-.t-card:nth-child(2), .t-card:nth-child(4) { margin-top:1.5rem; }
-.t-img { aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:2rem; font-style:italic; color:rgba(247,243,236,0.5); border-bottom:1px solid rgba(247,243,236,0.08); }
-.t-body { padding:1.25rem; }
-.t-name { font-weight:500; font-size:0.92rem; color:var(--cream); margin-bottom:0.3rem; }
-.t-spec { font-size:0.75rem; color:rgba(247,243,236,0.45); line-height:1.55; margin-bottom:1rem; }
-.t-foot { display:flex; justify-content:space-between; border-top:1px solid rgba(247,243,236,0.08); padding-top:0.85rem; margin-bottom:0.85rem; }
+.carousel-arrows { display:flex; gap:0.5rem; }
+.carr { width:36px; height:36px; border-radius:50%; border:1px solid rgba(247,243,236,0.15); background:rgba(247,243,236,0.05); color:rgba(247,243,236,0.6); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s,border-color 0.2s,color 0.2s; }
+.carr:hover { background:rgba(247,243,236,0.12); border-color:rgba(247,243,236,0.3); color:var(--cream); }
+.carr:disabled { opacity:0.25; cursor:default; }
+.t-carousel-wrap { position:relative; }
+.t-carousel {
+  display:flex; gap:1.25rem;
+  overflow-x:auto; scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none; padding:0.5rem 2.5rem 1.5rem;
+  scroll-behavior:smooth;
+}
+.t-carousel::-webkit-scrollbar { display:none; }
+.t-fade-right { position:absolute; top:0; right:0; width:80px; height:100%; background:linear-gradient(to right,transparent,var(--ink)); pointer-events:none; }
+.t-card {
+  background:rgba(247,243,236,0.05); border:1px solid rgba(247,243,236,0.1);
+  border-radius:1.5rem; overflow:hidden;
+  text-decoration:none; color:inherit; display:block;
+  flex:0 0 300px; scroll-snap-align:start;
+  transition:background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.t-card:hover { background:rgba(247,243,236,0.09); border-color:rgba(247,243,236,0.2); transform:translateY(-3px); }
+.t-img { aspect-ratio:3/2; display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(247,243,236,0.08); position:relative; }
+.t-initials { font-family:var(--font-display); font-size:2.5rem; font-style:italic; color:rgba(247,243,236,0.4); }
+.t-body { padding:1.4rem; }
+.t-name { font-weight:500; font-size:0.95rem; color:var(--cream); margin-bottom:0.15rem; }
+.t-role { font-size:0.72rem; color:rgba(247,243,236,0.35); margin-bottom:0.6rem; }
+.t-spec { font-size:0.75rem; color:rgba(247,243,236,0.45); line-height:1.6; margin-bottom:1rem; }
+.t-foot { display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(247,243,236,0.08); padding-top:0.85rem; margin-bottom:0.9rem; }
 .t-exp { font-size:0.68rem; color:rgba(247,243,236,0.3); }
-.t-price { font-family:var(--font-display); font-size:1rem; font-style:italic; }
-.t-book { display:inline-flex; align-items:center; justify-content:center; gap:0.35rem; width:100%; font-size:0.75rem; font-weight:500; background:rgba(247,243,236,0.1); color:rgba(247,243,236,0.75); border:1px solid rgba(247,243,236,0.15); padding:0.5rem 0.9rem; border-radius:100px; transition:background 0.2s,color 0.2s; }
+.t-price { font-family:var(--font-display); font-size:1.05rem; font-style:italic; color:var(--cream); }
+.t-book { display:inline-flex; align-items:center; justify-content:center; gap:0.35rem; width:100%; font-size:0.75rem; font-weight:500; background:rgba(247,243,236,0.08); color:rgba(247,243,236,0.7); border:1px solid rgba(247,243,236,0.12); padding:0.55rem 0.9rem; border-radius:100px; transition:background 0.2s,color 0.2s,border-color 0.2s; }
 .t-book:hover { background:var(--clay); color:#fff; border-color:var(--clay); }
-.t-book svg { width:11px; height:11px; }
+.t-book svg { width:11px; height:11px; transition:transform 0.2s; }
+.t-book:hover svg { transform:translate(2px,-2px); }
+.carousel-dots { display:flex; justify-content:center; gap:0.5rem; padding-top:0.5rem; }
+.cdot { width:6px; height:6px; border-radius:50%; background:rgba(247,243,236,0.2); transition:background 0.2s,width 0.2s; border:none; cursor:pointer; padding:0; }
+.cdot.active { background:var(--clay); width:18px; border-radius:3px; }
 
 .assess-sec { padding:6rem 2.5rem; border-bottom:1px solid var(--border); }
 .assess-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:2.5rem; }
@@ -397,8 +439,7 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
 .modal-sub { font-size:0.8rem; color:var(--slate); margin-bottom:1.5rem; line-height:1.65; }
 
 @media (max-width:1024px) {
-  .t-grid { grid-template-columns:repeat(2,1fr); }
-  .t-card:nth-child(2), .t-card:nth-child(4) { margin-top:0; }
+  .t-card { flex:0 0 260px; }
 }
 @media (max-width:768px) {
   .hero { grid-template-columns:1fr; min-height:auto; padding:3rem 1.25rem; }
@@ -408,8 +449,10 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
   .topics { padding:4rem 1.25rem; }
   .bento { grid-template-columns:repeat(2,1fr); }
   .bc-large { grid-column:span 2; }
-  .therapists-sec { padding:4rem 1.25rem; }
-  .t-grid { grid-template-columns:1fr 1fr; gap:0.75rem; }
+  .therapists-sec { padding:4rem 0 3rem; }
+  .therapists-top { padding:0 1.25rem; }
+  .t-carousel { padding:0.5rem 1.25rem 1.5rem; }
+  .t-card { flex:0 0 260px; }
   .assess-sec { padding:4rem 1.25rem; }
   .assess-grid { grid-template-columns:1fr; }
   .assess-top { flex-direction:column; align-items:flex-start; gap:1rem; }
@@ -417,12 +460,55 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
   .pull-quote { grid-template-columns:1fr; gap:2rem; padding:4rem 1.25rem; }
   .fcta { padding:5rem 1.25rem 4rem; }
 }
-@media (max-width:480px) { .t-grid { grid-template-columns:1fr; } }
+@media (max-width:480px) { .t-card { flex:0 0 240px; } }
 </style>
 
 <script>
-document.querySelectorAll('.assess-card').forEach(card => {
-  card.addEventListener('click', () => {
+// Therapist carousel
+const carousel = document.getElementById('t-carousel');
+const prevBtn = document.getElementById('carr-prev');
+const nextBtn = document.getElementById('carr-next');
+const dotsWrap = document.getElementById('carousel-dots');
+
+if (carousel) {
+  const cards = carousel.querySelectorAll('.t-card');
+  const cardCount = cards.length;
+  const cardW = () => (cards[0] as HTMLElement).offsetWidth + 20; // card + gap
+
+  // Build dots
+  cards.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'cdot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `Go to therapist ${i+1}`);
+    dot.addEventListener('click', () => scrollTo(i));
+    dotsWrap?.appendChild(dot);
+  });
+
+  const scrollTo = (i: number) => {
+    carousel.scrollTo({ left: i * cardW(), behavior: 'smooth' });
+  };
+
+  const updateState = () => {
+    const idx = Math.round(carousel.scrollLeft / cardW());
+    dotsWrap?.querySelectorAll('.cdot').forEach((d, i) => d.classList.toggle('active', i === idx));
+    if (prevBtn) (prevBtn as HTMLButtonElement).disabled = idx === 0;
+    if (nextBtn) (nextBtn as HTMLButtonElement).disabled = idx >= cardCount - 1;
+  };
+
+  prevBtn?.addEventListener('click', () => {
+    const idx = Math.round(carousel.scrollLeft / cardW());
+    scrollTo(Math.max(0, idx - 1));
+  });
+  nextBtn?.addEventListener('click', () => {
+    const idx = Math.round(carousel.scrollLeft / cardW());
+    scrollTo(Math.min(cardCount - 1, idx + 1));
+  });
+
+  carousel.addEventListener('scroll', updateState, { passive: true });
+  updateState();
+}
+
+document.querySelectorAll('.assess-card').forEach(card => {  card.addEventListener('click', () => {
     const id = card.getAttribute('data-modal');
     if (id) { document.getElementById(id)?.classList.add('open'); document.body.style.overflow = 'hidden'; }
   });
