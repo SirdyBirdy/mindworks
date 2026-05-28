@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://mindworkscounselling.com',
+  site: 'https://sirdybirdy.github.io',
+  base: '/mindworks',
 });
