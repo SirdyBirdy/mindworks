@@ -385,15 +385,15 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
 .ts-btn:hover { background:rgba(247,243,236,0.12); color:var(--cream); }
 .ts-btn:disabled { opacity:0.2; cursor:default; pointer-events:none; }
 .ts-track-wrap { position:relative; }
-.ts-track { display:flex; flex-direction:row; gap:1rem; overflow-x:auto; overflow-y:visible; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:0.5rem 1.25rem 1rem; list-style:none; scroll-behavior:smooth; }
+.ts-track { display:flex; flex-direction:row; align-items:flex-start; gap:1rem; overflow-x:auto; overflow-y:visible; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:0.5rem 1.25rem 1rem; list-style:none; scroll-behavior:smooth; }
 .ts-track::-webkit-scrollbar { display:none; }
 .ts-fade { position:absolute; top:0; right:0; bottom:0; width:60px; background:linear-gradient(to right, transparent, var(--ink)); pointer-events:none; }
 .ts-item { flex:0 0 72vw; max-width:280px; scroll-snap-align:start; }
-.ts-card { display:flex; flex-direction:column; width:100%; height:100%; background:rgba(247,243,236,0.05); border:1px solid rgba(247,243,236,0.1); border-radius:1.25rem; overflow:hidden; text-decoration:none; color:inherit; transition:background 0.2s, border-color 0.2s; }
+.ts-card { display:flex; flex-direction:column; width:100%; background:rgba(247,243,236,0.05); border:1px solid rgba(247,243,236,0.1); border-radius:1.25rem; overflow:hidden; text-decoration:none; color:inherit; transition:background 0.2s, border-color 0.2s; }
 .ts-card:hover { background:rgba(247,243,236,0.09); border-color:rgba(247,243,236,0.2); }
-.ts-photo { width:100%; aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.ts-photo { width:100%; aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; flex-shrink:0; min-height:0; }
 .ts-initials { font-family:var(--font-display); font-size:2rem; font-style:italic; color:rgba(247,243,236,0.35); }
-.ts-info { display:flex; flex-direction:column; padding:1.1rem; flex:1; border-top:1px solid rgba(247,243,236,0.08); }
+.ts-info { display:flex; flex-direction:column; padding:1.1rem; border-top:1px solid rgba(247,243,236,0.08); }
 .ts-name { font-size:0.9rem; font-weight:500; color:var(--cream); margin:0 0 0.1rem; }
 .ts-role { font-size:0.68rem; color:rgba(247,243,236,0.3); margin:0 0 0.5rem; }
 .ts-spec { font-size:0.72rem; color:rgba(247,243,236,0.45); line-height:1.55; margin:0 0 0.85rem; }
