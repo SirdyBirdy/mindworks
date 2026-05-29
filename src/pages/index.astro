@@ -128,53 +128,60 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
 </section>
 
 <!-- THERAPISTS -->
-<section class="therapists-sec">
-  <div class="therapists-top reveal">
+<section class="ts">
+  <div class="ts-head reveal">
     <div>
       <div class="eyebrow"><span class="eyebrow-line"></span>04 — The team</div>
-      <h2 class="therapists-h">People you'll<br /><em class="accent">actually talk to</em></h2>
+      <h2 class="ts-h">People you'll<br /><em class="accent">actually talk to</em></h2>
     </div>
-    <div class="therapists-controls">
-      <a href="/therapists" class="view-all">View all <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
-      <div class="carousel-arrows">
-        <button class="carr carr-prev" id="carr-prev" aria-label="Previous">
+    <div class="ts-controls">
+      <a href="/therapists" class="ts-viewall">
+        View all
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+      <div class="ts-arrows" id="ts-arrows">
+        <button class="ts-btn" id="ts-prev" aria-label="Previous">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
-        <button class="carr carr-next" id="carr-next" aria-label="Next">
+        <button class="ts-btn" id="ts-next" aria-label="Next">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
     </div>
   </div>
-  <div class="t-carousel-wrap">
-    <div class="t-carousel" id="t-carousel">
-      {therapists.map((t,i) => (
-        <a href={`/therapists/${t.slug}`} class={`t-card reveal reveal-d${Math.min(i+1,4)}`}>
-          <div class="t-img" style={`background:${t.avatarColor || '#9BABB5'}33`}>
-            <span class="t-initials">{t.initials}</span>
-          </div>
-          <div class="t-body">
-            <div class="t-name">{t.name}</div>
-            <div class="t-role">{t.title}</div>
-            <div class="t-spec">{(t.specialisms as string[] || []).slice(0,3).join(' · ')}</div>
-            <div class="t-foot">
-              <span class="t-exp">{t.experience} yrs experience</span>
-              <span class="t-price">₹{(t.price as number)?.toLocaleString()}</span>
+
+  <div class="ts-track-wrap">
+    <ul class="ts-track" id="ts-track">
+      {therapists.map((t) => (
+        <li class="ts-item">
+          <a href={`/therapists/${t.slug}`} class="ts-card">
+            <div class="ts-photo" style={`background:${t.avatarColor || '#9BABB5'}22`}>
+              <span class="ts-initials">{t.initials}</span>
             </div>
-            <a
-              href={`https://wa.me/${t.whatsapp || settings.whatsappNumber}?text=Hi%2C%20I%27d%20like%20to%20book%20with%20${encodeURIComponent(t.name as string)}.`}
-              target="_blank" rel="noopener" class="t-book"
-              onclick="event.stopPropagation()">
-              Book with {(t.name as string).split(' ')[0]}
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-            </a>
-          </div>
-        </a>
+            <div class="ts-info">
+              <p class="ts-name">{t.name}</p>
+              <p class="ts-role">{t.title}</p>
+              <p class="ts-spec">{(t.specialisms as string[] || []).slice(0,3).join(' · ')}</p>
+              <div class="ts-meta">
+                <span class="ts-exp">{t.experience} yrs</span>
+                <span class="ts-price">₹{(t.price as number)?.toLocaleString()}</span>
+              </div>
+              <a
+                href={`https://wa.me/${t.whatsapp || settings.whatsappNumber}?text=Hi%2C%20I%27d%20like%20to%20book%20with%20${encodeURIComponent(t.name as string)}.`}
+                target="_blank" rel="noopener" class="ts-book"
+                onclick="event.stopPropagation()">
+                Book with {(t.name as string).split(' ')[0]}
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+            </div>
+          </a>
+        </li>
       ))}
-    </div>
-    <div class="t-fade-right"></div>
+    </ul>
+    <div class="ts-fade" aria-hidden="true"></div>
   </div>
-  <div class="carousel-dots" id="carousel-dots"></div>
+
+  <div class="ts-dots" id="ts-dots" aria-hidden="true"></div>
 </section>
 
 <!-- ASSESSMENTS -->
@@ -366,52 +373,50 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
 .bc-text { font-family:var(--font-display); font-size:1.05rem; font-style:italic; line-height:1.3; transition:color 0.2s; }
 .bc-large .bc-text { font-size:1.6rem; }
 
-.therapists-sec { background:var(--ink); color:var(--cream); padding:6rem 0 5rem; }
-.therapists-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem; padding:0 2.5rem; }
-.therapists-h { font-family:var(--font-display); font-size:clamp(2.2rem,4vw,3.5rem); font-weight:400; line-height:1.05; letter-spacing:-0.03em; margin-top:0.75rem; }
-.therapists-controls { display:flex; align-items:center; gap:1.5rem; }
-.view-all { font-size:0.78rem; color:rgba(247,243,236,0.4); display:flex; align-items:center; gap:0.4rem; transition:color 0.2s; white-space:nowrap; }
-.view-all:hover { color:rgba(247,243,236,0.8); }
-.carousel-arrows { display:flex; gap:0.5rem; }
-.carr { width:36px; height:36px; border-radius:50%; border:1px solid rgba(247,243,236,0.15); background:rgba(247,243,236,0.05); color:rgba(247,243,236,0.6); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s,border-color 0.2s,color 0.2s; }
-.carr:hover { background:rgba(247,243,236,0.12); border-color:rgba(247,243,236,0.3); color:var(--cream); }
-.carr:disabled { opacity:0.25; cursor:default; }
-.t-carousel-wrap { position:relative; }
-.t-carousel {
-  display:flex; gap:1.25rem;
-  overflow-x:auto; scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none; padding:0.5rem 2.5rem 1.5rem;
-  scroll-behavior:smooth;
+/* ── THERAPISTS — mobile first ── */
+.ts { background:var(--ink); color:var(--cream); padding:3.5rem 0 3rem; }
+.ts-head { display:flex; flex-direction:column; gap:1.25rem; padding:0 1.25rem; margin-bottom:2rem; }
+.ts-h { font-family:var(--font-display); font-size:clamp(2rem,8vw,3.5rem); font-weight:400; line-height:1.05; letter-spacing:-0.03em; margin-top:0.6rem; }
+.ts-controls { display:flex; align-items:center; gap:1rem; }
+.ts-viewall { font-size:0.78rem; color:rgba(247,243,236,0.4); display:inline-flex; align-items:center; gap:0.4rem; transition:color 0.2s; }
+.ts-viewall:hover { color:rgba(247,243,236,0.8); }
+.ts-arrows { display:flex; gap:0.5rem; }
+.ts-btn { width:36px; height:36px; border-radius:50%; border:1px solid rgba(247,243,236,0.15); background:rgba(247,243,236,0.05); color:rgba(247,243,236,0.6); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s,color 0.2s; flex-shrink:0; }
+.ts-btn:hover { background:rgba(247,243,236,0.12); color:var(--cream); }
+.ts-btn:disabled { opacity:0.2; cursor:default; pointer-events:none; }
+.ts-track-wrap { position:relative; }
+.ts-track { display:flex; flex-direction:row; gap:1rem; overflow-x:auto; overflow-y:visible; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:0.5rem 1.25rem 1rem; list-style:none; scroll-behavior:smooth; }
+.ts-track::-webkit-scrollbar { display:none; }
+.ts-fade { position:absolute; top:0; right:0; bottom:0; width:60px; background:linear-gradient(to right, transparent, var(--ink)); pointer-events:none; }
+.ts-item { flex:0 0 72vw; max-width:280px; scroll-snap-align:start; }
+.ts-card { display:flex; flex-direction:column; width:100%; height:100%; background:rgba(247,243,236,0.05); border:1px solid rgba(247,243,236,0.1); border-radius:1.25rem; overflow:hidden; text-decoration:none; color:inherit; transition:background 0.2s, border-color 0.2s; }
+.ts-card:hover { background:rgba(247,243,236,0.09); border-color:rgba(247,243,236,0.2); }
+.ts-photo { width:100%; aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.ts-initials { font-family:var(--font-display); font-size:2rem; font-style:italic; color:rgba(247,243,236,0.35); }
+.ts-info { display:flex; flex-direction:column; padding:1.1rem; flex:1; border-top:1px solid rgba(247,243,236,0.08); }
+.ts-name { font-size:0.9rem; font-weight:500; color:var(--cream); margin:0 0 0.1rem; }
+.ts-role { font-size:0.68rem; color:rgba(247,243,236,0.3); margin:0 0 0.5rem; }
+.ts-spec { font-size:0.72rem; color:rgba(247,243,236,0.45); line-height:1.55; margin:0 0 0.85rem; }
+.ts-meta { display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(247,243,236,0.07); padding-top:0.75rem; margin-bottom:0.75rem; }
+.ts-exp { font-size:0.65rem; color:rgba(247,243,236,0.28); }
+.ts-price { font-family:var(--font-display); font-size:0.95rem; font-style:italic; color:var(--cream); }
+.ts-book { display:flex; align-items:center; justify-content:center; gap:0.35rem; width:100%; padding:0.5rem 0.75rem; border-radius:100px; font-size:0.72rem; font-weight:500; background:rgba(247,243,236,0.08); color:rgba(247,243,236,0.7); border:1px solid rgba(247,243,236,0.12); text-decoration:none; transition:background 0.2s,color 0.2s,border-color 0.2s; margin-top:auto; }
+.ts-book:hover { background:var(--clay); color:#fff; border-color:var(--clay); }
+.ts-dots { display:flex; justify-content:center; align-items:center; gap:6px; padding:0.75rem 0 0.25rem; }
+.tsdot { width:6px; height:6px; border-radius:3px; background:rgba(247,243,236,0.18); border:none; cursor:pointer; padding:0; transition:background 0.25s, width 0.25s; min-width:6px; }
+.tsdot.active { background:var(--clay); width:20px; }
+@media (min-width:640px) {
+  .ts { padding:5rem 0 4rem; }
+  .ts-head { flex-direction:row; justify-content:space-between; align-items:flex-end; padding:0 2.5rem; margin-bottom:2.5rem; }
+  .ts-item { flex:0 0 300px; max-width:300px; }
+  .ts-track { padding:0.5rem 2.5rem 1.25rem; gap:1.25rem; }
+  .ts-fade { width:80px; }
 }
-.t-carousel::-webkit-scrollbar { display:none; }
-.t-fade-right { position:absolute; top:0; right:0; width:80px; height:100%; background:linear-gradient(to right,transparent,var(--ink)); pointer-events:none; }
-.t-card {
-  background:rgba(247,243,236,0.05); border:1px solid rgba(247,243,236,0.1);
-  border-radius:1.5rem; overflow:hidden;
-  text-decoration:none; color:inherit;
-  display:flex; flex-direction:column;
-  flex:0 0 300px; width:300px; min-width:0;
-  scroll-snap-align:start;
-  transition:background 0.2s, border-color 0.2s, transform 0.2s;
+@media (min-width:1024px) {
+  .ts { padding:6rem 0 5rem; }
+  .ts-item { flex:0 0 320px; max-width:320px; }
 }
-.t-card:hover { background:rgba(247,243,236,0.09); border-color:rgba(247,243,236,0.2); transform:translateY(-3px); }
-.t-img { width:100%; aspect-ratio:3/2; display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(247,243,236,0.08); flex-shrink:0; }
-.t-initials { font-family:var(--font-display); font-size:2.5rem; font-style:italic; color:rgba(247,243,236,0.4); }
-.t-body { padding:1.4rem; display:flex; flex-direction:column; flex:1; }
-.t-name { font-weight:500; font-size:0.95rem; color:var(--cream); margin-bottom:0.15rem; }
-.t-role { font-size:0.72rem; color:rgba(247,243,236,0.35); margin-bottom:0.6rem; }
-.t-spec { font-size:0.75rem; color:rgba(247,243,236,0.45); line-height:1.6; margin-bottom:1rem; }
-.t-foot { display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(247,243,236,0.08); padding-top:0.85rem; margin-bottom:0.9rem; }
-.t-exp { font-size:0.68rem; color:rgba(247,243,236,0.3); }
-.t-price { font-family:var(--font-display); font-size:1.05rem; font-style:italic; color:var(--cream); }
-.t-book { display:inline-flex; align-items:center; justify-content:center; gap:0.35rem; width:100%; font-size:0.75rem; font-weight:500; background:rgba(247,243,236,0.08); color:rgba(247,243,236,0.7); border:1px solid rgba(247,243,236,0.12); padding:0.55rem 0.9rem; border-radius:100px; transition:background 0.2s,color 0.2s,border-color 0.2s; }
-.t-book:hover { background:var(--clay); color:#fff; border-color:var(--clay); }
-.t-book svg { width:11px; height:11px; transition:transform 0.2s; }
-.t-book:hover svg { transform:translate(2px,-2px); }
-.carousel-dots { display:flex; justify-content:center; gap:0.5rem; padding:0.75rem 0 0.25rem; }
-.cdot { width:6px; height:6px; border-radius:50%; background:rgba(247,243,236,0.2); transition:background 0.25s, width 0.25s; border:none; cursor:pointer; padding:0; min-width:6px; }
-.cdot.active { background:var(--clay); width:20px; border-radius:3px; }
+
 
 .assess-sec { padding:6rem 2.5rem; border-bottom:1px solid var(--border); }
 .assess-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:2.5rem; }
@@ -440,9 +445,7 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
 .modal-h { font-family:var(--font-display); font-size:1.5rem; font-weight:400; letter-spacing:-0.02em; margin-bottom:0.5rem; }
 .modal-sub { font-size:0.8rem; color:var(--slate); margin-bottom:1.5rem; line-height:1.65; }
 
-@media (max-width:1024px) {
-  .t-card { flex:0 0 260px; }
-}
+
 @media (max-width:768px) {
   .hero { grid-template-columns:1fr; min-height:auto; padding:3rem 1.25rem; }
   .hero-right { display:none; }
@@ -451,10 +454,6 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
   .topics { padding:4rem 1.25rem; }
   .bento { grid-template-columns:repeat(2,1fr); }
   .bc-large { grid-column:span 2; }
-  .therapists-sec { padding:4rem 0 3rem; }
-  .therapists-top { padding:0 1.25rem; }
-  .t-carousel { padding:0.5rem 1.25rem 1.5rem; gap:1rem; }
-  .t-card { flex:0 0 260px; width:260px; }
   .assess-sec { padding:4rem 1.25rem; }
   .assess-grid { grid-template-columns:1fr; }
   .assess-top { flex-direction:column; align-items:flex-start; gap:1rem; }
@@ -462,56 +461,53 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
   .pull-quote { grid-template-columns:1fr; gap:2rem; padding:4rem 1.25rem; }
   .fcta { padding:5rem 1.25rem 4rem; }
 }
-@media (max-width:480px) { .t-card { flex:0 0 220px; width:220px; } .carousel-arrows { display:none; } }
+
 </style>
 
 <script>
 // Therapist carousel
-const carousel = document.getElementById('t-carousel');
-const prevBtn = document.getElementById('carr-prev');
-const nextBtn = document.getElementById('carr-next');
-const dotsWrap = document.getElementById('carousel-dots');
+const track = document.getElementById('ts-track');
+const prevBtn = document.getElementById('ts-prev');
+const nextBtn = document.getElementById('ts-next');
+const dotsWrap = document.getElementById('ts-dots');
 
-if (carousel) {
-  const cards = carousel.querySelectorAll('.t-card');
-  const cardCount = cards.length;
-  const cardW = () => {
-    const card = cards[0] as HTMLElement;
-    const gap = 16; // 1rem gap on mobile, 1.25rem on desktop — use scrollWidth approach
-    return card.offsetWidth + gap;
-  };
+if (track) {
+  const items = Array.from(track.querySelectorAll('.ts-item')) as HTMLElement[];
+  const count = items.length;
 
   // Build dots
-  cards.forEach((_, i) => {
+  items.forEach((_, i) => {
     const dot = document.createElement('button');
-    dot.className = 'cdot' + (i === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', `Go to therapist ${i+1}`);
-    dot.addEventListener('click', () => scrollTo(i));
+    dot.className = 'tsdot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to therapist ' + (i + 1));
+    dot.addEventListener('click', () => goTo(i));
     dotsWrap?.appendChild(dot);
   });
 
-  const scrollTo = (i: number) => {
-    carousel.scrollTo({ left: i * cardW(), behavior: 'smooth' });
+  const itemWidth = () => items[0].offsetWidth + parseInt(getComputedStyle(track).gap || '16');
+
+  const goTo = (i: number) => {
+    track.scrollTo({ left: i * itemWidth(), behavior: 'smooth' });
   };
 
-  const updateState = () => {
-    const idx = Math.round(carousel.scrollLeft / cardW());
-    dotsWrap?.querySelectorAll('.cdot').forEach((d, i) => d.classList.toggle('active', i === idx));
+  const sync = () => {
+    const idx = Math.min(count - 1, Math.round(track.scrollLeft / itemWidth()));
+    dotsWrap?.querySelectorAll('.tsdot').forEach((d, i) => d.classList.toggle('active', i === idx));
     if (prevBtn) (prevBtn as HTMLButtonElement).disabled = idx === 0;
-    if (nextBtn) (nextBtn as HTMLButtonElement).disabled = idx >= cardCount - 1;
+    if (nextBtn) (nextBtn as HTMLButtonElement).disabled = idx >= count - 1;
   };
 
   prevBtn?.addEventListener('click', () => {
-    const idx = Math.round(carousel.scrollLeft / cardW());
-    scrollTo(Math.max(0, idx - 1));
+    const idx = Math.round(track.scrollLeft / itemWidth());
+    goTo(Math.max(0, idx - 1));
   });
   nextBtn?.addEventListener('click', () => {
-    const idx = Math.round(carousel.scrollLeft / cardW());
-    scrollTo(Math.min(cardCount - 1, idx + 1));
+    const idx = Math.round(track.scrollLeft / itemWidth());
+    goTo(Math.min(count - 1, idx + 1));
   });
 
-  carousel.addEventListener('scroll', updateState, { passive: true });
-  updateState();
+  track.addEventListener('scroll', sync, { passive: true });
+  sync();
 }
 
 document.querySelectorAll('.assess-card').forEach(card => {  card.addEventListener('click', () => {
