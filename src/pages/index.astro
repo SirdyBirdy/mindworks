@@ -130,50 +130,80 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
 <!-- THERAPISTS -->
 <section class="ts">
   <div class="ts-head reveal">
-    <div>
+    <div class="ts-head-left">
       <div class="eyebrow"><span class="eyebrow-line"></span>04 — The team</div>
-      <h2 class="ts-h">People you'll<br /><em class="accent">actually talk to</em></h2>
+      <h2 class="ts-h">Small team.<br /><em class="accent">Carefully chosen.</em></h2>
     </div>
-    <div class="ts-controls">
-      <a href="/therapists" class="ts-viewall">
-        View all
-        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-      </a>
-      <div class="ts-arrows" id="ts-arrows">
-        <button class="ts-btn" id="ts-prev" aria-label="Previous">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button class="ts-btn" id="ts-next" aria-label="Next">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
+    <div class="ts-head-right">
+      <p class="ts-desc">We onboard slowly. Every therapist here has been vetted on craft, ethics, and the ability to hold a room — not just credentials.</p>
+      <div class="ts-controls">
+        <a href="/therapists" class="ts-viewall">
+          View all
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+        <div class="ts-arrows" id="ts-arrows">
+          <button class="ts-btn" id="ts-prev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="ts-btn" id="ts-next" aria-label="Next">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="ts-track-wrap">
     <ul class="ts-track" id="ts-track">
-      {therapists.map((t) => (
+      {therapists.map((t, idx) => (
         <li class="ts-item">
           <a href={`/therapists/${t.slug}`} class="ts-card">
-            <div class="ts-photo" style={`background:${t.avatarColor || '#9BABB5'}22`}>
-              <span class="ts-initials">{t.initials}</span>
+
+            {/* Photo area — shows real photo if frontmatter `photo` exists, else initials */}
+            <div class="ts-photo-wrap" style={`background:${t.avatarColor || '#9BABB5'}22`}>
+              {t.photo
+                ? <img src={t.photo as string} alt={t.name as string} class="ts-photo-img" loading="lazy" />
+                : <span class="ts-initials">{t.initials}</span>
+              }
             </div>
-            <div class="ts-info">
-              <p class="ts-name">{t.name}</p>
-              <p class="ts-role">{t.title}</p>
-              <p class="ts-spec">{(t.specialisms as string[] || []).slice(0,3).join(' · ')}</p>
-              <div class="ts-meta">
-                <span class="ts-exp">{t.experience} yrs</span>
-                <span class="ts-price">₹{(t.price as number)?.toLocaleString()}</span>
+
+            {/* Card body */}
+            <div class="ts-body">
+              <div class="ts-top-row">
+                {t.badge
+                  ? <span class="ts-badge">{(t.badge as string).toUpperCase()}</span>
+                  : <span class="ts-badge ts-badge--ghost">{(t.title as string || '').toUpperCase()}</span>
+                }
+                <span class="ts-num">{String(idx + 1).padStart(2, '0')}</span>
               </div>
-              <a
-                href={`https://wa.me/${t.whatsapp || settings.whatsappNumber}?text=Hi%2C%20I%27d%20like%20to%20book%20with%20${encodeURIComponent(t.name as string)}.`}
-                target="_blank" rel="noopener" class="ts-book"
-                onclick="event.stopPropagation()">
-                Book with {(t.name as string).split(' ')[0]}
-                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-              </a>
+
+              <div class="ts-name-block">
+                <p class="ts-name">{t.name}</p>
+                <p class="ts-exp-label">{t.experience} YRS PRACTICE</p>
+              </div>
+
+              <p class="ts-spec">{(t.specialisms as string[] || []).slice(0, 3).join(' · ')}</p>
+
+              <div class="ts-divider"></div>
+
+              <div class="ts-footer">
+                <span class="ts-price">
+                  ₹{(t.price as number)?.toLocaleString()}
+                  <span class="ts-per"> / session</span>
+                </span>
+                <a
+                  href={`https://wa.me/${t.whatsapp || settings.whatsappNumber}?text=Hi%2C%20I%27d%20like%20to%20book%20with%20${encodeURIComponent(t.name as string)}.`}
+                  target="_blank"
+                  rel="noopener"
+                  class="ts-enquire"
+                  onclick="event.stopPropagation()"
+                >
+                  Enquire
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+              </div>
             </div>
+
           </a>
         </li>
       ))}
@@ -373,50 +403,105 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
 .bc-text { font-family:var(--font-display); font-size:1.05rem; font-style:italic; line-height:1.3; transition:color 0.2s; }
 .bc-large .bc-text { font-size:1.6rem; }
 
-/* ── THERAPISTS — mobile first ── */
-.ts { background:var(--ink); color:var(--cream); padding:3.5rem 0 3rem; }
-.ts-head { display:flex; flex-direction:column; gap:1.25rem; padding:0 1.25rem; margin-bottom:2rem; }
-.ts-h { font-family:var(--font-display); font-size:clamp(2rem,8vw,3.5rem); font-weight:400; line-height:1.05; letter-spacing:-0.03em; margin-top:0.6rem; }
+/* ─────────────────────────────────────────
+   THERAPISTS — revamped, mobile-first
+───────────────────────────────────────── */
+
+/* Section shell */
+.ts { background:var(--ink); color:var(--cream); padding:3.5rem 0 3rem; border-bottom:1px solid rgba(247,243,236,0.06); }
+
+/* Header — stacked on mobile, side-by-side on tablet+ */
+.ts-head { display:flex; flex-direction:column; gap:1.5rem; padding:0 1.25rem; margin-bottom:2rem; }
+.ts-head-left {}
+.ts-head-right { display:flex; flex-direction:column; gap:1rem; }
+.ts-h { font-family:var(--font-display); font-size:clamp(2.2rem,9vw,3.8rem); font-weight:400; line-height:1.05; letter-spacing:-0.03em; margin-top:0.6rem; }
+.ts-desc { font-size:0.82rem; color:rgba(247,243,236,0.45); line-height:1.7; max-width:380px; }
 .ts-controls { display:flex; align-items:center; gap:1rem; }
-.ts-viewall { font-size:0.78rem; color:rgba(247,243,236,0.4); display:inline-flex; align-items:center; gap:0.4rem; transition:color 0.2s; }
-.ts-viewall:hover { color:rgba(247,243,236,0.8); }
+.ts-viewall { font-size:0.78rem; color:rgba(247,243,236,0.4); display:inline-flex; align-items:center; gap:0.4rem; transition:color 0.2s; text-decoration:none; }
+.ts-viewall:hover { color:rgba(247,243,236,0.85); }
 .ts-arrows { display:flex; gap:0.5rem; }
 .ts-btn { width:36px; height:36px; border-radius:50%; border:1px solid rgba(247,243,236,0.15); background:rgba(247,243,236,0.05); color:rgba(247,243,236,0.6); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s,color 0.2s; flex-shrink:0; }
 .ts-btn:hover { background:rgba(247,243,236,0.12); color:var(--cream); }
 .ts-btn:disabled { opacity:0.2; cursor:default; pointer-events:none; }
+
+/* Track */
 .ts-track-wrap { position:relative; }
-.ts-track { display:flex; flex-direction:row; align-items:flex-start; gap:1rem; overflow-x:auto; overflow-y:visible; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:0.5rem 1.25rem 1rem; list-style:none; scroll-behavior:smooth; }
+.ts-track { display:flex; flex-direction:row; align-items:stretch; gap:0.85rem; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:0.5rem 1.25rem 1rem; list-style:none; scroll-behavior:smooth; }
 .ts-track::-webkit-scrollbar { display:none; }
 .ts-fade { position:absolute; top:0; right:0; bottom:0; width:60px; background:linear-gradient(to right, transparent, var(--ink)); pointer-events:none; }
-.ts-item { flex:0 0 72vw; max-width:280px; scroll-snap-align:start; }
-.ts-card { display:flex; flex-direction:column; width:100%; background:rgba(247,243,236,0.05); border:1px solid rgba(247,243,236,0.1); border-radius:1.25rem; overflow:hidden; text-decoration:none; color:inherit; transition:background 0.2s, border-color 0.2s; }
-.ts-card:hover { background:rgba(247,243,236,0.09); border-color:rgba(247,243,236,0.2); }
-.ts-photo { width:100%; aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; flex-shrink:0; min-height:0; }
-.ts-initials { font-family:var(--font-display); font-size:2rem; font-style:italic; color:rgba(247,243,236,0.35); }
-.ts-info { display:flex; flex-direction:column; padding:1.1rem; border-top:1px solid rgba(247,243,236,0.08); }
-.ts-name { font-size:0.9rem; font-weight:500; color:var(--cream); margin:0 0 0.1rem; }
-.ts-role { font-size:0.68rem; color:rgba(247,243,236,0.3); margin:0 0 0.5rem; }
-.ts-spec { font-size:0.72rem; color:rgba(247,243,236,0.45); line-height:1.55; margin:0 0 0.85rem; }
-.ts-meta { display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(247,243,236,0.07); padding-top:0.75rem; margin-bottom:0.75rem; }
-.ts-exp { font-size:0.65rem; color:rgba(247,243,236,0.28); }
-.ts-price { font-family:var(--font-display); font-size:0.95rem; font-style:italic; color:var(--cream); }
-.ts-book { display:flex; align-items:center; justify-content:center; gap:0.35rem; width:100%; padding:0.5rem 0.75rem; border-radius:100px; font-size:0.72rem; font-weight:500; background:rgba(247,243,236,0.08); color:rgba(247,243,236,0.7); border:1px solid rgba(247,243,236,0.12); text-decoration:none; transition:background 0.2s,color 0.2s,border-color 0.2s; margin-top:auto; }
-.ts-book:hover { background:var(--clay); color:#fff; border-color:var(--clay); }
+
+/* Card sizing */
+.ts-item { flex:0 0 82vw; max-width:300px; scroll-snap-align:start; display:flex; }
+
+/* Card shell */
+.ts-card { display:flex; flex-direction:column; width:100%; background:rgba(247,243,236,0.05); border:1px solid rgba(247,243,236,0.1); border-radius:1.25rem; overflow:hidden; text-decoration:none; color:inherit; transition:border-color 0.25s,background 0.25s,transform 0.25s; }
+.ts-card:hover { background:rgba(247,243,236,0.08); border-color:rgba(247,243,236,0.22); transform:translateY(-3px); }
+
+/* Photo */
+.ts-photo-wrap { width:100%; aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; }
+.ts-photo-img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; }
+.ts-initials { font-family:var(--font-display); font-size:2.5rem; font-style:italic; color:rgba(247,243,236,0.25); }
+
+/* Card body */
+.ts-body { display:flex; flex-direction:column; padding:1.1rem 1.1rem 1.15rem; border-top:1px solid rgba(247,243,236,0.08); flex:1; }
+
+/* Badge + number row */
+.ts-top-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.85rem; }
+.ts-badge { font-size:0.6rem; font-weight:500; letter-spacing:0.13em; color:rgba(247,243,236,0.5); border:1px solid rgba(247,243,236,0.18); border-radius:100px; padding:0.28rem 0.65rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:65%; }
+.ts-badge--ghost { opacity:0.6; }
+.ts-num { font-family:var(--font-display); font-size:1.6rem; font-style:italic; line-height:1; letter-spacing:-0.03em; color:var(--clay); flex-shrink:0; }
+
+/* Name block */
+.ts-name-block { margin-bottom:0.55rem; }
+.ts-name { font-family:var(--font-display); font-size:1.15rem; font-weight:400; letter-spacing:-0.02em; color:var(--cream); margin:0 0 0.2rem; line-height:1.2; }
+.ts-exp-label { font-size:0.6rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(247,243,236,0.3); margin:0; }
+
+/* Specialisms */
+.ts-spec { font-size:0.75rem; color:rgba(247,243,236,0.45); line-height:1.55; margin:0 0 0.9rem; }
+
+/* Divider */
+.ts-divider { height:1px; background:rgba(247,243,236,0.08); margin-bottom:0.85rem; margin-top:auto; }
+
+/* Price + enquire */
+.ts-footer { display:flex; align-items:center; justify-content:space-between; }
+.ts-price { font-family:var(--font-display); font-size:1.15rem; font-style:italic; letter-spacing:-0.02em; color:var(--cream); }
+.ts-per { font-size:0.65rem; font-style:normal; font-family:var(--font-body,sans-serif); color:rgba(247,243,236,0.35); letter-spacing:0; }
+.ts-enquire { display:inline-flex; align-items:center; gap:0.3rem; font-size:0.72rem; font-weight:500; color:var(--clay); text-decoration:none; transition:opacity 0.2s; flex-shrink:0; }
+.ts-enquire:hover { opacity:0.7; }
+
+/* Dots */
 .ts-dots { display:flex; justify-content:center; align-items:center; gap:6px; padding:0.75rem 0 0.25rem; }
-.tsdot { width:6px; height:6px; border-radius:3px; background:rgba(247,243,236,0.18); border:none; cursor:pointer; padding:0; transition:background 0.25s, width 0.25s; min-width:6px; }
+.tsdot { width:6px; height:6px; border-radius:3px; background:rgba(247,243,236,0.18); border:none; cursor:pointer; padding:0; transition:background 0.25s,width 0.25s; min-width:6px; }
 .tsdot.active { background:var(--clay); width:20px; }
+
+/* Tablet: 2-up carousel, header side-by-side */
 @media (min-width:640px) {
   .ts { padding:5rem 0 4rem; }
   .ts-head { flex-direction:row; justify-content:space-between; align-items:flex-end; padding:0 2.5rem; margin-bottom:2.5rem; }
+  .ts-head-right { align-items:flex-end; }
+  .ts-desc { text-align:right; }
   .ts-item { flex:0 0 300px; max-width:300px; }
-  .ts-track { padding:0.5rem 2.5rem 1.25rem; gap:1.25rem; }
+  .ts-track { padding:0.5rem 2.5rem 1.25rem; gap:1.1rem; }
   .ts-fade { width:80px; }
 }
+
+/* Desktop */
 @media (min-width:1024px) {
   .ts { padding:6rem 0 5rem; }
-  .ts-item { flex:0 0 320px; max-width:320px; }
+  .ts-item { flex:0 0 290px; max-width:290px; }
+  .ts-track { gap:1.25rem; }
 }
 
+/* Wide: static 4-column grid, no carousel needed */
+@media (min-width:1280px) {
+  .ts-track { display:grid; grid-template-columns:repeat(4,1fr); overflow-x:visible; scroll-snap-type:none; padding:0.5rem 2.5rem 0; gap:1.1rem; }
+  .ts-item { flex:none; max-width:none; }
+  .ts-fade { display:none; }
+  .ts-arrows { display:none; }
+  .ts-dots { display:none; }
+}
+
+/* ─── end therapists ─── */
 
 .assess-sec { padding:6rem 2.5rem; border-bottom:1px solid var(--border); }
 .assess-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:2.5rem; }
@@ -444,7 +529,6 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
 
 .modal-h { font-family:var(--font-display); font-size:1.5rem; font-weight:400; letter-spacing:-0.02em; margin-bottom:0.5rem; }
 .modal-sub { font-size:0.8rem; color:var(--slate); margin-bottom:1.5rem; line-height:1.65; }
-
 
 @media (max-width:768px) {
   .hero { grid-template-columns:1fr; min-height:auto; padding:3rem 1.25rem; }
