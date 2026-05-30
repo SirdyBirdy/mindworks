@@ -137,10 +137,6 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
     <div class="ts-head-right">
       <p class="ts-desc">We onboard slowly. Every therapist here has been vetted on craft, ethics, and the ability to hold a room — not just credentials.</p>
       <div class="ts-controls">
-        <a href="/therapists" class="ts-viewall">
-          View all
-          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </a>
         <div class="ts-arrows" id="ts-arrows">
           <button class="ts-btn" id="ts-prev" aria-label="Previous">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
@@ -149,6 +145,10 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
           </button>
         </div>
+        <a href="/therapists" class="ts-viewall">
+          View all
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
       </div>
     </div>
   </div>
@@ -431,16 +431,16 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
 .ts-fade { position:absolute; top:0; right:0; bottom:0; width:60px; background:linear-gradient(to right, transparent, var(--ink)); pointer-events:none; }
 
 /* Card sizing */
-.ts-item { flex:0 0 82vw; max-width:300px; scroll-snap-align:start; display:flex; }
+.ts-item { flex:0 0 calc(100vw - 3.5rem); max-width:280px; scroll-snap-align:start; display:flex; }
 
 /* Card shell */
 .ts-card { display:flex; flex-direction:column; width:100%; background:rgba(247,243,236,0.05); border:1px solid rgba(247,243,236,0.1); border-radius:1.25rem; overflow:hidden; text-decoration:none; color:inherit; transition:border-color 0.25s,background 0.25s,transform 0.25s; }
 .ts-card:hover { background:rgba(247,243,236,0.08); border-color:rgba(247,243,236,0.22); transform:translateY(-3px); }
 
 /* Photo */
-.ts-photo-wrap { width:100%; aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; }
+.ts-photo-wrap { width:100%; aspect-ratio:3/2; display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; }
 .ts-photo-img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; }
-.ts-initials { font-family:var(--font-display); font-size:2.5rem; font-style:italic; color:rgba(247,243,236,0.25); }
+.ts-initials { font-family:var(--font-display); font-size:2rem; font-style:italic; color:rgba(247,243,236,0.2); letter-spacing:-0.02em; }
 
 /* Card body */
 .ts-body { display:flex; flex-direction:column; padding:1.1rem 1.1rem 1.15rem; border-top:1px solid rgba(247,243,236,0.08); flex:1; }
@@ -457,10 +457,10 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
 .ts-exp-label { font-size:0.6rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(247,243,236,0.3); margin:0; }
 
 /* Specialisms */
-.ts-spec { font-size:0.75rem; color:rgba(247,243,236,0.45); line-height:1.55; margin:0 0 0.9rem; }
+.ts-spec { font-size:0.75rem; color:rgba(247,243,236,0.45); line-height:1.55; margin:0 0 auto; padding-bottom:0.9rem; }
 
 /* Divider */
-.ts-divider { height:1px; background:rgba(247,243,236,0.08); margin-bottom:0.85rem; margin-top:auto; }
+.ts-divider { height:1px; background:rgba(247,243,236,0.08); margin-bottom:0.85rem; }
 
 /* Price + enquire */
 .ts-footer { display:flex; align-items:center; justify-content:space-between; }
@@ -480,21 +480,22 @@ const therapists = Object.entries(therapistFiles_raw).map(([filepath, mod]: [str
   .ts-head { flex-direction:row; justify-content:space-between; align-items:flex-end; padding:0 2.5rem; margin-bottom:2.5rem; }
   .ts-head-right { align-items:flex-end; }
   .ts-desc { text-align:right; }
-  .ts-item { flex:0 0 300px; max-width:300px; }
-  .ts-track { padding:0.5rem 2.5rem 1.25rem; gap:1.1rem; }
+  .ts-controls { justify-content:flex-end; }
+  .ts-item { flex:0 0 260px; max-width:260px; }
+  .ts-track { padding:0.5rem 2.5rem 1.25rem; gap:1rem; }
   .ts-fade { width:80px; }
 }
 
 /* Desktop */
 @media (min-width:1024px) {
   .ts { padding:6rem 0 5rem; }
-  .ts-item { flex:0 0 290px; max-width:290px; }
+  .ts-item { flex:0 0 280px; max-width:280px; }
   .ts-track { gap:1.25rem; }
 }
 
 /* Wide: static 4-column grid, no carousel needed */
-@media (min-width:1280px) {
-  .ts-track { display:grid; grid-template-columns:repeat(4,1fr); overflow-x:visible; scroll-snap-type:none; padding:0.5rem 2.5rem 0; gap:1.1rem; }
+@media (min-width:1400px) {
+  .ts-track { display:grid; grid-template-columns:repeat(4,1fr); overflow-x:visible; scroll-snap-type:none; padding:0.5rem 2.5rem 0; gap:1.25rem; }
   .ts-item { flex:none; max-width:none; }
   .ts-fade { display:none; }
   .ts-arrows { display:none; }
