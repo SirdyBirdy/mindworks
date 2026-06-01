@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--
+  ═══════════════════════════════════════════════════════════════
+  BLOG POST TEMPLATE — HOW TO USE
+  ═══════════════════════════════════════════════════════════════
+  1. Duplicate this file into /blog/
+  2. Name it the same as the "slug" in content.js  e.g. how-to-find-a-therapist.html
+  3. Fill in the five EDIT HERE blocks below (marked with ✏️)
+  4. Add your <article> content inside .prose
+  5. Update CONTENT.blog.posts in content.js to include the new post
+  ═══════════════════════════════════════════════════════════════
+-->
+
+<!-- ✏️ 1. UPDATE: page title and meta description -->
+<title>How to find the right therapist — Mindworks Journal</title>
+<meta name="description" content="The websites all say 'safe space' and 'non-judgmental'. Here's what to actually look for.">
+<!-- / end update -->
+
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+/* ── BLOG POST STYLES ─── */
+.post-header {
+  max-width: 760px; margin: 0 auto;
+  padding: 5rem 2.5rem 3rem;
+}
+.post-header .eyebrow { margin-bottom: 1.5rem; }
+.post-title {
+  font-family: var(--display);
+  font-size: clamp(2rem, 4.5vw, 3.75rem);
+  font-weight: 400; line-height: 1.05;
+  letter-spacing: -0.03em; color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+.post-title em { font-style: italic; color: var(--accent); }
+.post-subtitle {
+  font-size: 1.1rem; color: var(--muted);
+  line-height: 1.65; margin-bottom: 2rem;
+}
+.post-byline {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: 0.78rem; color: var(--muted);
+  padding-top: 1.5rem; border-top: 1px solid var(--border);
+}
+.post-byline-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--muted); }
+.post-byline-name { font-weight: 500; color: var(--ink); }
+
+/* Body / prose */
+.post-content {
+  max-width: 760px; margin: 0 auto;
+  padding: 3rem 2.5rem 6rem;
+}
+.prose { line-height: 1.8; }
+.prose p { font-size: 1.05rem; color: var(--muted); margin-bottom: 1.5rem; }
+.prose p:first-child { font-size: 1.15rem; color: var(--ink); font-weight: 300; }
+.prose h2 {
+  font-family: var(--display); font-size: 1.7rem;
+  font-weight: 400; font-style: italic;
+  letter-spacing: -0.02em; color: var(--ink);
+  margin: 3rem 0 1rem; line-height: 1.2;
+}
+.prose h3 {
+  font-family: var(--display); font-size: 1.2rem; font-weight: 400;
+  color: var(--ink); margin: 2.5rem 0 0.75rem; letter-spacing: -0.01em;
+}
+.prose strong { color: var(--ink); font-weight: 500; }
+.prose em { font-style: italic; }
+.prose a { color: var(--accent); text-decoration: underline; text-decoration-color: rgba(212,106,69,0.4); transition: text-decoration-color 0.2s; }
+.prose a:hover { text-decoration-color: var(--accent); }
+.prose ul, .prose ol { margin: 0 0 1.5rem 1.75rem; }
+.prose li { font-size: 1.05rem; color: var(--muted); margin-bottom: 0.6rem; line-height: 1.7; }
+.prose blockquote {
+  border-left: 2px solid var(--accent);
+  padding: 0.25rem 0 0.25rem 1.5rem; margin: 2.5rem 0;
+  font-family: var(--display); font-size: 1.3rem;
+  font-style: italic; color: var(--ink); line-height: 1.45;
+}
+.prose hr {
+  border: none; border-top: 1px solid var(--border);
+  margin: 3rem 0;
+}
+
+/* Post footer */
+.post-footer {
+  max-width: 760px; margin: 0 auto;
+  padding: 0 2.5rem 6rem;
+  border-top: 1px solid var(--border);
+  padding-top: 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 2rem; flex-wrap: wrap;
+}
+.post-footer-label {
+  font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+.post-cta-block { flex: 1; min-width: 200px; }
+
+/* Related / next post */
+.post-next {
+  border: 1px solid var(--border); border-radius: 1.25rem;
+  padding: 1.25rem 1.5rem; text-decoration: none;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  transition: border-color 0.2s, background 0.2s;
+  color: inherit;
+}
+.post-next:hover { border-color: var(--ink); background: #fff; }
+.post-next-title { font-family: var(--display); font-size: 1rem; font-style: italic; color: var(--ink); }
+.post-next svg { width: 18px; height: 18px; stroke: var(--muted); fill: none; stroke-width: 2; flex-shrink: 0; }
+
+@media (max-width: 768px) {
+  .post-header { padding: 3rem 1.25rem 2rem; }
+  .post-content { padding: 2rem 1.25rem 4rem; }
+  .post-footer { padding: 2rem 1.25rem 4rem; flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="logo"><em>mind</em>works</a>
+  <div class="nav-mid">
+    <a href="../index.html#therapists">Our therapists</a>
+    <a href="../index.html#assessments">Self-assessments</a>
+    <a href="index.html" style="color:var(--ink)">Journal</a>
+  </div>
+  <div class="nav-right">
+    <a href="https://calendly.com/mindworks" target="_blank" rel="noopener" class="nav-cta">
+      <span>Book free 15-min call</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" role="dialog" aria-label="Navigation">
+  <button class="mobile-menu-close" aria-label="Close">&times;</button>
+  <a href="../index.html#therapists">Our therapists</a>
+  <a href="../index.html#assessments">Self-assessments</a>
+  <a href="index.html">Journal</a>
+  <a href="https://calendly.com/mindworks" target="_blank" class="mm-cta">Book free 15-min call →</a>
+</div>
+
+<!-- ✏️ 2. UPDATE: tag, date, read time, author, title, subtitle -->
+<header class="post-header">
+  <div class="eyebrow">
+    <span class="eyebrow-line"></span>
+    <a href="index.html" style="color:var(--muted);text-decoration:none">Journal</a>
+    <span style="color:var(--border)">·</span>
+    Getting started
+  </div>
+  <h1 class="post-title">How to find the right therapist<br><em>(when everyone sounds the same)</em></h1>
+  <p class="post-subtitle">The websites all say "safe space" and "non-judgmental". Here's what to actually look for.</p>
+  <div class="post-byline">
+    <span class="post-byline-name">Dimple Kishnani</span>
+    <span class="post-byline-dot"></span>
+    <span>2 June 2025</span>
+    <span class="post-byline-dot"></span>
+    <span>5 min read</span>
+  </div>
+</header>
+<!-- / end update -->
+
+<!-- ✏️ 3. UPDATE: article body — write your content inside .prose -->
+<main class="post-content">
+  <article class="prose">
+
+    <p>If you've ever tried to find a therapist online, you've probably noticed that every profile says roughly the same thing. "Non-judgmental space." "I help you navigate challenges." "Together, we'll work towards your goals." It's not that these things are wrong — it's that they don't tell you anything useful about whether this particular person will actually help you.</p>
+
+    <p>Here's what actually matters.</p>
+
+    <h2>Look for specificity, not warmth</h2>
+
+    <p>Any good therapist is warm. Warmth is table stakes. What you're looking for is someone who's specific about who they work with and what they do. "I work with adults navigating relationship patterns rooted in early attachment" is more useful than "I help people become their best selves."</p>
+
+    <p>Specificity usually means experience. A therapist who can name what they're good at has probably done enough of that work to know.</p>
+
+    <h2>Check their approach — and Google it</h2>
+
+    <p>Most therapists list their modalities: CBT, ACT, psychodynamic, person-centred, EMDR. If you don't know what these mean, look them up. It takes five minutes and it'll help you understand whether their way of working resonates with what you're looking for.</p>
+
+    <blockquote>"CBT is structured and focused on thoughts and behaviour. Psychodynamic is more exploratory — it looks at patterns and where they came from. Neither is better. They suit different people and different problems."</blockquote>
+
+    <h2>Use the discovery call — that's what it's for</h2>
+
+    <p>Most therapists offer a free 15-minute call before you commit. Use it. Don't just ask about availability and fees. Ask them what their sessions are typically like. Ask how they'd approach what you're dealing with.</p>
+
+    <p>You're not looking for a perfect answer — you're looking for whether you feel heard. That matters more than credentials.</p>
+
+    <h2>It's okay if the first one isn't right</h2>
+
+    <p>Therapeutic fit is real. The research on it is clear: the quality of the relationship between therapist and client is one of the strongest predictors of outcome. If something feels off after a few sessions, it's worth naming that — or finding someone else.</p>
+
+    <p>This isn't failure. It's just finding the right fit.</p>
+
+    <hr>
+
+    <p>At Mindworks, the 15-minute discovery call exists precisely for this reason. It's a no-pressure conversation to see if we're a good fit before you commit to anything. <a href="https://calendly.com/mindworks" target="_blank" rel="noopener">You can book one here.</a></p>
+
+  </article>
+</main>
+<!-- / end update -->
+
+<!-- ✏️ 4. UPDATE: post footer CTA and next post link -->
+<div class="post-footer">
+  <div class="post-cta-block">
+    <div class="post-footer-label">Ready to start?</div>
+    <a href="https://calendly.com/mindworks" target="_blank" rel="noopener" class="btn-primary">
+      <span>Book free 15-min discovery call</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+  </div>
+  <div style="flex:1;min-width:200px">
+    <div class="post-footer-label">Next read</div>
+    <a href="what-is-cbt.html" class="post-next">
+      <div class="post-next-title">CBT isn't just "think positive"</div>
+      <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+  </div>
+</div>
+<!-- / end update -->
+
+<footer>
+  <div>
+    <div class="f-brand"><em>mind</em>works counselling</div>
+    <div class="f-desc">A small Pune-based therapy practice. Certified, supervised, queer-affirmative. Online sessions across India.</div>
+  </div>
+  <div><div class="f-label">Services</div><a href="#">Individual therapy</a><a href="#">Couples counselling</a><a href="../index.html#assessments">Self-assessments</a></div>
+  <div><div class="f-label">Navigate</div><a href="../index.html#therapists">Our therapists</a><a href="index.html">Journal</a><a href="#">About us</a></div>
+  <div><div class="f-label">Connect</div><a href="tel:+919067485858">+91 90674 85858</a><a href="https://wa.me/919067485858" target="_blank">WhatsApp</a><a href="https://instagram.com/mindworkscounselling" target="_blank">Instagram</a></div>
+</footer>
+<div class="f-bottom"><span>© 2025 Mindworks Counselling</span><span>Pune, India</span></div>
+
+<!-- ✏️ 5. No JS changes needed for a standard post. -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
+  const hamburger = document.querySelector('.nav-hamburger');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const mobileClose = document.querySelector('.mobile-menu-close');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => { mobileMenu.style.display='flex'; requestAnimationFrame(()=>mobileMenu.classList.add('open')); hamburger.setAttribute('aria-expanded','true'); });
+    const close = () => { mobileMenu.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); };
+    if (mobileClose) mobileClose.addEventListener('click', close);
+    document.addEventListener('keydown', e => { if (e.key==='Escape') close(); });
+  }
+});
+</script>
+</body>
+</html>

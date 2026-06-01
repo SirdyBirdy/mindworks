@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mindworks Counselling — A small Pune-based therapy practice. Certified, supervised psychologists. Online sessions across India.">
+<title>Mindworks Counselling — Pune & Online</title>
+<link rel="stylesheet" href="css/styles.css">
+<style>
+/* ── PAGE-SPECIFIC: HOMEPAGE ─── */
+
+/* HERO */
+.hero {
+  display: grid; grid-template-columns: 7fr 5fr;
+  min-height: 91vh; padding: 0 2.5rem;
+  gap: 3rem; align-items: center;
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.hero-left { padding: 4rem 0; display: flex; flex-direction: column; gap: 2.5rem; }
+.hero-h1 {
+  font-family: var(--display);
+  font-size: clamp(3rem, 5.5vw, 5.2rem);
+  font-weight: 400; line-height: 1.02; letter-spacing: -0.03em; color: var(--ink);
+}
+.hero-h1 em { font-style: italic; color: var(--accent); }
+.hero-body {
+  font-size: 1.05rem; font-weight: 300; line-height: 1.75;
+  color: var(--muted); max-width: 440px;
+}
+.hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+
+.hero-right { position: relative; display: flex; align-items: center; justify-content: center; padding: 3rem 0; }
+.blob {
+  position: absolute; width: 340px; height: 380px;
+  background: var(--clay-soft);
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  animation: blobFloat 9s ease-in-out infinite;
+  mix-blend-mode: multiply; z-index: 0;
+}
+@keyframes blobFloat {
+  0%,100%{border-radius:60% 40% 70% 30% / 50% 60% 40% 50%;transform:translate(-50%,-50%) translateY(0)}
+  33%{border-radius:50% 50% 40% 60% / 60% 40% 60% 40%;transform:translate(-50%,-50%) translateY(-12px)}
+  66%{border-radius:70% 30% 50% 50% / 40% 70% 30% 60%;transform:translate(-50%,-50%) translateY(6px)}
+}
+.portrait-wrap {
+  position: relative; z-index: 1; width: 280px; aspect-ratio: 4/5;
+  border-radius: 2rem; overflow: hidden; background: hsl(30,25%,72%);
+  box-shadow: var(--shadow-soft);
+}
+.portrait-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.portrait-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(160deg, hsl(30,28%,68%), hsl(20,35%,60%));
+  font-family: var(--display); font-size: 1rem; font-style: italic;
+  color: rgba(255,255,255,0.6); text-align: center; padding: 2rem; line-height: 1.5;
+}
+.portrait-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 1.5rem 1.25rem 1.25rem;
+  background: linear-gradient(to top, rgba(26,42,51,0.75) 0%, transparent 100%);
+  color: #fff; font-size: 0.72rem; font-weight: 400; letter-spacing: 0.05em;
+}
+.stat-float {
+  position: absolute; bottom: 3.5rem; left: -2rem;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 1rem; padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-card); z-index: 2;
+}
+.stat-float-num {
+  font-family: var(--display); font-size: 1.75rem; font-style: italic;
+  color: var(--ink); line-height: 1; letter-spacing: -0.02em;
+}
+.stat-float-label { font-size: 0.7rem; color: var(--muted); margin-top: 0.2rem; }
+.hero-ticker {
+  position: absolute; top: 2rem; right: 0;
+  background: var(--ink); color: rgba(249,244,235,0.7);
+  font-size: 0.68rem; font-weight: 400; letter-spacing: 0.06em;
+  padding: 0.4rem 0.85rem; border-radius: 100px 0 0 100px;
+  display: flex; align-items: center; gap: 0.5rem; z-index: 2;
+}
+.ticker-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+/* APPROACH */
+.approach {
+  padding: 6rem 2.5rem; border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: 5fr 7fr; gap: 4rem; align-items: start;
+}
+.approach-right {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--border); border: 1px solid var(--border);
+  border-radius: 1.5rem; overflow: hidden;
+}
+.approach-card { background: var(--card); padding: 1.75rem; transition: background 0.2s; cursor: default; }
+.approach-card:hover { background: var(--ink); color: var(--cream); }
+.approach-card:hover .ac-num, .approach-card:hover .ac-body { color: rgba(249,244,235,0.55); }
+.approach-card:hover .ac-title { color: var(--cream); }
+.ac-num { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; transition: color 0.2s; }
+.ac-title { font-family: var(--display); font-size: 1.3rem; font-weight: 400; letter-spacing: -0.02em; line-height: 1.25; color: var(--ink); margin-bottom: 0.6rem; transition: color 0.2s; }
+.ac-body { font-size: 0.8rem; line-height: 1.65; color: var(--muted); transition: color 0.2s; }
+.approach-left h2 { font-family: var(--display); font-size: clamp(2rem,3.5vw,3rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; color: var(--ink); margin-top: 0.75rem; }
+.approach-left p { font-size: 0.85rem; color: var(--muted); line-height: 1.75; margin-top: 1.25rem; max-width: 280px; }
+
+/* TOPICS / BENTO */
+.topics { padding: 6rem 2.5rem; border-bottom: 1px solid var(--border); }
+.topics-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; }
+.topics-header h2 { font-family: var(--display); font-size: clamp(2rem,3.5vw,3rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; color: var(--ink); margin-top: 0.75rem; }
+.bento {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  grid-auto-rows: minmax(120px, auto); gap: 1px;
+  background: var(--border); border: 1px solid var(--border);
+  border-radius: 1.5rem; overflow: hidden;
+}
+.bento-cell {
+  background: var(--card); padding: 1.5rem;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  transition: background 0.25s; cursor: default;
+}
+.bento-cell:hover { background: var(--ink); }
+.bento-cell:hover .bc-text { color: var(--cream); }
+.bento-cell:hover .bc-num { color: rgba(249,244,235,0.3); }
+.bento-large { grid-column: span 2; grid-row: span 2; }
+.bc-num { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; transition: color 0.2s; }
+.bc-text { font-family: var(--display); font-size: 1.05rem; font-weight: 400; font-style: italic; line-height: 1.3; color: var(--ink); transition: color 0.2s; }
+.bento-large .bc-text { font-size: 1.6rem; }
+
+/* THERAPISTS */
+.therapists { background: var(--ink); color: var(--cream); padding: 6rem 2.5rem; border-bottom: 1px solid rgba(249,244,235,0.08); }
+.therapists .eyebrow { color: rgba(249,244,235,0.35); }
+.therapists .eyebrow-line { background: var(--accent); }
+.therapists-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+.therapists-h { font-family: var(--display); font-size: clamp(2.2rem,4vw,3.5rem); font-weight: 400; line-height: 1.05; letter-spacing: -0.03em; color: var(--cream); margin-top: 0.75rem; }
+.therapists-h em { font-style: italic; color: var(--accent); }
+.t-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; }
+.t-card {
+  background: rgba(249,244,235,0.05); border: 1px solid rgba(249,244,235,0.1);
+  border-radius: 1.5rem; overflow: hidden;
+  transition: background 0.2s, border-color 0.2s; cursor: pointer;
+}
+.t-card:hover { background: rgba(249,244,235,0.09); border-color: rgba(249,244,235,0.2); }
+.t-card:nth-child(2), .t-card:nth-child(4) { margin-top: 1.5rem; }
+.t-img {
+  aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-size: 2rem; font-style: italic;
+  color: rgba(249,244,235,0.5); background: rgba(249,244,235,0.04);
+  border-bottom: 1px solid rgba(249,244,235,0.08); overflow: hidden;
+}
+.t-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.t-body { padding: 1.25rem 1.25rem 1.4rem; }
+.t-name { font-weight: 500; font-size: 0.92rem; margin-bottom: 0.3rem; color: var(--cream); }
+.t-spec { font-size: 0.75rem; color: rgba(249,244,235,0.45); line-height: 1.55; margin-bottom: 1rem; }
+.t-foot { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(249,244,235,0.08); padding-top: 0.85rem; }
+.t-exp { font-size: 0.68rem; color: rgba(249,244,235,0.3); }
+.t-price { font-family: var(--display); font-size: 1rem; font-style: italic; color: var(--cream); }
+
+/* ASSESSMENTS */
+.assess { padding: 6rem 2.5rem; border-bottom: 1px solid var(--border); }
+.assess-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; }
+.assess-top h2 { font-family: var(--display); font-size: clamp(2rem,3.5vw,3rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; color: var(--ink); margin-top: 0.75rem; }
+.assess-sub { font-size: 0.82rem; color: var(--muted); max-width: 260px; text-align: right; line-height: 1.65; }
+.assess-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem; max-width: 720px; }
+.assess-card {
+  border: 1px solid var(--border); border-radius: 1.5rem;
+  background: var(--card); padding: 2rem 1.75rem;
+  display: flex; flex-direction: column; gap: 0.85rem;
+  transition: border-color 0.2s, transform 0.2s; cursor: pointer;
+}
+.assess-card:hover { border-color: var(--ink); transform: translateY(-3px); }
+.assess-q { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+.assess-title { font-family: var(--display); font-size: 1.4rem; font-weight: 400; font-style: italic; line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); }
+.assess-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.65; }
+.assess-link {
+  margin-top: auto; font-size: 0.78rem; font-weight: 500;
+  color: var(--accent); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  transition: gap 0.2s; background: none; border: none; cursor: pointer;
+  padding: 0; font-family: var(--body);
+}
+.assess-link:hover { gap: 0.6rem; }
+.assess-link svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+/* PULL QUOTE */
+.pull-quote {
+  padding: 6rem 2.5rem; border-bottom: 1px solid var(--border);
+  background: hsl(38,30%,93%);
+  display: grid; grid-template-columns: 4fr 8fr; gap: 4rem; align-items: center;
+}
+.pq-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.pq-accent-line { width: 30px; height: 1px; background: var(--accent); margin-top: 1rem; }
+.pq-text { font-family: var(--display); font-size: clamp(1.5rem,2.5vw,2.2rem); font-weight: 300; font-style: italic; line-height: 1.4; letter-spacing: -0.02em; color: var(--ink); }
+.pq-attr { margin-top: 1.5rem; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+/* FOOTER CTA */
+.footer-cta { padding: 7rem 2.5rem 6rem; background: var(--ink); text-align: center; position: relative; overflow: hidden; }
+.fcta-bg { position: absolute; bottom: -4rem; left: 50%; transform: translateX(-50%); font-family: var(--display); font-size: 17vw; font-style: italic; font-weight: 400; color: rgba(249,244,235,0.04); white-space: nowrap; pointer-events: none; letter-spacing: -0.04em; line-height: 1; }
+.fcta-eyebrow { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(249,244,235,0.3); margin-bottom: 1.5rem; }
+.fcta-h { font-family: var(--display); font-size: clamp(3rem,6vw,5.5rem); font-weight: 400; font-style: italic; line-height: 1.05; letter-spacing: -0.04em; color: var(--cream); margin-bottom: 0.5rem; position: relative; z-index: 1; }
+.fcta-h em { color: var(--accent); }
+.fcta-sub { font-size: 0.95rem; font-weight: 300; color: rgba(249,244,235,0.45); line-height: 1.7; margin-bottom: 2.5rem; position: relative; z-index: 1; }
+.fcta-actions { display: flex; gap: 1rem; justify-content: center; position: relative; z-index: 1; flex-wrap: wrap; }
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; padding: 2rem 1.25rem; }
+  .hero-right { display: none; }
+  .approach { grid-template-columns: 1fr; padding: 4rem 1.25rem; }
+  .approach-right { grid-template-columns: 1fr; }
+  .topics { padding: 4rem 1.25rem; }
+  .bento { grid-template-columns: repeat(2,1fr); }
+  .therapists { padding: 4rem 1.25rem; }
+  .t-grid { grid-template-columns: repeat(2,1fr); }
+  .t-card:nth-child(2), .t-card:nth-child(4) { margin-top: 0; }
+  .assess { padding: 4rem 1.25rem; }
+  .assess-top { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  .assess-sub { text-align: left; }
+  .assess-grid { grid-template-columns: 1fr; max-width: 100%; }
+  .pull-quote { grid-template-columns: 1fr; padding: 4rem 1.25rem; }
+  .footer-cta { padding: 5rem 1.25rem; }
+  .fcta-actions { flex-direction: column; align-items: center; }
+}
+@media (max-width: 600px) {
+  .t-grid { grid-template-columns: 1fr; }
+  .bento { grid-template-columns: 1fr 1fr; }
+  .bento-large { grid-column: span 2; }
+  .hero-left { gap: 1.5rem; }
+  .topics-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo"><em>mind</em>works</a>
+  <div class="nav-mid">
+    <!-- Populated by main.js from content.js -->
+  </div>
+  <div class="nav-right">
+    <a href="#" class="nav-cta">
+      <span>Book free 15-min call</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" role="dialog" aria-label="Navigation menu">
+  <button class="mobile-menu-close" aria-label="Close menu">&times;</button>
+  <a href="#therapists">Our therapists</a>
+  <a href="#assessments">Self-assessments</a>
+  <a href="blog/index.html">Journal</a>
+  <a href="#" class="mm-cta">Book free 15-min call →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">01 — Pune & Online · Est. 2016</span>
+    </div>
+    <h1 class="hero-h1">
+      No couches.<br>No clichés.<br><em>Just the work.</em>
+    </h1>
+    <p class="hero-body">A small Pune-based practice. Certified, supervised psychologists who help you figure out what's loud, what's stuck, and what's quietly waiting to be said.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">
+        <span>Book free 15-min call</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+      <a href="#therapists" class="btn-secondary">
+        Meet the team
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="blob"></div>
+    <div class="portrait-wrap">
+      <!-- Replace portrait-placeholder with: <img src="assets/dimple-hero.jpg" alt="Dimple Kishnani"> -->
+      <div class="portrait-placeholder">Your photo here — warm, natural light</div>
+      <div class="portrait-caption">Dimple Kishnani · Founder, Clinical Psychologist</div>
+    </div>
+    <div class="stat-float">
+      <div class="stat-float-num">8,000+</div>
+      <div class="stat-float-label">people helped since 2016</div>
+    </div>
+    <div class="hero-ticker">
+      <span class="ticker-dot"></span>
+      <span class="hero-ticker-text">Next available: Today, 4 PM</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <!-- Populated by main.js -->
+    <span class="m-item">Burnout that won't quit</span>
+    <span class="m-item">The relationship you keep replaying</span>
+    <span class="m-item">Queer-affirmative</span>
+    <span class="m-item">Trauma-informed</span>
+    <span class="m-item">Free 15-min intro call</span>
+    <span class="m-item">Certified & supervised</span>
+    <span class="m-item">Burnout that won't quit</span>
+    <span class="m-item">The relationship you keep replaying</span>
+    <span class="m-item">Queer-affirmative</span>
+    <span class="m-item">Trauma-informed</span>
+    <span class="m-item">Free 15-min intro call</span>
+    <span class="m-item">Certified & supervised</span>
+  </div>
+</div>
+
+<!-- APPROACH -->
+<section class="approach reveal" id="approach">
+  <div class="approach-left">
+    <div class="eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">02 — Approach</span>
+    </div>
+    <h2>How we<br><em style="font-style:italic;color:var(--accent)">actually work</em></h2>
+    <p>We don't fix — we sit with you while you sort through what's loud, what's stuck, and what's quietly waiting to be said.</p>
+  </div>
+  <div class="approach-right">
+    <div class="approach-card reveal reveal-d1">
+      <div class="ac-num">/01</div>
+      <div class="ac-title">Talk before you commit</div>
+      <div class="ac-body">Free 15-minute intro call. Get a feel for the approach before spending a rupee or signing anything.</div>
+    </div>
+    <div class="approach-card reveal reveal-d2">
+      <div class="ac-num">/02</div>
+      <div class="ac-title">Matched by fit, not algorithm</div>
+      <div class="ac-body">Paired based on what you're working through, your schedule, and what you're looking for.</div>
+    </div>
+    <div class="approach-card reveal reveal-d3">
+      <div class="ac-num">/03</div>
+      <div class="ac-title">Sessions on your terms</div>
+      <div class="ac-body">Video, audio, or text. Weekly or fortnightly. From wherever you are in India.</div>
+    </div>
+    <div class="approach-card reveal reveal-d4">
+      <div class="ac-num">/04</div>
+      <div class="ac-title">Track how things shift</div>
+      <div class="ac-body">Free self-assessments between sessions. See how you're actually moving, not just feel it.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TOPICS / BENTO -->
+<section class="topics reveal" id="topics">
+  <div class="topics-header">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span>03 — What we work on</div>
+      <h2>Whatever's<br><em style="font-style:italic;color:var(--accent)">weighing on you</em></h2>
+    </div>
+  </div>
+  <div class="bento">
+    <div class="bento-cell bento-large reveal reveal-d1">
+      <div class="bc-num">Most talked about</div>
+      <div class="bc-text">Burnout that won't quit</div>
+    </div>
+    <div class="bento-cell reveal reveal-d2">
+      <div class="bc-num">01</div>
+      <div class="bc-text">The relationship you keep replaying</div>
+    </div>
+    <div class="bento-cell reveal reveal-d3">
+      <div class="bc-num">02</div>
+      <div class="bc-text">Anger you can't place</div>
+    </div>
+    <div class="bento-cell reveal reveal-d1">
+      <div class="bc-num">03</div>
+      <div class="bc-text">Anxiety before you even get out of bed</div>
+    </div>
+    <div class="bento-cell reveal reveal-d2">
+      <div class="bc-num">04</div>
+      <div class="bc-text">The version of yourself you keep putting off</div>
+    </div>
+    <div class="bento-cell reveal reveal-d3">
+      <div class="bc-num">05</div>
+      <div class="bc-text">Grief that doesn't follow a timeline</div>
+    </div>
+    <div class="bento-cell bento-large reveal reveal-d4">
+      <div class="bc-num">Also</div>
+      <div class="bc-text">Queer identity · neurodivergence · family dynamics · chronic illness · performance pressure</div>
+    </div>
+  </div>
+</section>
+
+<!-- THERAPISTS -->
+<section class="therapists reveal" id="therapists">
+  <div class="therapists-top">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span>04 — The team</div>
+      <h2 class="therapists-h">People you'll<br><em>actually talk to</em></h2>
+    </div>
+    <a href="therapists/" style="font-size:0.78rem;color:rgba(249,244,235,0.4);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s" onmouseover="this.style.color='rgba(249,244,235,0.8)'" onmouseout="this.style.color='rgba(249,244,235,0.4)'">
+      View all
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+  </div>
+  <div class="t-grid">
+    <!-- Populated by main.js — therapist cards with "Book with me" CTAs -->
+    <div class="t-card reveal reveal-d1">
+      <div class="t-img">DK</div>
+      <div class="t-body">
+        <div class="t-name">Dimple Kishnani</div>
+        <div class="t-spec">Clinical disorders · Relationships · Performance coaching</div>
+        <div class="t-foot">
+          <span class="t-exp">12 yrs experience</span>
+          <span class="t-price">₹2,500</span>
+        </div>
+        <div class="t-actions">
+          <a href="therapists/dimple-kishnani.html" class="t-profile-link">View profile →</a>
+          <a href="#" class="t-book-btn">Book with me <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="t-card reveal reveal-d2">
+      <div class="t-img">AT</div>
+      <div class="t-body">
+        <div class="t-name">Alina Tambuwala</div>
+        <div class="t-spec">CBT · Queer-affirmative · Trauma-informed</div>
+        <div class="t-foot">
+          <span class="t-exp">3 yrs experience</span>
+          <span class="t-price">₹1,400</span>
+        </div>
+        <div class="t-actions">
+          <a href="therapists/alina-tambuwala.html" class="t-profile-link">View profile →</a>
+          <a href="#" class="t-book-btn">Book with me <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="t-card reveal reveal-d3">
+      <div class="t-img">AN</div>
+      <div class="t-body">
+        <div class="t-name">Armeet Narang</div>
+        <div class="t-spec">CBT · ACT · REBT · Queer-affirmative</div>
+        <div class="t-foot">
+          <span class="t-exp">4 yrs experience</span>
+          <span class="t-price">₹1,500</span>
+        </div>
+        <div class="t-actions">
+          <a href="therapists/armeet-narang.html" class="t-profile-link">View profile →</a>
+          <a href="#" class="t-book-btn">Book with me <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="t-card reveal reveal-d4">
+      <div class="t-img">NK</div>
+      <div class="t-body">
+        <div class="t-name">Nandini Keshwani</div>
+        <div class="t-spec">Queer-affirmative · Body positivity · Growth</div>
+        <div class="t-foot">
+          <span class="t-exp">3 yrs experience</span>
+          <span class="t-price">₹1,200</span>
+        </div>
+        <div class="t-actions">
+          <a href="therapists/nandini-keshwani.html" class="t-profile-link">View profile →</a>
+          <a href="#" class="t-book-btn">Book with me <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASSESSMENTS -->
+<section class="assess reveal" id="assessments">
+  <div class="assess-top">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span>05 — Free tools</div>
+      <h2>Know where<br><em style="font-style:italic;color:var(--accent)">you stand</em></h2>
+    </div>
+    <p class="assess-sub">Clinically validated. Free. Share your score with your counsellor to start the conversation.</p>
+  </div>
+  <div class="assess-grid">
+    <div class="assess-card reveal reveal-d1">
+      <div class="assess-q">21 questions · BDI-II</div>
+      <div class="assess-title">Depression check</div>
+      <div class="assess-desc">The Beck Depression Inventory — a clinically validated tool to understand your current emotional state. Shareable with your therapist.</div>
+      <button class="assess-link" onclick="openAssessmentModal('bdi')">
+        Take the test
+        <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </button>
+    </div>
+    <div class="assess-card reveal reveal-d2">
+      <div class="assess-q">21 questions · BAI</div>
+      <div class="assess-title">Anxiety gauge</div>
+      <div class="assess-desc">The Beck Anxiety Inventory — see how anxiety is affecting your daily functioning. Instant results with a breakdown to share.</div>
+      <button class="assess-link" onclick="openAssessmentModal('bai')">
+        Take the test
+        <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="pull-quote reveal">
+  <div>
+    <div class="pq-label">06 — What people say</div>
+    <div class="pq-accent-line"></div>
+  </div>
+  <div>
+    <p class="pq-text">"Six months in, I have words for things I couldn't describe before. That's changed more than I expected."</p>
+    <p class="pq-attr">— Client, 29 · Online sessions since 2023</p>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<div class="footer-cta reveal">
+  <div class="fcta-bg" aria-hidden="true">mindworks</div>
+  <div class="fcta-eyebrow">Ready when you are</div>
+  <h2 class="fcta-h">Let's start<br><em>talking.</em></h2>
+  <p class="fcta-sub">First 15 minutes are free.<br>No pressure, no paperwork — just a real conversation.</p>
+  <div class="fcta-actions">
+    <a href="#" class="btn-cream" target="_blank" rel="noopener">
+      <span>Book free consultation</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+    <a href="https://wa.me/919067485858" class="btn-ghost-dark" target="_blank" rel="noopener">WhatsApp us instead</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="f-brand"><em>mind</em>works counselling</div>
+    <div class="f-desc">A small Pune-based therapy practice. Certified, supervised, queer-affirmative. Online sessions across India.</div>
+  </div>
+  <div class="f-col">
+    <div class="f-label">Services</div>
+    <div class="f-links">
+      <a href="#">Individual therapy</a>
+      <a href="#">Couples counselling</a>
+      <a href="#assessments">Self-assessments</a>
+    </div>
+  </div>
+  <div class="f-col">
+    <div class="f-label">Navigate</div>
+    <div class="f-links">
+      <a href="#therapists">Our therapists</a>
+      <a href="blog/index.html">Journal</a>
+      <a href="#">About us</a>
+    </div>
+  </div>
+  <div class="f-col">
+    <div class="f-label">Connect</div>
+    <div class="f-links">
+      <a href="tel:+919067485858">+91 90674 85858</a>
+      <a href="https://wa.me/919067485858" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://instagram.com/mindworkscounselling" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</footer>
+<div class="f-bottom">
+  <span>© 2025 Mindworks Counselling</span>
+  <span>Pune, India</span>
+</div>
+
+<!-- MOBILE MENU SCRIPT (inline for reliability) -->
+<script>
+  const hamburger = document.querySelector('.nav-hamburger');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const mobileClose = document.querySelector('.mobile-menu-close');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => { mobileMenu.style.display = 'flex'; mobileMenu.classList.add('open'); hamburger.setAttribute('aria-expanded', 'true'); });
+    mobileClose.addEventListener('click', () => { mobileMenu.classList.remove('open'); hamburger.setAttribute('aria-expanded', 'false'); });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+  }
+</script>
+
+<script src="js/content.js"></script>
+<script src="js/assessments.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
