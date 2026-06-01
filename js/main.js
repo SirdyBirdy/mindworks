@@ -9,55 +9,57 @@ document.addEventListener("DOMContentLoaded", () => {
   if (typeof CONTENT === "undefined") return;
 
   // ── RENDER: NAV ─────────────────────────────────────────────────
-  const navEl = document.querySelector("nav");
-  if (navEl) {
-    navEl.querySelector(".logo em").textContent = "mind";
-    const navMid = navEl.querySelector(".nav-mid");
-    if (navMid) {
-      navMid.innerHTML = CONTENT.nav.links.map(l =>
-        `<a href="${l.href}">${l.label}</a>`
-      ).join("");
-    }
-    const navCta = navEl.querySelector(".nav-cta");
-    if (navCta) {
-      navCta.setAttribute("href", CONTENT.site.bookingUrl);
-      navCta.setAttribute("target", "_blank");
-      navCta.setAttribute("rel", "noopener");
-      navCta.querySelector("span").textContent = CONTENT.nav.cta.label;
-      // Discovery tooltip
-      navCta.setAttribute("data-tooltip", CONTENT.nav.cta.tooltip);
-    }
+  const navMid = document.querySelector(".nav-mid");
+  if (navMid) {
+    navMid.innerHTML = CONTENT.nav.links.map(l =>
+      `<a href="${l.href}">${l.label}</a>`
+    ).join("");
+  }
+  const navCta = document.querySelector(".nav-cta");
+  if (navCta) {
+    navCta.setAttribute("href", CONTENT.site.bookingLink);
+    navCta.setAttribute("target", "_blank");
+    navCta.setAttribute("rel", "noopener");
+    const navCtaSpan = navCta.querySelector("span");
+    if (navCtaSpan) navCtaSpan.textContent = CONTENT.nav.cta.label;
+    navCta.setAttribute("data-tooltip", CONTENT.nav.cta.tooltip);
   }
 
   // ── RENDER: HERO ────────────────────────────────────────────────
-  const heroLeft = document.querySelector(".hero-left");
-  if (heroLeft) {
-    heroLeft.querySelector(".eyebrow-text").textContent = CONTENT.hero.eyebrow;
-    const h1 = heroLeft.querySelector(".hero-h1");
-    if (h1) {
-      h1.innerHTML = CONTENT.hero.headline.map((line, i) =>
-        i === CONTENT.hero.headlineAccentIndex
-          ? `<em>${line}</em>`
-          : line
-      ).join("<br>");
-    }
-    const body = heroLeft.querySelector(".hero-body");
-    if (body) body.textContent = CONTENT.hero.body;
-    const primaryCta = heroLeft.querySelector(".btn-primary span");
-    if (primaryCta) primaryCta.textContent = CONTENT.hero.primaryCta;
-    const primaryBtn = heroLeft.querySelector(".btn-primary");
-    if (primaryBtn) {
-      primaryBtn.setAttribute("href", CONTENT.site.bookingUrl);
-      primaryBtn.setAttribute("target", "_blank");
-    }
+  const eyebrowText = document.querySelector(".hero-left .eyebrow-text");
+  if (eyebrowText) eyebrowText.textContent = CONTENT.hero.eyebrow;
+
+  const h1 = document.querySelector(".hero-h1");
+  if (h1) h1.innerHTML = CONTENT.hero.h1;
+
+  const heroBody = document.querySelector(".hero-body");
+  if (heroBody) heroBody.textContent = CONTENT.hero.body;
+
+  const primaryBtn = document.querySelector(".btn-primary");
+  if (primaryBtn) {
+    primaryBtn.setAttribute("href", CONTENT.hero.ctaPrimary.href);
+    primaryBtn.setAttribute("target", "_blank");
+    primaryBtn.setAttribute("rel", "noopener");
+    const span = primaryBtn.querySelector("span");
+    if (span) span.textContent = CONTENT.hero.ctaPrimary.label;
+    primaryBtn.setAttribute("data-tooltip", CONTENT.hero.ctaPrimary.tooltip || "");
+  }
+
+  const secondaryBtn = document.querySelector(".btn-secondary");
+  if (secondaryBtn) {
+    secondaryBtn.setAttribute("href", CONTENT.hero.ctaSecondary.href);
+    secondaryBtn.textContent = CONTENT.hero.ctaSecondary.label;
   }
 
   const statNum = document.querySelector(".stat-float-num");
   if (statNum) statNum.textContent = CONTENT.hero.statNumber;
+
   const statLabel = document.querySelector(".stat-float-label");
   if (statLabel) statLabel.textContent = CONTENT.hero.statLabel;
+
   const ticker = document.querySelector(".hero-ticker-text");
-  if (ticker) ticker.textContent = CONTENT.hero.availabilityBadge;
+  if (ticker) ticker.textContent = CONTENT.hero.availabilityText;
+
   const caption = document.querySelector(".portrait-caption");
   if (caption) caption.textContent = CONTENT.hero.portraitCaption;
 
@@ -73,13 +75,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // ── RENDER: APPROACH ────────────────────────────────────────────
   const approachLeft = document.querySelector(".approach-left");
   if (approachLeft) {
-    approachLeft.querySelector(".eyebrow-text").textContent = CONTENT.approach.eyebrow;
+    const ey = approachLeft.querySelector(".eyebrow-text");
+    if (ey) ey.textContent = CONTENT.approach.eyebrow;
+
     const h2 = approachLeft.querySelector("h2");
-    if (h2) {
-      h2.innerHTML = CONTENT.approach.headline.map((l, i) =>
-        i === CONTENT.approach.headlineAccentLine ? `<em style="font-style:italic;color:var(--accent)">${l}</em>` : l
-      ).join("<br>");
-    }
+    if (h2) h2.innerHTML = CONTENT.approach.h2;
+
     const p = approachLeft.querySelector("p");
     if (p) p.textContent = CONTENT.approach.body;
   }
@@ -92,24 +93,34 @@ document.addEventListener("DOMContentLoaded", () => {
     card.querySelector(".ac-body").textContent = d.body;
   });
 
+  // ── RENDER: TOPICS ──────────────────────────────────────────────
+  const topicsEyebrow = document.querySelector(".topics .eyebrow");
+  if (topicsEyebrow) topicsEyebrow.innerHTML = `<span class="eyebrow-line"></span>${CONTENT.topics.eyebrow}`;
+
+  const topicsH2 = document.querySelector(".topics-header h2");
+  if (topicsH2) topicsH2.innerHTML = CONTENT.topics.h2;
+
   // ── RENDER: THERAPISTS ──────────────────────────────────────────
   const tGrid = document.querySelector(".t-grid");
   if (tGrid) {
-    tGrid.innerHTML = CONTENT.therapists.people.map((t, i) => `
+    tGrid.innerHTML = CONTENT.therapists.list.map((t, i) => `
       <div class="t-card reveal reveal-d${(i % 4) + 1}">
-        <div class="t-img">${t.photo ? `<img src="../${t.photo}" alt="${t.name}" loading="lazy">` : t.initials}</div>
+        <div class="t-img">
+          ${t.photo
+            ? `<img src="${t.photo}" alt="${t.name}" loading="lazy">`
+            : t.initials}
+        </div>
         <div class="t-body">
           <div class="t-name">${t.name}</div>
-          <div class="t-spec">${t.specialties.join(" · ")}</div>
+          <div class="t-spec">${t.specialisms.join(" · ")}</div>
           <div class="t-foot">
             <span class="t-exp">${t.experience}</span>
             <span class="t-price">${t.price}</span>
           </div>
           <div class="t-actions">
-            <a href="therapists/${t.slug}.html" class="t-profile-link">View profile →</a>
-            <a href="${CONTENT.site.bookingUrl}?counsellor=${encodeURIComponent(t.name)}" 
-               target="_blank" rel="noopener" class="t-book-btn">
-              Book with me
+            <a href="therapists/${t.id}.html" class="t-profile-link">View profile →</a>
+            <a href="${t.bookingLink}" target="_blank" rel="noopener" class="t-book-btn">
+              ${CONTENT.therapists.bookCTALabel}
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
             </a>
           </div>
@@ -122,76 +133,87 @@ document.addEventListener("DOMContentLoaded", () => {
   const assessGrid = document.querySelector(".assess-grid");
   if (assessGrid) {
     assessGrid.innerHTML = CONTENT.assessments.cards.map((c, i) => `
-      <div class="assess-card reveal reveal-d${i + 1}" data-type="${c.id}">
+      <div class="assess-card reveal reveal-d${i + 1}">
         <div class="assess-q">${c.label}</div>
         <div class="assess-title">${c.title}</div>
         <div class="assess-desc">${c.description}</div>
         <button class="assess-link" onclick="openAssessmentModal('${c.id}')">
-          Take the test
+          ${c.linkLabel}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
         </button>
       </div>
     `).join("");
   }
 
-  // ── RENDER: TESTIMONIAL ─────────────────────────────────────────
+  // ── RENDER: PULL QUOTE ──────────────────────────────────────────
   const pqText = document.querySelector(".pq-text");
-  if (pqText) pqText.textContent = `"${CONTENT.testimonial.quote}"`;
+  if (pqText) pqText.textContent = `"${CONTENT.pullQuote.quote}"`;
+
   const pqAttr = document.querySelector(".pq-attr");
-  if (pqAttr) pqAttr.textContent = CONTENT.testimonial.attribution;
+  if (pqAttr) pqAttr.textContent = CONTENT.pullQuote.attribution;
 
   // ── RENDER: FOOTER CTA ──────────────────────────────────────────
+  const fctaEyebrow = document.querySelector(".fcta-eyebrow");
+  if (fctaEyebrow) fctaEyebrow.textContent = CONTENT.footerCta.eyebrow;
+
   const fctaH = document.querySelector(".fcta-h");
-  if (fctaH) {
-    fctaH.innerHTML = CONTENT.footerCta.headline.map((l, i) =>
-      i === CONTENT.footerCta.headlineAccentLine ? `<em>${l}</em>` : l
-    ).join("<br>");
-  }
+  if (fctaH) fctaH.innerHTML = CONTENT.footerCta.h2;
+
   const fctaSub = document.querySelector(".fcta-sub");
-  if (fctaSub) fctaSub.innerHTML = CONTENT.footerCta.subtext.replace("\n", "<br>");
+  if (fctaSub) fctaSub.innerHTML = CONTENT.footerCta.body;
+
   const fctaPrimary = document.querySelector(".btn-cream");
   if (fctaPrimary) {
-    fctaPrimary.setAttribute("href", CONTENT.site.bookingUrl);
+    fctaPrimary.setAttribute("href", CONTENT.footerCta.ctaPrimary.href);
     fctaPrimary.setAttribute("target", "_blank");
-    fctaPrimary.querySelector("span").textContent = CONTENT.footerCta.primaryCta;
+    fctaPrimary.setAttribute("rel", "noopener");
+    const span = fctaPrimary.querySelector("span");
+    if (span) span.textContent = CONTENT.footerCta.ctaPrimary.label;
   }
+
   const fctaSecondary = document.querySelector(".btn-ghost-dark");
   if (fctaSecondary) {
-    fctaSecondary.setAttribute("href", CONTENT.site.whatsapp);
+    fctaSecondary.setAttribute("href", CONTENT.footerCta.ctaSecondary.href);
     fctaSecondary.setAttribute("target", "_blank");
-    fctaSecondary.textContent = CONTENT.footerCta.secondaryCta;
+    fctaSecondary.setAttribute("rel", "noopener");
+    fctaSecondary.textContent = CONTENT.footerCta.ctaSecondary.label;
   }
 
   // ── RENDER: FOOTER ──────────────────────────────────────────────
   const footerDesc = document.querySelector(".f-desc");
   if (footerDesc) footerDesc.textContent = CONTENT.footer.description;
+
   document.querySelectorAll(".f-col").forEach((col, i) => {
     const data = CONTENT.footer.columns[i];
     if (!data) return;
-    col.querySelector(".f-label").textContent = data.label;
-    col.querySelector(".f-links").innerHTML = data.links.map(l =>
+    const label = col.querySelector(".f-label");
+    if (label) label.textContent = data.heading;
+    const links = col.querySelector(".f-links");
+    if (links) links.innerHTML = data.links.map(l =>
       `<a href="${l.href}">${l.label}</a>`
     ).join("");
   });
 
-  // ── DISCOVERY CALL TOOLTIP ─────────────────────────────────────
-  const tooltipTriggers = document.querySelectorAll("[data-tooltip]");
-  tooltipTriggers.forEach(el => {
+  // ── DISCOVERY CALL TOOLTIP ──────────────────────────────────────
+  document.querySelectorAll("[data-tooltip]").forEach(el => {
     const tip = document.createElement("div");
     tip.className = "discovery-tooltip";
     tip.innerHTML = `
       <div class="dt-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
       </div>
       <p>${el.getAttribute("data-tooltip")}</p>
     `;
     el.style.position = "relative";
     el.appendChild(tip);
-
     el.addEventListener("mouseenter", () => tip.classList.add("visible"));
     el.addEventListener("mouseleave", () => tip.classList.remove("visible"));
-    el.addEventListener("focus", () => tip.classList.add("visible"));
-    el.addEventListener("blur", () => tip.classList.remove("visible"));
+    el.addEventListener("focus",      () => tip.classList.add("visible"));
+    el.addEventListener("blur",       () => tip.classList.remove("visible"));
   });
 
   // ── MOBILE NAV ──────────────────────────────────────────────────
