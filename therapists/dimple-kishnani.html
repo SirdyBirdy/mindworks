@@ -7,6 +7,66 @@
 <meta name="description" content="Dimple Kishnani — Founder & Clinical Psychologist at Mindworks Counselling, Pune. Clinical disorders, relationships, performance coaching.">
 <link rel="stylesheet" href="../css/styles.css">
 <link rel="stylesheet" href="../css/therapist-profile.css">
+<style>
+/* ── PROFILE-SPECIFIC EXTRAS ── */
+.profile-intro-pull {
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-style: italic; font-weight: 300;
+  line-height: 1.65; color: var(--ink);
+  border-left: 3px solid var(--teal);
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.fit-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+.fit-item {
+  background: var(--teal-soft);
+  border: 1px solid var(--teal-20);
+  border-radius: 0.85rem;
+  padding: 0.85rem 1rem;
+  font-size: 0.82rem; color: var(--teal-dark); line-height: 1.5;
+}
+.fit-item::before { content: '→ '; font-weight: 600; color: var(--teal); }
+
+.not-fit-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  padding: 0.85rem 1rem;
+  font-size: 0.82rem; color: var(--muted); line-height: 1.5;
+}
+.not-fit-item::before { content: '— '; color: var(--muted); }
+
+.outside-sessions {
+  background: var(--teal-soft);
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  margin-top: 0.75rem;
+}
+.outside-sessions p {
+  font-size: 0.92rem !important;
+  color: var(--teal-dark) !important;
+  margin-bottom: 0 !important;
+}
+
+.wish-block {
+  background: var(--teal);
+  border-radius: 1.25rem;
+  padding: 1.75rem 2rem;
+  margin-top: 0.75rem;
+}
+.wish-block p {
+  font-family: var(--display);
+  font-size: 1.2rem !important;
+  font-style: italic;
+  color: var(--cream) !important;
+  line-height: 1.6 !important;
+  margin-bottom: 0 !important;
+}
+</style>
 </head>
 <body>
 
@@ -19,7 +79,7 @@
   </div>
   <div class="nav-right">
     <a href="https://calendly.com/mindworks-dimple" target="_blank" rel="noopener" class="nav-cta">
-      <span>Book free 15-min call</span>
+      <span>Book with Dimple</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
     </a>
     <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
@@ -33,7 +93,7 @@
   <a href="../index.html#therapists">Our therapists</a>
   <a href="../index.html#assessments">Self-assessments</a>
   <a href="../blog/index.html">Journal</a>
-  <a href="https://calendly.com/mindworks-dimple" target="_blank" class="mm-cta">Book free 15-min call →</a>
+  <a href="https://calendly.com/mindworks-dimple" target="_blank" class="mm-cta">Book with Dimple →</a>
 </div>
 
 <a href="../index.html#therapists" class="profile-back">
@@ -42,7 +102,7 @@
 </a>
 
 <div class="profile-hero">
-  <div class="profile-portrait-wrap">
+  <div>
     <div class="profile-portrait">
       <!-- Replace with: <img src="../images/dimple.jpg" alt="Dimple Kishnani"> -->
       <div class="profile-portrait-placeholder">DK</div>
@@ -50,8 +110,9 @@
     <div class="profile-tags">
       <span class="profile-tag">Clinical disorders</span>
       <span class="profile-tag">Relationships</span>
-      <span class="profile-tag">Performance coaching</span>
+      <span class="profile-tag">Performance</span>
       <span class="profile-tag">Trauma</span>
+      <span class="profile-tag">RCI Licensed</span>
     </div>
   </div>
 
@@ -79,8 +140,8 @@
         <div class="profile-meta-value">Mon – Fri, mornings</div>
       </div>
       <div class="profile-meta-item">
-        <div class="profile-meta-label">Modes</div>
-        <div class="profile-meta-value">Video · In-person (Pune)</div>
+        <div class="profile-meta-label">Formats</div>
+        <div class="profile-meta-value">Online · In-person (Pune)</div>
       </div>
       <div class="profile-meta-item">
         <div class="profile-meta-label">Languages</div>
@@ -92,7 +153,7 @@
       </div>
     </div>
 
-    <div class="profile-cta" id="book">
+    <div class="profile-cta">
       <a href="https://calendly.com/mindworks-dimple" target="_blank" rel="noopener" class="btn-primary">
         <span>Book with Dimple</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
@@ -104,75 +165,147 @@
 
 <div class="profile-body">
 
+  <!-- WHAT PEOPLE BRING -->
   <div class="profile-section reveal">
-    <div class="profile-section-label">About</div>
+    <div class="profile-section-label">What people bring</div>
     <div>
-      <h2>A bit about Dimple</h2>
-      <p>Dimple founded Mindworks in 2016 with one question: what would therapy look like if it actually respected the person in the room? Over twelve years, she's worked with over a thousand people on everything from clinical depression to the quieter kind of stuck — the kind where life looks fine on paper but feels hollow underneath.</p>
-      <p>Her approach draws on psychodynamic thinking, CBT, and a lot of honest conversation. She won't tell you what to do. She'll sit with you while you figure it out.</p>
-    </div>
-  </div>
-
-  <div class="profile-section reveal">
-    <div class="profile-section-label">Specialties</div>
-    <div>
-      <h2>What she works with</h2>
+      <h2>What do people most commonly come to you with?</h2>
       <ul class="specialty-list">
-        <li>Clinical depression &amp; mood disorders</li>
-        <li>Anxiety disorders (GAD, panic, social anxiety)</li>
-        <li>Relationship dynamics &amp; attachment</li>
-        <li>Career transitions &amp; performance pressure</li>
-        <li>Trauma &amp; complex PTSD</li>
-        <li>Life transitions — marriage, divorce, parenthood</li>
+        <li>Feeling stuck in the same relationship patterns</li>
+        <li>Anxiety that shows up as overthinking or physical tension</li>
+        <li>Depression that doesn't always look like sadness</li>
+        <li>Burnout — especially in high-performing people</li>
+        <li>Grief that doesn't follow a timeline</li>
+        <li>Navigating a career transition or identity shift</li>
+        <li>The feeling that something's wrong but you can't name it</li>
+        <li>Family dynamics that keep playing out in adult relationships</li>
       </ul>
     </div>
   </div>
 
+  <!-- APPROACH -->
   <div class="profile-section reveal">
     <div class="profile-section-label">Approach</div>
     <div>
       <h2>How she works</h2>
-      <p>Sessions with Dimple tend to move between the present and the past — understanding the patterns that show up now by looking at where they started. She uses CBT tools when something practical is needed, and psychodynamic exploration when the question is bigger than a technique can answer.</p>
-      <p>She works best with people who are willing to be honest, even when it's uncomfortable. That's where the useful work usually lives.</p>
+      <p class="profile-intro-pull">"Sessions with me tend to be exploratory — but not aimless. I'm curious about the whole person, not just the symptom."</p>
+      <p>Dimple draws primarily on psychodynamic thinking and CBT, adapting based on what's useful. She's interested in where patterns come from, but she's equally interested in what to actually do with that understanding. Sessions move between past and present — not to stay in either one, but because both matter.</p>
+      <p>She uses structured CBT tools when something practical is needed: thought records, behavioural experiments, exposure work. When the question is bigger than a technique can answer, she slows down and explores.</p>
+      <p><strong>Modalities she uses:</strong> CBT · Psychodynamic therapy · ACT · Trauma-informed approaches</p>
     </div>
   </div>
 
+  <!-- WHAT SESSIONS FEEL LIKE -->
   <div class="profile-section reveal">
-    <div class="profile-section-label">Education</div>
+    <div class="profile-section-label">In the room</div>
     <div>
-      <h2>Qualifications</h2>
+      <h2>What does a session with Dimple actually feel like?</h2>
+      <p>Honest, and unhurried. There's no pressure to perform insight or arrive at breakthroughs on cue. Dimple asks a lot of questions — not to assess you, but because she's genuinely trying to understand. Sessions can be quiet when that's what's needed, and direct when that's more useful.</p>
+      <p>People often say they leave feeling like they've thought about something in a way they haven't before — not because she told them what to think, but because the space made it possible.</p>
+    </div>
+  </div>
+
+  <!-- WHO SHE WORKS WELL WITH -->
+  <div class="profile-section reveal">
+    <div class="profile-section-label">Good fit</div>
+    <div>
+      <h2>Who does she work especially well with?</h2>
+      <div class="fit-grid">
+        <div class="fit-item">People who are willing to look inward, even when it's uncomfortable</div>
+        <div class="fit-item">High-functioning people who seem fine on paper but feel hollow underneath</div>
+        <div class="fit-item">Those navigating a significant life transition — career, relationship, identity</div>
+        <div class="fit-item">People who've tried to think their way out of something that needs to be felt</div>
+        <div class="fit-item">Those who want to understand <em>why</em> — not just how to cope</div>
+      </div>
+      <p style="margin-top:1.25rem;font-size:0.82rem;color:var(--muted)">
+        <strong>Who might not be the best fit:</strong> If you're looking for quick symptom relief without exploring what's underneath, or if you need a very structured, protocol-driven approach, one of the other Mindworks therapists may be a better match.
+      </p>
+    </div>
+  </div>
+
+  <!-- HER STORY -->
+  <div class="profile-section reveal">
+    <div class="profile-section-label">Her story</div>
+    <div>
+      <h2>How did she get into this work?</h2>
+      <p>Dimple didn't plan to become a therapist in the way some people do. She was drawn to psychology initially because she was trying to understand people around her — and eventually, herself. The clinical training followed the curiosity, not the other way round.</p>
+      <p>She founded Mindworks in 2016 because she kept seeing what therapy could look like when done with care — and how rarely that was the default. She wanted to build a practice where the quality of the relationship was taken as seriously as the clinical framework.</p>
+      <div class="outside-sessions">
+        <p>Outside of sessions, she finds herself thinking about how people carry the stories they were given about themselves — and the slow, imperfect work of rewriting them. She reads widely across attachment theory, relational psychoanalysis, and the quieter corners of neuroscience. She's particularly interested in what happens in the body during difficult conversations.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT SHE WISHES PEOPLE KNEW -->
+  <div class="profile-section reveal">
+    <div class="profile-section-label">Before you start</div>
+    <div>
+      <h2>What she wishes people knew before starting therapy</h2>
+      <div class="wish-block">
+        <p>"You don't need to have it figured out before you come in. You don't need the right words, or a clear problem, or a crisis. A vague sense that something isn't working is enough. That's actually where most of the useful work starts."</p>
+      </div>
+      <p style="margin-top:1.25rem">Also worth knowing: progress in therapy rarely looks linear. There will be sessions that feel like nothing happened — and then you'll notice something shifted three weeks later. That's not a failure of the process. That's the process.</p>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="profile-section reveal">
+    <div class="profile-section-label">Qualifications</div>
+    <div>
+      <h2>Education & credentials</h2>
       <ul class="edu-list">
         <li>M.Phil in Clinical Psychology</li>
         <li>MA Psychology</li>
-        <li>RCI Licensed Psychologist</li>
+        <li>RCI Licensed Psychologist (Rehabilitation Council of India)</li>
+        <li>Additional training in trauma-informed approaches</li>
       </ul>
     </div>
   </div>
 
+  <!-- FAQ -->
   <div class="profile-section reveal">
     <div class="profile-section-label">FAQ</div>
     <div>
       <h2>Common questions</h2>
+
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
-          Do you only work with clinical conditions?
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          Do you only work with people who have a diagnosis?
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
         </div>
-        <div class="faq-a">No. About half the people I see don't have a diagnosis. They're just going through something hard and want someone to help them think through it.</div>
+        <div class="faq-a">No. About half the people I work with don't have a diagnosis — and don't need one. They're dealing with something hard and want support thinking it through. That's enough.</div>
       </div>
+
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
-          What's the first session like?
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          What's the first session actually like?
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
         </div>
-        <div class="faq-a">We spend most of it understanding what's brought you in. I'll ask a lot of questions — not to assess you, but to get a real picture. By the end, we'll have a rough sense of how to work together.</div>
+        <div class="faq-a">We spend most of it understanding what's brought you in. I'll ask a lot of questions — not to assess you clinically, but to get a real picture of you and your life. By the end, we'll have a rough sense of how we might work together.</div>
       </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How long does therapy usually take?
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-a">It depends on what you're working through. Some people find significant relief in 8–12 sessions. Others find value in longer-term work. I'll be honest with you about what I think is needed — and you're always free to stop or pause.</div>
+      </div>
+
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
           What's the discovery call for?
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
         </div>
-        <div class="faq-a">The 15-minute discovery call is specifically for therapy enquiries only. It's a brief, no-pressure conversation to see if we're a good fit before you commit to a full session.</div>
+        <div class="faq-a">It's a free 15-minute conversation — only for therapy enquiries. We use it to see if we're a good fit before you commit to a full session. No paperwork, no pressure.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Do you offer in-person sessions?
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-a">Yes — I see clients in person at our Pune clinic (Kothrud), as well as online. If you'd like to meet in person, mention that when you book and we'll arrange it.</div>
       </div>
     </div>
   </div>
@@ -197,13 +330,50 @@
     <div class="f-brand"><em>mind</em>works counselling</div>
     <div class="f-desc">A small Pune-based therapy practice. Certified, supervised, queer-affirmative. Online sessions across India.</div>
   </div>
-  <div><div class="f-label">Services</div><a href="#">Individual therapy</a><a href="#">Couples counselling</a><a href="../index.html#assessments">Self-assessments</a></div>
-  <div><div class="f-label">Navigate</div><a href="../index.html#therapists">Our therapists</a><a href="../blog/index.html">Journal</a><a href="#">About us</a></div>
-  <div><div class="f-label">Connect</div><a href="tel:+919067485858">+91 90674 85858</a><a href="https://wa.me/919067485858" target="_blank">WhatsApp</a><a href="https://instagram.com/mindworkscounselling" target="_blank">Instagram</a></div>
+  <div>
+    <div class="f-label">Services</div>
+    <a href="#">Individual therapy</a>
+    <a href="#">Couples counselling</a>
+    <a href="../index.html#assessments">Self-assessments</a>
+  </div>
+  <div>
+    <div class="f-label">Navigate</div>
+    <a href="../index.html#therapists">Our therapists</a>
+    <a href="../blog/index.html">Journal</a>
+    <a href="#">About us</a>
+  </div>
+  <div>
+    <div class="f-label">Connect</div>
+    <a href="tel:+919067485858">+91 90674 85858</a>
+    <a href="https://wa.me/919067485858" target="_blank">WhatsApp</a>
+    <a href="https://instagram.com/mindworkscounselling" target="_blank">Instagram</a>
+  </div>
 </footer>
-<div class="f-bottom"><span>© 2025 Mindworks Counselling</span><span>Pune, India</span></div>
+<div class="f-bottom">
+  <span>© 2025 Mindworks Counselling</span>
+  <span>Pune, India</span>
+</div>
 
 <script src="../js/content.js"></script>
 <script src="../js/therapist-profile.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
+  const hamburger = document.querySelector('.nav-hamburger');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const mobileClose = document.querySelector('.mobile-menu-close');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      mobileMenu.style.display = 'flex';
+      requestAnimationFrame(() => mobileMenu.classList.add('open'));
+      hamburger.setAttribute('aria-expanded', 'true');
+    });
+    const close = () => { mobileMenu.classList.remove('open'); hamburger.setAttribute('aria-expanded', 'false'); };
+    if (mobileClose) mobileClose.addEventListener('click', close);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  }
+});
+</script>
 </body>
 </html>
