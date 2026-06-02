@@ -6,22 +6,25 @@
  * ============================================================
  */
 
+const WA_BASE = "https://wa.me/919067485858";
+const WA_GENERAL = `${WA_BASE}?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20discovery%20call`;
+
 const CONTENT = {
 
   // ── SITE-WIDE ────────────────────────────────────────────
   site: {
     name: "mindworks counselling",
-    nameDisplay: "<em>mind</em>works counselling", // HTML, <em> gets accent color
+    nameDisplay: "<em>mind</em>works counselling",
     wordmark: "<em>mind</em>works",
     tagline: "No couches. No clichés. Just the work.",
     location: "Pune, India",
     established: "Est. 2016",
     phone: "+91 90674 85858",
-    whatsappLink: "https://wa.me/919067485858",
-    whatsappLabel: "WhatsApp us instead",
+    whatsappLink: WA_BASE,
+    whatsappLabel: "Message us on WhatsApp",
     email: "hello@mindworkscounselling.com",
     instagram: "https://instagram.com/mindworkscounselling",
-    bookingLink: "https://calendly.com/mindworks", // ← replace with real Calendly/booking URL
+    bookingLink: WA_GENERAL,
     copyright: "© 2025 Mindworks Counselling",
   },
 
@@ -33,9 +36,9 @@ const CONTENT = {
       { label: "Journal", href: "blog.html" },
     ],
     cta: {
-      label: "Book free 15-min call",
-      href: "https://calendly.com/mindworks", // ← replace
-      tooltip: "This 15-minute discovery call is only for therapy enquiries — not coaching, courses, or general questions.",
+      label: "Schedule a discovery call",
+      href: WA_GENERAL,
+      tooltip: "Tap to open WhatsApp — we'll find a time that works for you. The first 15 minutes are free.",
     },
   },
 
@@ -45,9 +48,9 @@ const CONTENT = {
     h1: "No couches.<br>No clichés.<br><em>Just the work.</em>",
     body: "A small Pune-based practice. Certified, supervised psychologists who help you figure out what's loud, what's stuck, and what's quietly waiting to be said.",
     ctaPrimary: {
-      label: "Book free 15-min call",
-      href: "https://calendly.com/mindworks", // ← replace
-      tooltip: "This is a 15-minute discovery call — only for people exploring therapy with us.",
+      label: "Schedule a discovery call",
+      href: WA_GENERAL,
+      tooltip: "Opens WhatsApp. The first 15 minutes are free — no pressure, no paperwork.",
     },
     ctaSecondary: {
       label: "Meet the team",
@@ -56,7 +59,7 @@ const CONTENT = {
     portraitCaption: "Dimple Kishnani · Founder, Clinical Psychologist",
     statNumber: "8,000+",
     statLabel: "people helped since 2016",
-    availabilityText: "Next available: Today, 4 PM", // update or hook to live data
+    availabilityText: "Next available: Today, 4 PM",
   },
 
   // ── MARQUEE ───────────────────────────────────────────────
@@ -66,7 +69,7 @@ const CONTENT = {
     "Anger you can't place",
     "Queer-affirmative",
     "Trauma-informed",
-    "Free 15-min intro call",
+    "Free discovery call",
     "The version of yourself you keep putting off",
     "Neurodivergent-affirming",
     "CBT · ACT · REBT",
@@ -82,7 +85,7 @@ const CONTENT = {
       {
         num: "/01",
         title: "Talk before you commit",
-        body: "Free 15-minute intro call. Get a feel for the approach before spending a rupee or signing anything.",
+        body: "Free discovery call on WhatsApp. Get a feel for the approach before spending a rupee or signing anything.",
       },
       {
         num: "/02",
@@ -122,21 +125,18 @@ const CONTENT = {
   },
 
   // ── THERAPISTS ───────────────────────────────────────────
-  // Add or remove therapist objects here.
-  // profilePage: the filename for their individual page e.g. "therapist-dimple.html"
-  // photo: path to their photo e.g. "images/dimple.jpg" — leave "" to show initials
   therapists: {
     eyebrow: "04 — The team",
     h2: "People you'll<br><em>actually talk to</em>",
     viewAllLabel: "View all",
     viewAllHref: "#therapists",
-    bookCTALabel: "Book with me",  // used on each card
+    bookCTALabel: "Book with me",
     list: [
       {
         id: "dimple-kishnani",
         name: "Dimple Kishnani",
         initials: "DK",
-        photo: "", // e.g. "images/dimple.jpg"
+        photo: "",
         role: "Founder · Clinical Psychologist",
         specialisms: ["Clinical disorders", "Relationships", "Performance coaching"],
         experience: "12 yrs experience",
@@ -147,7 +147,7 @@ const CONTENT = {
         languages: ["English", "Hindi", "Sindhi"],
         availability: "Mon–Fri, mornings",
         profilePage: "therapist-dimple.html",
-        bookingLink: "https://calendly.com/mindworks-dimple", // ← replace
+        bookingLink: `${WA_BASE}?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20discovery%20call%20with%20Dimple`,
       },
       {
         id: "alina-tambuwala",
@@ -164,7 +164,7 @@ const CONTENT = {
         languages: ["English", "Hindi"],
         availability: "Tue–Sat, evenings",
         profilePage: "therapist-alina.html",
-        bookingLink: "https://calendly.com/mindworks-alina", // ← replace
+        bookingLink: `${WA_BASE}?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20discovery%20call%20with%20Alina`,
       },
       {
         id: "armeet-narang",
@@ -181,7 +181,7 @@ const CONTENT = {
         languages: ["English", "Hindi", "Punjabi"],
         availability: "Mon–Sat, flexible",
         profilePage: "therapist-armeet.html",
-        bookingLink: "https://calendly.com/mindworks-armeet", // ← replace
+        bookingLink: `${WA_BASE}?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20discovery%20call%20with%20Armeet`,
       },
       {
         id: "nandini-keshwani",
@@ -198,7 +198,7 @@ const CONTENT = {
         languages: ["English", "Hindi", "Marathi"],
         availability: "Wed–Sun, afternoons",
         profilePage: "therapist-nandini.html",
-        bookingLink: "https://calendly.com/mindworks-nandini", // ← replace
+        bookingLink: `${WA_BASE}?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20discovery%20call%20with%20Nandini`,
       },
     ],
   },
@@ -239,14 +239,14 @@ const CONTENT = {
   footerCta: {
     eyebrow: "Ready when you are",
     h2: "Let's start<br><em>talking.</em>",
-    body: "First 15 minutes are free.<br>No pressure, no paperwork — just a real conversation.",
+    body: "First call is free.<br>No pressure, no paperwork — just a real conversation on WhatsApp.",
     ctaPrimary: {
-      label: "Book free discovery call",
-      href: "https://calendly.com/mindworks", // ← replace
+      label: "Schedule a discovery call",
+      href: WA_GENERAL,
     },
     ctaSecondary: {
-      label: "WhatsApp us instead",
-      href: "https://wa.me/919067485858",
+      label: "Message us on WhatsApp",
+      href: WA_BASE,
     },
   },
 
@@ -274,19 +274,18 @@ const CONTENT = {
         heading: "Connect",
         links: [
           { label: "+91 90674 85858", href: "tel:+919067485858" },
-          { label: "WhatsApp", href: "https://wa.me/919067485858" },
+          { label: "WhatsApp", href: WA_BASE },
           { label: "Instagram", href: "https://instagram.com/mindworkscounselling" },
         ],
       },
     ],
   },
 
-  // ── BLOG (index page) ────────────────────────────────────
+  // ── BLOG ─────────────────────────────────────────────────
   blog: {
     eyebrow: "Journal",
     h1: "Words worth<br><em>sitting with</em>",
     subtitle: "Writing from the Mindworks team — on therapy, mental health, and the quieter things.",
-    // Add blog posts here. 'slug' must match the HTML filename e.g. "how-to-find-a-therapist"
     posts: [
       {
         slug: "how-to-find-a-therapist",
@@ -323,5 +322,4 @@ const CONTENT = {
 
 }; // end CONTENT
 
-// Make available globally
 if (typeof module !== "undefined") module.exports = CONTENT;
