@@ -56,7 +56,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; }
 .eyebrow-line { width: 22px; height: 1px; background: var(--teal); flex-shrink: 0; }
 
 /* ── NAVIGATION ── */
-nav {
+nav#mainNav {
   position: sticky; top: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.1rem 2.5rem;
@@ -65,7 +65,7 @@ nav {
   border-bottom: 1px solid var(--border);
   transition: box-shadow 0.2s;
 }
-nav.scrolled { box-shadow: 0 4px 20px rgba(8,104,96,0.08); }
+nav#mainNav.scrolled { box-shadow: 0 4px 20px rgba(8,104,96,0.08); }
 
 .logo {
   font-family: var(--display); font-size: 1.15rem;
@@ -469,7 +469,7 @@ footer a:hover { color: var(--cream); }
 
 /* ── MOBILE RESPONSIVE ── */
 @media (max-width: 768px) {
-  nav { padding: 1rem 1.25rem; }
+  nav#mainNav { padding: 1rem 1.25rem; }
   .nav-mid { display: none; }
   .nav-hamburger { display: flex; }
   .mobile-menu { display: flex; }
