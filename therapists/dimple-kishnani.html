@@ -70,31 +70,8 @@
 </head>
 <body>
 
-<nav>
-  <a href="../index.html" class="logo"><em>mind</em>works</a>
-  <div class="nav-mid">
-    <a href="../index.html#therapists">Our therapists</a>
-    <a href="../index.html#assessments">Self-assessments</a>
-    <a href="../blog/index.html">Journal</a>
-  </div>
-  <div class="nav-right">
-    <a href="https://calendly.com/mindworks-dimple" target="_blank" rel="noopener" class="nav-cta">
-      <span>Book with Dimple</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-    </a>
-    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<div class="mobile-menu" role="dialog" aria-label="Navigation">
-  <button class="mobile-menu-close" aria-label="Close">&times;</button>
-  <a href="../index.html#therapists">Our therapists</a>
-  <a href="../index.html#assessments">Self-assessments</a>
-  <a href="../blog/index.html">Journal</a>
-  <a href="https://calendly.com/mindworks-dimple" target="_blank" class="mm-cta">Book with Dimple →</a>
-</div>
+<!-- SHARED NAV (sticky bar + desktop nav + mobile island) -->
+<div id="site-nav"></div>
 
 <a href="../index.html#therapists" class="profile-back">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -154,7 +131,7 @@
     </div>
 
     <div class="profile-cta">
-      <a href="https://calendly.com/mindworks-dimple" target="_blank" rel="noopener" class="btn-primary">
+      <a href="https://wa.me/919067485858?text=Hi%2C%20I%20would%20like%20to%20book%20an%20appointment%20with%20Dimple" target="_blank" rel="noopener" class="btn-primary">
         <span>Book with Dimple</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
       </a>
@@ -267,45 +244,42 @@
     <div class="profile-section-label">FAQ</div>
     <div>
       <h2>Common questions</h2>
-
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Do you only work with people who have a diagnosis?
-          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Do you only work with people who have a diagnosis?
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-a">No. About half the people I work with don't have a diagnosis — and don't need one. They're dealing with something hard and want support thinking it through. That's enough.</div>
         </div>
-        <div class="faq-a">No. About half the people I work with don't have a diagnosis — and don't need one. They're dealing with something hard and want support thinking it through. That's enough.</div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          What's the first session actually like?
-          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            What's the first session actually like?
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-a">We spend most of it understanding what's brought you in. I'll ask a lot of questions — not to assess you clinically, but to get a real picture of you and your life. By the end, we'll have a rough sense of how we might work together.</div>
         </div>
-        <div class="faq-a">We spend most of it understanding what's brought you in. I'll ask a lot of questions — not to assess you clinically, but to get a real picture of you and your life. By the end, we'll have a rough sense of how we might work together.</div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          How long does therapy usually take?
-          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            How long does therapy usually take?
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-a">It depends on what you're working through. Some people find significant relief in 8–12 sessions. Others find value in longer-term work. I'll be honest with you about what I think is needed — and you're always free to stop or pause.</div>
         </div>
-        <div class="faq-a">It depends on what you're working through. Some people find significant relief in 8–12 sessions. Others find value in longer-term work. I'll be honest with you about what I think is needed — and you're always free to stop or pause.</div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          What's the discovery call for?
-          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            What's the discovery call for?
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-a">It's a free 15-minute conversation — only for therapy enquiries. We use it to see if we're a good fit before you commit to a full session. No paperwork, no pressure.</div>
         </div>
-        <div class="faq-a">It's a free 15-minute conversation — only for therapy enquiries. We use it to see if we're a good fit before you commit to a full session. No paperwork, no pressure.</div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Do you offer in-person sessions?
-          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Do you offer in-person sessions?
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-a">Yes — I see clients in person at our Pune clinic (Kothrud), as well as online. If you'd like to meet in person, mention that when you book and we'll arrange it.</div>
         </div>
-        <div class="faq-a">Yes — I see clients in person at our Pune clinic (Kothrud), as well as online. If you'd like to meet in person, mention that when you book and we'll arrange it.</div>
       </div>
     </div>
   </div>
@@ -317,7 +291,7 @@
   <div class="pfc-eyebrow">Ready to start?</div>
   <h2 class="pfc-h">Book with <em>Dimple</em></h2>
   <div class="pfc-actions">
-    <a href="https://calendly.com/mindworks-dimple" target="_blank" rel="noopener" class="btn-cream">
+    <a href="https://wa.me/919067485858?text=Hi%2C%20I%20would%20like%20to%20book%20an%20appointment%20with%20Dimple" target="_blank" rel="noopener" class="btn-cream">
       <span>Book free 15-min call</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
     </a>
@@ -339,14 +313,14 @@
   <div>
     <div class="f-label">Navigate</div>
     <a href="../index.html#therapists">Our therapists</a>
-    <a href="../blog/index.html">Journal</a>
+    <a href="../blog/blog.html">Journal</a>
     <a href="#">About us</a>
   </div>
   <div>
     <div class="f-label">Connect</div>
     <a href="tel:+919067485858">+91 90674 85858</a>
-    <a href="https://wa.me/919067485858" target="_blank">WhatsApp</a>
-    <a href="https://instagram.com/mindworkscounselling" target="_blank">Instagram</a>
+    <a href="https://wa.me/919067485858" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://instagram.com/mindworkscounselling" target="_blank" rel="noopener">Instagram</a>
   </div>
 </footer>
 <div class="f-bottom">
@@ -354,26 +328,16 @@
   <span>Pune, India</span>
 </div>
 
+<script src="../js/nav.js"></script>
 <script src="../js/content.js"></script>
 <script src="../js/therapist-profile.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const nav = document.querySelector('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
-  const hamburger = document.querySelector('.nav-hamburger');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  const mobileClose = document.querySelector('.mobile-menu-close');
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
-      mobileMenu.style.display = 'flex';
-      requestAnimationFrame(() => mobileMenu.classList.add('open'));
-      hamburger.setAttribute('aria-expanded', 'true');
-    });
-    const close = () => { mobileMenu.classList.remove('open'); hamburger.setAttribute('aria-expanded', 'false'); };
-    if (mobileClose) mobileClose.addEventListener('click', close);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
-  }
-});
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => observer.observe(el));
 </script>
+
 </body>
 </html>
