@@ -314,28 +314,15 @@
     <a href="#therapists">Our therapists</a>
     <a href="#assessments">Self-assessments</a>
     <a href="#locations">Locations</a>
-    <a href="blog/index.html">Journal</a>
+    <a href="blog/blog.html">Journal</a>
   </div>
   <div class="nav-right">
     <a href="https://wa.me/919067485858?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20discovery%20call" class="nav-cta" target="_blank" rel="noopener">
       <span>Schedule a discovery call</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
     </a>
-    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" role="dialog" aria-label="Navigation menu">
-  <button class="mobile-menu-close" aria-label="Close menu">&times;</button>
-  <a href="#therapists">Our therapists</a>
-  <a href="#assessments">Self-assessments</a>
-  <a href="#locations">Locations</a>
-  <a href="blog/index.html">Journal</a>
-  <a href="https://wa.me/919067485858?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20discovery%20call" class="mm-cta" target="_blank" rel="noopener">Schedule a discovery call →</a>
-</div>
 
 <!-- MOBILE FLOATING ISLAND NAV -->
 <nav class="mobile-island" role="navigation" aria-label="Quick navigation">
@@ -763,7 +750,7 @@
     <div class="f-links">
       <a href="#therapists">Our therapists</a>
       <a href="#locations">Locations</a>
-      <a href="blog/index.html">Journal</a>
+      <a href="blog/blog.html">Journal</a>
     </div>
   </div>
   <div class="f-col">
@@ -782,15 +769,6 @@
 
 <!-- SCRIPTS -->
 <script>
-  const hamburger = document.querySelector('.nav-hamburger');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  const mobileClose = document.querySelector('.mobile-menu-close');
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => { mobileMenu.style.display = 'flex'; mobileMenu.classList.add('open'); hamburger.setAttribute('aria-expanded', 'true'); });
-    mobileClose.addEventListener('click', () => { mobileMenu.classList.remove('open'); hamburger.setAttribute('aria-expanded', 'false'); });
-    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
-  }
-
   const stickyBar = document.getElementById('stickyBar');
   const stickyDismiss = document.getElementById('stickyDismiss');
   let barDismissed = false;
