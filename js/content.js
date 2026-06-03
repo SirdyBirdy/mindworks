@@ -1,68 +1,75 @@
 /**
  * ============================================================
- *  MINDWORKS COUNSELLING — CONTENT FILE
- *  Edit this file to update text, therapist info, and CTAs
- *  across all pages without touching any HTML or CSS.
+ *  MINDWORKS COUNSELLING — CONTENT
+ *  Single source of truth for ALL text, links, and data.
+ *  Edit here; nothing else needs to change.
  * ============================================================
  */
 
-const WA_BASE = "https://wa.me/919067485858";
+const WA_BASE    = "https://wa.me/919067485858";
 const WA_GENERAL = `${WA_BASE}?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20discovery%20call`;
+const WA_ICON_SVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" width="11" height="11"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
 
 const CONTENT = {
 
-  // ── SITE-WIDE ────────────────────────────────────────────
+  /* ── SITE-WIDE ─────────────────────────────────────────── */
   site: {
-    name: "mindworks counselling",
-    nameDisplay: "<em>mind</em>works counselling",
-    wordmark: "<em>mind</em>works",
-    tagline: "No couches. No clichés. Just the work.",
-    location: "Pune, India",
-    established: "Est. 2016",
-    phone: "+91 90674 85858",
-    whatsappLink: WA_BASE,
-    whatsappLabel: "Message us on WhatsApp",
-    email: "hello@mindworkscounselling.com",
-    instagram: "https://instagram.com/mindworkscounselling",
-    bookingLink: WA_GENERAL,
-    copyright: "© 2025 Mindworks Counselling",
+    wordmark:      "<em>mind</em>works",
+    nameDisplay:   "<em>mind</em>works counselling",
+    tagline:       "No couches. No clichés. Just the work.",
+    location:      "Pune, India",
+    phone:         "+91 90674 85858",
+    phoneHref:     "tel:+919067485858",
+    whatsappLink:  WA_BASE,
+    email:         "hello@mindworkscounselling.com",
+    instagram:     "https://instagram.com/mindworkscounselling",
+    copyright:     "© 2025 Mindworks Counselling",
   },
 
-  // ── NAV ──────────────────────────────────────────────────
+  /* ── NAV ───────────────────────────────────────────────── */
   nav: {
     links: [
-      { label: "Our therapists", href: "#therapists" },
+      { label: "Our therapists",  href: "#therapists"  },
       { label: "Self-assessments", href: "#assessments" },
-      { label: "Journal", href: "blog.html" },
+      { label: "Locations",       href: "#locations"   },
+      { label: "Journal",         href: "blog/index.html" },
     ],
     cta: {
-      label: "Schedule a discovery call",
-      href: WA_GENERAL,
-      tooltip: "Tap to open WhatsApp — we'll find a time that works for you. The first 15 minutes are free.",
+      label:   "Schedule a discovery call",
+      href:    WA_GENERAL,
+      tooltip: "Opens WhatsApp — the first 15 minutes are free. No pressure, no paperwork.",
     },
+    mobileLinks: [
+      { label: "Our therapists",   href: "#therapists"  },
+      { label: "Self-assessments", href: "#assessments" },
+      { label: "Locations",        href: "#locations"   },
+      { label: "Journal",          href: "blog/index.html" },
+    ],
+    mobileCta: { label: "Schedule a discovery call →", href: WA_GENERAL },
   },
 
-  // ── HERO ─────────────────────────────────────────────────
+  /* ── STICKY BAR ────────────────────────────────────────── */
+  stickyBar: {
+    text: "<em>mindworks</em> — Ready when you are.",
+    cta:  { label: "Schedule a discovery call", href: WA_GENERAL },
+  },
+
+  /* ── HERO ──────────────────────────────────────────────── */
   hero: {
-    eyebrow: "01 — Pune & Online · Est. 2016",
-    h1: "No couches.<br>No clichés.<br><em>Just the work.</em>",
-    body: "A small Pune-based practice. Certified, supervised psychologists who help you figure out what's loud, what's stuck, and what's quietly waiting to be said.",
-    ctaPrimary: {
-      label: "Schedule a discovery call",
-      href: WA_GENERAL,
-      tooltip: "Opens WhatsApp. The first 15 minutes are free — no pressure, no paperwork.",
-    },
-    ctaSecondary: {
-      label: "Meet the team",
-      href: "#therapists",
-    },
+    eyebrow:  "01 — Pune & Online · Est. 2016",
+    h1:       "No couches.<br>No clichés.<br><em>Just the work.</em>",
+    body:     "A small Pune-based practice. Certified, supervised psychologists who help you figure out what's loud, what's stuck, and what's quietly waiting to be said.",
+    ctaPrimary:   { label: "Schedule a discovery call", href: WA_GENERAL },
+    ctaSecondary: { label: "Meet the team",             href: "#therapists" },
+    portraitAlt:     "Dimple Kishnani",
+    portraitSrc:     "", // e.g. "assets/dimple-hero.jpg"
     portraitCaption: "Dimple Kishnani · Founder, Clinical Psychologist",
-    statNumber: "8,000+",
-    statLabel: "people helped since 2016",
-    availabilityText: "Next available: Today, 4 PM",
+    statNumber:      "8,000+",
+    statLabel:       "people helped since 2016",
+    availability:    "Next available: Today, 4 PM",
   },
 
-  // ── MARQUEE ───────────────────────────────────────────────
+  /* ── MARQUEE ───────────────────────────────────────────── */
   marquee: [
     "Burnout that won't quit",
     "The relationship you keep replaying",
@@ -76,250 +83,191 @@ const CONTENT = {
     "Grief that doesn't follow a timeline",
   ],
 
-  // ── APPROACH ─────────────────────────────────────────────
+  /* ── APPROACH ──────────────────────────────────────────── */
   approach: {
     eyebrow: "02 — Approach",
-    h2: "How we<br><em>actually work</em>",
-    body: "We don't fix — we sit with you while you sort through what's loud, what's stuck, and what's quietly waiting to be said.",
+    h2:      "How we<br><em>actually work</em>",
+    body:    "We don't fix — we sit with you while you sort through what's loud, what's stuck, and what's quietly waiting to be said.",
     cards: [
-      {
-        num: "/01",
-        title: "Talk before you commit",
-        body: "Free discovery call on WhatsApp. Get a feel for the approach before spending a rupee or signing anything.",
-      },
-      {
-        num: "/02",
-        title: "Matched by fit, not algorithm",
-        body: "Paired based on what you're working through, your schedule, and what you're looking for.",
-      },
-      {
-        num: "/03",
-        title: "Sessions on your terms",
-        body: "Video, audio, or text. Weekly or fortnightly. From wherever you are in India.",
-      },
-      {
-        num: "/04",
-        title: "Track how things shift",
-        body: "Free self-assessments between sessions. See how you're actually moving, not just feel it.",
-      },
+      { num: "/01", title: "Talk before you commit",       body: "Free discovery call on WhatsApp. Get a feel for the approach before spending a rupee or signing anything." },
+      { num: "/02", title: "Matched by fit, not algorithm", body: "Paired based on what you're working through, your schedule, and what you're looking for." },
+      { num: "/03", title: "Sessions on your terms",       body: "Video, audio, or text. Weekly or fortnightly. From wherever you are in India." },
+      { num: "/04", title: "Track how things shift",       body: "Free self-assessments between sessions. See how you're actually moving, not just feel it." },
     ],
   },
 
-  // ── TOPICS / BENTO ───────────────────────────────────────
+  /* ── TOPICS / BENTO ────────────────────────────────────── */
   topics: {
     eyebrow: "03 — What we work on",
-    h2: "Whatever's<br><em>weighing on you</em>",
+    h2:      "Whatever's<br><em>weighing on you</em>",
     cells: [
-      { size: "large", label: "Most talked about", text: "Burnout that won't quit" },
+      { size: "large",  label: "Most talked about", text: "Burnout that won't quit" },
       { size: "normal", label: "01", text: "The relationship you keep replaying" },
       { size: "normal", label: "02", text: "Anger you can't place" },
       { size: "normal", label: "03", text: "Anxiety before you even get out of bed" },
       { size: "normal", label: "04", text: "The version of yourself you keep putting off" },
       { size: "normal", label: "05", text: "Grief that doesn't follow a timeline" },
-      {
-        size: "large",
-        label: "Also",
-        text: "Queer identity, neurodivergence, family dynamics, chronic illness, performance pressure",
-      },
+      { size: "large",  label: "Also", text: "Queer identity · neurodivergence · family dynamics · chronic illness · performance pressure" },
     ],
   },
 
-  // ── THERAPISTS ───────────────────────────────────────────
+  /* ── THERAPISTS ────────────────────────────────────────── */
   therapists: {
-    eyebrow: "04 — The team",
-    h2: "People you'll<br><em>actually talk to</em>",
-    viewAllLabel: "View all",
-    viewAllHref: "#therapists",
-    bookCTALabel: "Book with me",
+    eyebrow:     "04 — The team",
+    h2:          "People you'll<br><em>actually talk to</em>",
+    viewAllHref: "therapists/",
     list: [
       {
-        id: "dimple-kishnani",
-        name: "Dimple Kishnani",
-        initials: "DK",
-        photo: "",
-        role: "Founder · Clinical Psychologist",
+        id:          "dimple-kishnani",
+        name:        "Dimple Kishnani",
+        initials:    "DK",
+        photo:       "",
         specialisms: ["Clinical disorders", "Relationships", "Performance coaching"],
-        experience: "12 yrs experience",
-        price: "₹3,500",
-        priceNote: "per session",
-        bio: "Dimple founded Mindworks in 2016 with one question: what would therapy look like if it actually respected the person in the room? She works with adults navigating clinical presentations, career transitions, and the quieter struggles that don't have a name yet.",
-        approaches: ["CBT", "Psychodynamic", "ACT"],
-        languages: ["English", "Hindi", "Sindhi"],
-        availability: "Mon–Fri, mornings",
-        profilePage: "therapist-dimple.html",
-        bookingLink: `${WA_BASE}?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20discovery%20call%20with%20Dimple`,
+        experience:  "12 yrs experience",
+        price:       "₹3,500",
+        bookingLink: `${WA_BASE}?text=Hi%2C%20I%20would%20like%20to%20book%20an%20appointment%20with%20Dimple`,
       },
       {
-        id: "armeet-narang",
-        name: "Armeet Narang",
-        initials: "AN",
-        photo: "",
-        role: "Psychologist",
+        id:          "armeet-narang",
+        name:        "Armeet Narang",
+        initials:    "AN",
+        photo:       "",
         specialisms: ["CBT", "ACT", "REBT", "Queer-affirmative"],
-        experience: "5 yrs experience",
-        price: "₹2,000",
-        priceNote: "per session",
-        bio: "Armeet works across anxiety, identity, and life transitions — with particular focus on helping people who feel caught between who they are and who they're supposed to be.",
-        approaches: ["CBT", "ACT", "REBT"],
-        languages: ["English", "Hindi", "Punjabi"],
-        availability: "Mon–Sat, flexible",
-        profilePage: "therapist-armeet.html",
-        bookingLink: `${WA_BASE}?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20discovery%20call%20with%20Armeet`,
+        experience:  "5 yrs experience",
+        price:       "₹2,000",
+        bookingLink: `${WA_BASE}?text=Hi%2C%20I%20would%20like%20to%20book%20an%20appointment%20with%20Armeet`,
       },
       {
-        id: "nandini-keshwani",
-        name: "Nandini Keshwani",
-        initials: "NK",
-        photo: "",
-        role: "Psychologist",
+        id:          "nandini-keshwani",
+        name:        "Nandini Keshwani",
+        initials:    "NK",
+        photo:       "",
         specialisms: ["Queer-affirmative", "Body positivity", "Growth"],
-        experience: "4 yrs experience",
-        price: "₹1,500",
-        priceNote: "per session",
-        bio: "Nandini works with clients exploring identity, body image, and self-worth. Her sessions are unhurried and grounded — she believes the right pace is the one that actually works for you.",
-        approaches: ["Person-centred", "CBT", "Mindfulness-based"],
-        languages: ["English", "Hindi", "Marathi"],
-        availability: "Wed–Sun, afternoons",
-        profilePage: "therapist-nandini.html",
-        bookingLink: `${WA_BASE}?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20discovery%20call%20with%20Nandini`,
+        experience:  "4 yrs experience",
+        price:       "₹1,500",
+        bookingLink: `${WA_BASE}?text=Hi%2C%20I%20would%20like%20to%20book%20an%20appointment%20with%20Nandini`,
       },
       {
-        id: "alina-tambuwala",
-        name: "Alina Tambuwala",
-        initials: "AT",
-        photo: "",
-        role: "Psychologist",
+        id:          "alina-tambuwala",
+        name:        "Alina Tambuwala",
+        initials:    "AT",
+        photo:       "",
         specialisms: ["CBT", "Queer-affirmative", "Trauma-informed"],
-        experience: "3 yrs experience",
-        price: "₹1,400",
-        priceNote: "per session",
-        bio: "Alina works with young adults who are figuring out identity, relationships, and how to exist in a world that didn't quite account for them. She brings a careful, curious approach — and no judgment.",
-        approaches: ["CBT", "Trauma-informed care", "Person-centred"],
-        languages: ["English", "Hindi"],
-        availability: "Tue–Sat, evenings",
-        profilePage: "therapist-alina.html",
-        bookingLink: `${WA_BASE}?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20discovery%20call%20with%20Alina`,
+        experience:  "3 yrs experience",
+        price:       "₹1,400",
+        bookingLink: `${WA_BASE}?text=Hi%2C%20I%20would%20like%20to%20book%20an%20appointment%20with%20Alina`,
       },
     ],
   },
 
-  // ── ASSESSMENTS ──────────────────────────────────────────
+  /* ── ASSESSMENTS ───────────────────────────────────────── */
   assessments: {
-    eyebrow: "05 — Free tools",
-    h2: "Know where<br><em>you stand</em>",
-    subtitle: "Clinically validated. Free. Share your score directly with your therapist.",
-    disclaimer: "These tools are for self-awareness only — not a clinical diagnosis. Share your score with your counsellor to help them understand where you're at.",
-    shareNote: "Your score is private until you choose to share it. Download as PDF or copy the summary to send to your counsellor.",
+    eyebrow:  "05 — Free tools",
+    h2:       "Know where<br><em>you stand</em>",
+    subtitle: "Clinically validated. Free. Share your score with your counsellor to start the conversation.",
+    disclaimer: "These tools are for self-awareness only — not a clinical diagnosis.",
     cards: [
-      {
-        id: "bdi",
-        label: "21 questions · Beck Depression Inventory",
-        title: "Depression check",
-        description: "The BDI-II is one of the most widely used tools for measuring depression severity. Takes about 5 minutes.",
-        linkLabel: "Take the test",
-      },
-      {
-        id: "bai",
-        label: "21 questions · Beck Anxiety Inventory",
-        title: "Anxiety gauge",
-        description: "The BAI measures the severity of anxiety symptoms across physical and cognitive dimensions. Takes about 5 minutes.",
-        linkLabel: "Take the test",
-      },
+      { id: "bdi", label: "21 questions · BDI-II",  title: "Depression check", description: "The Beck Depression Inventory — a clinically validated tool to understand your current emotional state. Shareable with your therapist.", linkLabel: "Take the test" },
+      { id: "bai", label: "21 questions · BAI",     title: "Anxiety gauge",    description: "The Beck Anxiety Inventory — see how anxiety is affecting your daily functioning. Instant results with a breakdown to share.",    linkLabel: "Take the test" },
     ],
   },
 
-  // ── PULL QUOTE ───────────────────────────────────────────
+  /* ── PULL QUOTE ────────────────────────────────────────── */
   pullQuote: {
-    eyebrow: "06 — What people say",
-    quote: "Six months in, I have words for things I couldn't describe before. That's changed more than I expected.",
+    eyebrow:     "06 — What people say",
+    quote:       "Six months in, I have words for things I couldn't describe before. That's changed more than I expected.",
     attribution: "— Client, 29 · Online sessions since 2023",
   },
 
-  // ── FOOTER CTA ───────────────────────────────────────────
-  footerCta: {
-    eyebrow: "Ready when you are",
-    h2: "Let's start<br><em>talking.</em>",
-    body: "First call is free.<br>No pressure, no paperwork — just a real conversation on WhatsApp.",
-    ctaPrimary: {
-      label: "Schedule a discovery call",
-      href: WA_GENERAL,
-    },
-    ctaSecondary: {
-      label: "Message us on WhatsApp",
-      href: WA_BASE,
-    },
+  /* ── LOCATIONS ─────────────────────────────────────────── */
+  locations: {
+    eyebrow:  "07 — Find us",
+    h2:       "Where we<br><em>meet you</em>",
+    subtitle: "In-person sessions in Pune, or online from anywhere in India.",
+    list: [
+      {
+        tag:          "Main clinic",
+        name:         "Koregaon Park",
+        address:      "Replace with full address,<br>Koregaon Park, Pune 411001",
+        hours:        "Mon – Sat, 9 AM – 7 PM",
+        therapists:   "Dimple · Armeet · Nandini",
+        mapsHref:     "https://maps.google.com/?q=Koregaon+Park+Pune",
+        mapsLabel:    "Get directions",
+        online:       false,
+      },
+      {
+        tag:          "Second clinic",
+        name:         "Baner",
+        address:      "Replace with full address,<br>Baner, Pune 411045",
+        hours:        "Tue – Sun, 10 AM – 6 PM",
+        therapists:   "Alina · Nandini",
+        mapsHref:     "https://maps.google.com/?q=Baner+Pune",
+        mapsLabel:    "Get directions",
+        online:       false,
+      },
+      {
+        tag:          "Online",
+        name:         "Across India",
+        address:      "Video, audio, or text sessions.<br>All you need is a quiet space.",
+        hours:        "7 days a week, flexible slots",
+        therapists:   "All four therapists available",
+        mapsHref:     WA_GENERAL,
+        mapsLabel:    "Book online session",
+        online:       true,
+      },
+    ],
   },
 
-  // ── FOOTER ───────────────────────────────────────────────
+  /* ── FOOTER CTA ────────────────────────────────────────── */
+  footerCta: {
+    eyebrow:      "Ready when you are",
+    h2:           "Let's start<br><em>talking.</em>",
+    body:         "First call is free.<br>No pressure, no paperwork — just a real conversation on WhatsApp.",
+    ctaPrimary:   { label: "Schedule a discovery call", href: WA_GENERAL },
+    ctaSecondary: { label: "Message us on WhatsApp",    href: WA_BASE    },
+  },
+
+  /* ── FOOTER ────────────────────────────────────────────── */
   footer: {
     description: "A small Pune-based therapy practice. Certified, supervised, queer-affirmative. Online sessions across India.",
     columns: [
       {
         heading: "Services",
         links: [
-          { label: "Individual therapy", href: "#" },
+          { label: "Individual therapy",  href: "#" },
           { label: "Couples counselling", href: "#" },
-          { label: "Self-assessments", href: "#assessments" },
+          { label: "Self-assessments",    href: "#assessments" },
         ],
       },
       {
         heading: "Navigate",
         links: [
-          { label: "About us", href: "#" },
           { label: "Our therapists", href: "#therapists" },
-          { label: "Journal", href: "blog.html" },
+          { label: "Locations",     href: "#locations"  },
+          { label: "Journal",       href: "blog/index.html" },
         ],
       },
       {
         heading: "Connect",
         links: [
           { label: "+91 90674 85858", href: "tel:+919067485858" },
-          { label: "WhatsApp", href: WA_BASE },
-          { label: "Instagram", href: "https://instagram.com/mindworkscounselling" },
+          { label: "WhatsApp",        href: WA_BASE },
+          { label: "Instagram",       href: "https://instagram.com/mindworkscounselling" },
         ],
       },
     ],
   },
 
-  // ── BLOG ─────────────────────────────────────────────────
+  /* ── BLOG ──────────────────────────────────────────────── */
   blog: {
-    eyebrow: "Journal",
-    h1: "Words worth<br><em>sitting with</em>",
+    eyebrow:  "Journal",
+    h1:       "Words worth<br><em>sitting with</em>",
     subtitle: "Writing from the Mindworks team — on therapy, mental health, and the quieter things.",
     posts: [
-      {
-        slug: "how-to-find-a-therapist",
-        title: "How to find the right therapist (when everyone sounds the same)",
-        excerpt: "The websites all say 'safe space' and 'non-judgmental'. Here's what to actually look for.",
-        author: "Dimple Kishnani",
-        date: "2 June 2025",
-        readTime: "5 min read",
-        tag: "Getting started",
-        featured: true,
-      },
-      {
-        slug: "what-is-cbt",
-        title: "CBT isn't just 'think positive'. Here's what it actually does.",
-        excerpt: "Cognitive Behavioural Therapy gets simplified a lot. This is a plain-language guide to how it really works.",
-        author: "Alina Tambuwala",
-        date: "18 May 2025",
-        readTime: "7 min read",
-        tag: "Therapy explained",
-        featured: false,
-      },
-      {
-        slug: "burnout-vs-depression",
-        title: "Burnout vs depression: they overlap more than you think",
-        excerpt: "Both leave you exhausted. Both are real. But they need different things from you.",
-        author: "Armeet Narang",
-        date: "4 May 2025",
-        readTime: "6 min read",
-        tag: "Mental health",
-        featured: false,
-      },
+      { slug: "how-to-find-a-therapist", title: "How to find the right therapist (when everyone sounds the same)", excerpt: "The websites all say 'safe space' and 'non-judgmental'. Here's what to actually look for.", author: "Dimple Kishnani", date: "2 June 2025", readTime: "5 min read", tag: "Getting started", featured: true },
+      { slug: "what-is-cbt",             title: "CBT isn't just 'think positive'. Here's what it actually does.", excerpt: "Cognitive Behavioural Therapy gets simplified a lot. This is a plain-language guide to how it really works.", author: "Alina Tambuwala", date: "18 May 2025", readTime: "7 min read", tag: "Therapy explained", featured: false },
+      { slug: "burnout-vs-depression",   title: "Burnout vs depression: they overlap more than you think", excerpt: "Both leave you exhausted. Both are real. But they need different things from you.", author: "Armeet Narang", date: "4 May 2025", readTime: "6 min read", tag: "Mental health", featured: false },
     ],
   },
 
 }; // end CONTENT
-
-if (typeof module !== "undefined") module.exports = CONTENT;
