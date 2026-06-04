@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="../css/styles.css">
 <link rel="stylesheet" href="../css/therapist-profile.css">
 <style>
-/* ── PROFILE-SPECIFIC EXTRAS ── */
 .profile-intro-pull {
   font-family: var(--display);
   font-size: clamp(1.15rem, 2vw, 1.4rem);
@@ -30,16 +29,6 @@
   font-size: 0.82rem; color: var(--teal-dark); line-height: 1.5;
 }
 .fit-item::before { content: '→ '; font-weight: 600; color: var(--teal); }
-
-.not-fit-item {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 0.85rem;
-  padding: 0.85rem 1rem;
-  font-size: 0.82rem; color: var(--muted); line-height: 1.5;
-}
-.not-fit-item::before { content: '— '; color: var(--muted); }
-
 .outside-sessions {
   background: var(--teal-soft);
   border-radius: 1.25rem;
@@ -51,7 +40,6 @@
   color: var(--teal-dark) !important;
   margin-bottom: 0 !important;
 }
-
 .wish-block {
   background: var(--teal);
   border-radius: 1.25rem;
@@ -70,8 +58,9 @@
 </head>
 <body>
 
-<!-- SHARED NAV (sticky bar + desktop nav + mobile island) -->
-<div id="site-nav"></div>
+<div id="mw-sticky-bar"></div>
+<div id="mw-nav"></div>
+<div id="mw-mobile-island"></div>
 
 <a href="../index.html#therapists" class="profile-back">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -142,7 +131,6 @@
 
 <div class="profile-body">
 
-  <!-- WHAT PEOPLE BRING -->
   <div class="profile-section reveal">
     <div class="profile-section-label">What people bring</div>
     <div>
@@ -160,7 +148,6 @@
     </div>
   </div>
 
-  <!-- APPROACH -->
   <div class="profile-section reveal">
     <div class="profile-section-label">Approach</div>
     <div>
@@ -172,7 +159,6 @@
     </div>
   </div>
 
-  <!-- WHAT SESSIONS FEEL LIKE -->
   <div class="profile-section reveal">
     <div class="profile-section-label">In the room</div>
     <div>
@@ -182,7 +168,6 @@
     </div>
   </div>
 
-  <!-- WHO SHE WORKS WELL WITH -->
   <div class="profile-section reveal">
     <div class="profile-section-label">Good fit</div>
     <div>
@@ -200,7 +185,6 @@
     </div>
   </div>
 
-  <!-- HER STORY -->
   <div class="profile-section reveal">
     <div class="profile-section-label">Her story</div>
     <div>
@@ -213,7 +197,6 @@
     </div>
   </div>
 
-  <!-- WHAT SHE WISHES PEOPLE KNEW -->
   <div class="profile-section reveal">
     <div class="profile-section-label">Before you start</div>
     <div>
@@ -225,7 +208,6 @@
     </div>
   </div>
 
-  <!-- EDUCATION -->
   <div class="profile-section reveal">
     <div class="profile-section-label">Qualifications</div>
     <div>
@@ -239,7 +221,6 @@
     </div>
   </div>
 
-  <!-- FAQ -->
   <div class="profile-section reveal">
     <div class="profile-section-label">FAQ</div>
     <div>
@@ -299,45 +280,11 @@
   </div>
 </div>
 
-<footer>
-  <div>
-    <div class="f-brand"><em>mind</em>works counselling</div>
-    <div class="f-desc">A small Pune-based therapy practice. Certified, supervised, queer-affirmative. Online sessions across India.</div>
-  </div>
-  <div>
-    <div class="f-label">Services</div>
-    <a href="#">Individual therapy</a>
-    <a href="#">Couples counselling</a>
-    <a href="../index.html#assessments">Self-assessments</a>
-  </div>
-  <div>
-    <div class="f-label">Navigate</div>
-    <a href="../index.html#therapists">Our therapists</a>
-    <a href="../blog/blog.html">Journal</a>
-    <a href="#">About us</a>
-  </div>
-  <div>
-    <div class="f-label">Connect</div>
-    <a href="tel:+919067485858">+91 90674 85858</a>
-    <a href="https://wa.me/919067485858" target="_blank" rel="noopener">WhatsApp</a>
-    <a href="https://instagram.com/mindworkscounselling" target="_blank" rel="noopener">Instagram</a>
-  </div>
-</footer>
-<div class="f-bottom">
-  <span>© 2025 Mindworks Counselling</span>
-  <span>Pune, India</span>
-</div>
+<div id="mw-footer"></div>
 
-<script src="../js/nav.js"></script>
+<script src="../js/shared.js"></script>
 <script src="../js/content.js"></script>
 <script src="../js/therapist-profile.js"></script>
-<script>
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
-  }, { threshold: 0.08 });
-  revealEls.forEach(el => observer.observe(el));
-</script>
 
 </body>
 </html>
