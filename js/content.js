@@ -37,7 +37,7 @@ const CONTENT = {
     cta: {
       label:   "Schedule a discovery call",
       href:    WA_GENERAL,
-      tooltip: "First 15 minutes are free. Just a conversation on WhatsApp, nothing more.",
+      tooltip: "First 15 minutes are free. No paperwork, no commitment.",
     },
     mobileLinks: [
       { label: "Our therapists",   href: "#therapists"  },
@@ -58,7 +58,7 @@ const CONTENT = {
   hero: {
     eyebrow:  "01 — Pune & Online · Est. 2016",
     h1:       "No couches.<br>No clichés.<br><em>Just the work.</em>",
-    body:     "A small Pune-based practice. Certified, supervised psychologists who will sit with you while you sort through what's loud, what's stuck, and what keeps coming back.",
+    body:     "We know how hard it is to pick up the phone. A close-knit team of four in Pune, working with people who are confused, stuck, or just trying to figure things out. No scripts, no promises we can't keep.",
     ctaPrimary:   { label: "Schedule a discovery call", href: WA_GENERAL },
     ctaSecondary: { label: "Meet the team",             href: "#therapists" },
     portraitAlt:     "Dimple Kishnani",
@@ -87,12 +87,12 @@ const CONTENT = {
   approach: {
     eyebrow: "02 — Approach",
     h2:      "How we<br><em>actually work</em>",
-    body:    "We are not here to fix you. We are here to sit with you while you figure out what's actually going on.",
+    body:    "Therapy is uncomfortable enough without the extra formality. Here is what it looks like when you come to us.",
     cards: [
-      { num: "/01", title: "Talk before you commit",        body: "Free discovery call on WhatsApp. Get a feel for how we work before you spend a rupee or decide anything." },
-      { num: "/02", title: "Matched by fit, not a formula", body: "You are paired based on what you are working through, your schedule, and what you are actually looking for in a therapist." },
-      { num: "/03", title: "Sessions on your terms",        body: "Video, audio, or text. Weekly or fortnightly. From wherever you are in India." },
-      { num: "/04", title: "See how things are shifting",   body: "Free self-assessments between sessions so you can track how things are actually moving, not just feel like they might be." },
+      { num: "/01", title: "Start with a free call",        body: "15 minutes on WhatsApp. Ask whatever you want. No pressure to book anything after." },
+      { num: "/02", title: "We match you to the right person", body: "Four therapists on the team, each with a different background. We'll tell you honestly who makes the most sense for what you're dealing with." },
+      { num: "/03", title: "Sessions that fit your life",   body: "Video, audio, or text. Weekly or fortnightly. From wherever you are in India." },
+      { num: "/04", title: "Track how things actually move", body: "Free clinical assessments between sessions. Numbers on a screen won't tell you everything but they help." },
     ],
   },
 
@@ -101,20 +101,20 @@ const CONTENT = {
     eyebrow: "03 — What we work on",
     h2:      "Whatever's<br><em>weighing on you</em>",
     cells: [
-      { size: "large",  label: "Most talked about", text: "Burnout that won't quit" },
+      { size: "large",  label: "Most talked about", text: "Relationship issues, first-timers, and people who've tried therapy before and hated it" },
       { size: "normal", label: "01", text: "The relationship you keep replaying" },
       { size: "normal", label: "02", text: "Anger you can't place" },
       { size: "normal", label: "03", text: "Anxiety before you even get out of bed" },
       { size: "normal", label: "04", text: "The version of yourself you keep putting off" },
       { size: "normal", label: "05", text: "Grief that doesn't follow a timeline" },
-      { size: "large",  label: "Also", text: "Queer identity · neurodivergence · family dynamics · chronic illness · performance pressure" },
+      { size: "large",  label: "Also", text: "Queer identity · neurodivergence · family dynamics · chronic illness · complex and long-term cases" },
     ],
   },
 
   /* ── THERAPISTS ────────────────────────────────────────── */
   therapists: {
     eyebrow:     "04 — The team",
-    h2:          "People you'll<br><em>actually talk to</em>",
+    h2:          "Four therapists.<br><em>One tight team.</em>",
     viewAllHref: "therapists/",
     list: [
       {
@@ -164,11 +164,11 @@ const CONTENT = {
   assessments: {
     eyebrow:  "05 — Free tools",
     h2:       "Know where<br><em>you stand</em>",
-    subtitle: "Clinically validated. Free. Share your score with your counsellor so you have somewhere to start.",
-    disclaimer: "These are for self-awareness only, not a clinical diagnosis.",
+    subtitle: "Clinically validated. Free. Useful to share with your therapist so you're not starting from scratch.",
+    disclaimer: "Not a diagnosis. Just a starting point.",
     cards: [
-      { id: "bdi", label: "21 questions · BDI-II",  title: "Depression check", description: "The Beck Depression Inventory. A clinically validated way to understand where you are right now. Shareable with your therapist.", linkLabel: "Take the test" },
-      { id: "bai", label: "21 questions · BAI",     title: "Anxiety gauge",    description: "The Beck Anxiety Inventory. See how anxiety is showing up in your day-to-day. Instant results with a breakdown you can share.",    linkLabel: "Take the test" },
+      { id: "bdi", label: "21 questions · BDI-II",  title: "Depression check", description: "The Beck Depression Inventory. Takes about five minutes. Gives you and your therapist something concrete to work from.", linkLabel: "Take the test" },
+      { id: "bai", label: "21 questions · BAI",     title: "Anxiety gauge",    description: "The Beck Anxiety Inventory. See how anxiety is showing up day to day. Instant results you can share.", linkLabel: "Take the test" },
     ],
   },
 
@@ -183,7 +183,7 @@ const CONTENT = {
   locations: {
     eyebrow:  "07 — Find us",
     h2:       "Where we<br><em>meet you</em>",
-    subtitle: "In-person in Pune, or online from anywhere in India.",
+    subtitle: "Two clinics in Pune. Online sessions anywhere in India.",
     list: [
       {
         tag:          "Main clinic",
@@ -208,7 +208,7 @@ const CONTENT = {
       {
         tag:          "Online",
         name:         "Across India",
-        address:      "Video, audio, or text sessions.<br>All you need is a quiet space.",
+        address:      "Video, audio, or text.<br>All you need is a quiet space.",
         hours:        "7 days a week, flexible slots",
         therapists:   "All four therapists available",
         mapsHref:     WA_GENERAL,
@@ -220,9 +220,9 @@ const CONTENT = {
 
   /* ── FOOTER CTA ────────────────────────────────────────── */
   footerCta: {
-    eyebrow:      "Ready when you are",
-    h2:           "Let's start<br><em>talking.</em>",
-    body:         "First call is free.<br>No forms, no pressure. Just a real conversation on WhatsApp.",
+    eyebrow:      "When you're ready",
+    h2:           "We're not going<br><em>anywhere.</em>",
+    body:         "First call is free. No forms to fill, no commitment.<br>Just a conversation on WhatsApp when you feel like it.",
     ctaPrimary:   { label: "Schedule a discovery call", href: WA_GENERAL },
     ctaSecondary: { label: "Message us on WhatsApp",    href: WA_BASE    },
   },
