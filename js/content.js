@@ -29,15 +29,15 @@ const CONTENT = {
   /* ── NAV ───────────────────────────────────────────────── */
   nav: {
     links: [
-      { label: "Our therapists",  href: "#therapists"  },
+      { label: "Our therapists",   href: "#therapists"  },
       { label: "Self-assessments", href: "#assessments" },
-      { label: "Locations",       href: "#locations"   },
-      { label: "Journal",         href: "blog/index.html" },
+      { label: "Locations",        href: "#locations"   },
+      { label: "Journal",          href: "blog/index.html" },
     ],
     cta: {
       label:   "Schedule a discovery call",
       href:    WA_GENERAL,
-      tooltip: "Opens WhatsApp — the first 15 minutes are free. No pressure, no paperwork.",
+      tooltip: "First 15 minutes are free. Just a conversation on WhatsApp, nothing more.",
     },
     mobileLinks: [
       { label: "Our therapists",   href: "#therapists"  },
@@ -50,7 +50,7 @@ const CONTENT = {
 
   /* ── STICKY BAR ────────────────────────────────────────── */
   stickyBar: {
-    text: "<em>mindworks</em> — Ready when you are.",
+    text: "<em>mindworks</em> — Here when you're ready.",
     cta:  { label: "Schedule a discovery call", href: WA_GENERAL },
   },
 
@@ -58,11 +58,11 @@ const CONTENT = {
   hero: {
     eyebrow:  "01 — Pune & Online · Est. 2016",
     h1:       "No couches.<br>No clichés.<br><em>Just the work.</em>",
-    body:     "A small Pune-based practice. Certified, supervised psychologists who help you figure out what's loud, what's stuck, and what's quietly waiting to be said.",
+    body:     "A small Pune-based practice. Certified, supervised psychologists who will sit with you while you sort through what's loud, what's stuck, and what keeps coming back.",
     ctaPrimary:   { label: "Schedule a discovery call", href: WA_GENERAL },
     ctaSecondary: { label: "Meet the team",             href: "#therapists" },
     portraitAlt:     "Dimple Kishnani",
-    portraitSrc:     "", // e.g. "assets/dimple-hero.jpg"
+    portraitSrc:     "",
     portraitCaption: "Dimple Kishnani · Founder, Clinical Psychologist",
     statNumber:      "8,000+",
     statLabel:       "people helped since 2016",
@@ -87,12 +87,12 @@ const CONTENT = {
   approach: {
     eyebrow: "02 — Approach",
     h2:      "How we<br><em>actually work</em>",
-    body:    "We don't fix — we sit with you while you sort through what's loud, what's stuck, and what's quietly waiting to be said.",
+    body:    "We are not here to fix you. We are here to sit with you while you figure out what's actually going on.",
     cards: [
-      { num: "/01", title: "Talk before you commit",       body: "Free discovery call on WhatsApp. Get a feel for the approach before spending a rupee or signing anything." },
-      { num: "/02", title: "Matched by fit, not algorithm", body: "Paired based on what you're working through, your schedule, and what you're looking for." },
-      { num: "/03", title: "Sessions on your terms",       body: "Video, audio, or text. Weekly or fortnightly. From wherever you are in India." },
-      { num: "/04", title: "Track how things shift",       body: "Free self-assessments between sessions. See how you're actually moving, not just feel it." },
+      { num: "/01", title: "Talk before you commit",        body: "Free discovery call on WhatsApp. Get a feel for how we work before you spend a rupee or decide anything." },
+      { num: "/02", title: "Matched by fit, not a formula", body: "You are paired based on what you are working through, your schedule, and what you are actually looking for in a therapist." },
+      { num: "/03", title: "Sessions on your terms",        body: "Video, audio, or text. Weekly or fortnightly. From wherever you are in India." },
+      { num: "/04", title: "See how things are shifting",   body: "Free self-assessments between sessions so you can track how things are actually moving, not just feel like they might be." },
     ],
   },
 
@@ -164,11 +164,11 @@ const CONTENT = {
   assessments: {
     eyebrow:  "05 — Free tools",
     h2:       "Know where<br><em>you stand</em>",
-    subtitle: "Clinically validated. Free. Share your score with your counsellor to start the conversation.",
-    disclaimer: "These tools are for self-awareness only — not a clinical diagnosis.",
+    subtitle: "Clinically validated. Free. Share your score with your counsellor so you have somewhere to start.",
+    disclaimer: "These are for self-awareness only, not a clinical diagnosis.",
     cards: [
-      { id: "bdi", label: "21 questions · BDI-II",  title: "Depression check", description: "The Beck Depression Inventory — a clinically validated tool to understand your current emotional state. Shareable with your therapist.", linkLabel: "Take the test" },
-      { id: "bai", label: "21 questions · BAI",     title: "Anxiety gauge",    description: "The Beck Anxiety Inventory — see how anxiety is affecting your daily functioning. Instant results with a breakdown to share.",    linkLabel: "Take the test" },
+      { id: "bdi", label: "21 questions · BDI-II",  title: "Depression check", description: "The Beck Depression Inventory. A clinically validated way to understand where you are right now. Shareable with your therapist.", linkLabel: "Take the test" },
+      { id: "bai", label: "21 questions · BAI",     title: "Anxiety gauge",    description: "The Beck Anxiety Inventory. See how anxiety is showing up in your day-to-day. Instant results with a breakdown you can share.",    linkLabel: "Take the test" },
     ],
   },
 
@@ -183,7 +183,7 @@ const CONTENT = {
   locations: {
     eyebrow:  "07 — Find us",
     h2:       "Where we<br><em>meet you</em>",
-    subtitle: "In-person sessions in Pune, or online from anywhere in India.",
+    subtitle: "In-person in Pune, or online from anywhere in India.",
     list: [
       {
         tag:          "Main clinic",
@@ -222,7 +222,7 @@ const CONTENT = {
   footerCta: {
     eyebrow:      "Ready when you are",
     h2:           "Let's start<br><em>talking.</em>",
-    body:         "First call is free.<br>No pressure, no paperwork — just a real conversation on WhatsApp.",
+    body:         "First call is free.<br>No forms, no pressure. Just a real conversation on WhatsApp.",
     ctaPrimary:   { label: "Schedule a discovery call", href: WA_GENERAL },
     ctaSecondary: { label: "Message us on WhatsApp",    href: WA_BASE    },
   },
@@ -262,9 +262,9 @@ const CONTENT = {
   blog: {
     eyebrow:  "Journal",
     h1:       "Words worth<br><em>sitting with</em>",
-    subtitle: "Writing from the Mindworks team — on therapy, mental health, and the quieter things.",
+    subtitle: "Writing from the Mindworks team. On therapy, mistakes, and the quieter things.",
     posts: [
-      { slug: "how-to-find-a-therapist", title: "How to find the right therapist (when everyone sounds the same)", excerpt: "The websites all say 'safe space' and 'non-judgmental'. Here's what to actually look for.", author: "Dimple Kishnani", date: "2 June 2025", readTime: "5 min read", tag: "Getting started", featured: true },
+      { slug: "how-to-find-a-therapist", title: "Five years in, and my mistakes have never been more obvious", excerpt: "The more courses you do, the more naked you feel. This is what year five actually looked like.", author: "Dimple Kishnani", date: "2 June 2025", readTime: "4 min read", tag: "On practice", featured: true },
       { slug: "what-is-cbt",             title: "CBT isn't just 'think positive'. Here's what it actually does.", excerpt: "Cognitive Behavioural Therapy gets simplified a lot. This is a plain-language guide to how it really works.", author: "Alina Tambuwala", date: "18 May 2025", readTime: "7 min read", tag: "Therapy explained", featured: false },
       { slug: "burnout-vs-depression",   title: "Burnout vs depression: they overlap more than you think", excerpt: "Both leave you exhausted. Both are real. But they need different things from you.", author: "Armeet Narang", date: "4 May 2025", readTime: "6 min read", tag: "Mental health", featured: false },
     ],
