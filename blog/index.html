@@ -26,7 +26,6 @@
   line-height: 1.7; max-width: 480px;
 }
 
-/* Filter bar */
 .blog-filters {
   max-width: 1200px; margin: 0 auto;
   padding: 1.75rem 2.5rem;
@@ -44,7 +43,6 @@
   background: var(--ink); border-color: var(--ink); color: var(--cream);
 }
 
-/* Post grid */
 .blog-grid {
   max-width: 1200px; margin: 0 auto;
   padding: 3rem 2.5rem 6rem;
@@ -53,7 +51,6 @@
   gap: 1.5rem;
 }
 
-/* Featured post spans full width */
 .post-card.featured {
   grid-column: span 3;
   display: grid; grid-template-columns: 5fr 7fr;
@@ -85,7 +82,6 @@
   font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--ink);
 }
-/* Decorative serif numeral watermark on thumb */
 .post-thumb::before {
   content: attr(data-num);
   position: absolute; bottom: -0.5rem; right: 1rem;
@@ -122,7 +118,6 @@
 .post-link svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
 .post-card:hover .post-link { gap: 0.6rem; }
 
-/* Empty state */
 .blog-empty {
   grid-column: span 3; text-align: center;
   padding: 5rem 2rem; color: var(--muted);
@@ -145,31 +140,9 @@
 </head>
 <body>
 
-<nav>
-  <a href="../index.html" class="logo"><em>mind</em>works</a>
-  <div class="nav-mid">
-    <a href="../index.html#therapists">Our therapists</a>
-    <a href="../index.html#assessments">Self-assessments</a>
-    <a href="index.html" style="color:var(--ink)">Journal</a>
-  </div>
-  <div class="nav-right">
-    <a href="https://calendly.com/mindworks" target="_blank" rel="noopener" class="nav-cta">
-      <span>Book free 15-min call</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-    </a>
-    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<div class="mobile-menu" role="dialog" aria-label="Navigation">
-  <button class="mobile-menu-close" aria-label="Close">&times;</button>
-  <a href="../index.html#therapists">Our therapists</a>
-  <a href="../index.html#assessments">Self-assessments</a>
-  <a href="index.html">Journal</a>
-  <a href="https://calendly.com/mindworks" target="_blank" class="mm-cta">Book free 15-min call →</a>
-</div>
+<div id="mw-sticky-bar"></div>
+<div id="mw-nav"></div>
+<div id="mw-mobile-island"></div>
 
 <div class="blog-hero reveal">
   <div class="eyebrow"><span class="eyebrow-line"></span>Journal</div>
@@ -179,55 +152,18 @@
 
 <div class="blog-filters" id="blog-filters">
   <button class="filter-btn active" data-tag="all">All</button>
-  <!-- Tags populated by blog.js from content.js -->
 </div>
 
 <div class="blog-grid" id="blog-grid">
-  <!-- Posts rendered by blog.js -->
   <div class="blog-empty"><p>Loading posts…</p></div>
 </div>
 
-<footer>
-  <div>
-    <div class="f-brand"><em>mind</em>works counselling</div>
-    <div class="f-desc">A small Pune-based therapy practice. Certified, supervised, queer-affirmative. Online sessions across India.</div>
-  </div>
-  <div><div class="f-label">Services</div><a href="#">Individual therapy</a><a href="#">Couples counselling</a><a href="../index.html#assessments">Self-assessments</a></div>
-  <div><div class="f-label">Navigate</div><a href="../index.html#therapists">Our therapists</a><a href="index.html">Journal</a><a href="#">About us</a></div>
-  <div><div class="f-label">Connect</div><a href="tel:+919067485858">+91 90674 85858</a><a href="https://wa.me/919067485858" target="_blank">WhatsApp</a><a href="https://instagram.com/mindworkscounselling" target="_blank">Instagram</a></div>
-</footer>
-<div class="f-bottom"><span>© 2025 Mindworks Counselling</span><span>Pune, India</span></div>
+<div id="mw-footer"></div>
 
+<script src="../js/shared.js"></script>
 <script src="../js/content.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-
-  // Mobile menu
-  const hamburger = document.querySelector('.nav-hamburger');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  const mobileClose = document.querySelector('.mobile-menu-close');
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
-      mobileMenu.style.display = 'flex';
-      requestAnimationFrame(() => mobileMenu.classList.add('open'));
-      hamburger.setAttribute('aria-expanded', 'true');
-    });
-    const close = () => { mobileMenu.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); };
-    if (mobileClose) mobileClose.addEventListener('click', close);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
-  }
-
-  // Nav scroll
-  const nav = document.querySelector('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
-
-  // Reveal
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.06 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-  // ── RENDER BLOG FROM CONTENT.JS ─────────────────────────────
   if (typeof CONTENT === 'undefined' || !CONTENT.blog) return;
 
   const posts = CONTENT.blog.posts || [];
@@ -235,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const filtersEl = document.getElementById('blog-filters');
   let activeTag = 'all';
 
-  // Collect unique tags
   const tags = [...new Set(posts.map(p => p.tag).filter(Boolean))];
   tags.forEach(tag => {
     const btn = document.createElement('button');
@@ -251,6 +186,10 @@ document.addEventListener('DOMContentLoaded', () => {
     filtersEl.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.tag === tag));
     renderPosts();
   }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.06 });
 
   function renderPosts() {
     const filtered = activeTag === 'all' ? posts : posts.filter(p => p.tag === activeTag);
@@ -282,8 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </a>
       `;
     }).join('');
-
-    // Re-observe new elements
     grid.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   }
 
