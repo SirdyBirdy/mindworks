@@ -30,7 +30,11 @@
 }
 .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
 
-.hero-right { position: relative; display: flex; align-items: center; justify-content: center; padding: 3rem 0; }
+/* ── HERO RIGHT: TEAM CAROUSEL ── */
+.hero-right {
+  position: relative; display: flex; align-items: center;
+  justify-content: center; padding: 3rem 0;
+}
 .blob {
   position: absolute; width: 340px; height: 380px;
   background: var(--teal-soft);
@@ -44,25 +48,86 @@
   33%{border-radius:50% 50% 40% 60% / 60% 40% 60% 40%;transform:translate(-50%,-50%) translateY(-12px)}
   66%{border-radius:70% 30% 50% 50% / 40% 70% 30% 60%;transform:translate(-50%,-50%) translateY(6px)}
 }
-.portrait-wrap {
-  position: relative; z-index: 1; width: 280px; aspect-ratio: 4/5;
-  border-radius: 2rem; overflow: hidden; background: hsl(30,25%,72%);
-  box-shadow: var(--shadow-soft);
+
+/* Portrait carousel container */
+.portrait-carousel {
+  position: relative; z-index: 1;
+  width: 280px;
 }
-.portrait-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.portrait-placeholder {
+.portrait-track-wrap {
+  width: 280px; aspect-ratio: 4/5;
+  border-radius: 2rem; overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  background: hsl(30,25%,72%);
+  position: relative;
+}
+.portrait-track {
+  display: flex; width: 100%; height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.portrait-slide {
+  flex: 0 0 100%; width: 100%; height: 100%;
+  position: relative; overflow: hidden;
+}
+.portrait-slide-placeholder {
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(160deg, hsl(176,28%,68%), hsl(176,35%,55%));
-  font-family: var(--display); font-size: 1rem; font-style: italic;
-  color: rgba(255,255,255,0.6); text-align: center; padding: 2rem; line-height: 1.5;
+  font-family: var(--display); font-size: 3rem; font-weight: 400; font-style: italic;
+  color: rgba(255,255,255,0.75); letter-spacing: -0.02em;
 }
-.portrait-caption {
+.portrait-slide img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.portrait-slide-caption {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 1.5rem 1.25rem 1.25rem;
-  background: linear-gradient(to top, rgba(26,42,51,0.75) 0%, transparent 100%);
-  color: #fff; font-size: 0.72rem; font-weight: 400; letter-spacing: 0.05em;
+  background: linear-gradient(to top, rgba(26,42,51,0.82) 0%, transparent 100%);
+  color: #fff;
 }
+.portrait-slide-name {
+  font-size: 0.82rem; font-weight: 500; color: #fff; letter-spacing: 0.01em;
+  margin-bottom: 0.15rem;
+}
+.portrait-slide-role {
+  font-size: 0.65rem; color: rgba(255,255,255,0.6); letter-spacing: 0.05em;
+  font-family: var(--body);
+}
+
+/* Carousel nav arrows */
+.carousel-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  z-index: 3; width: 30px; height: 30px; border-radius: 50%;
+  background: rgba(247,246,242,0.92); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px rgba(8,104,96,0.12); color: var(--ink);
+  padding: 0;
+}
+.carousel-arrow:hover {
+  background: var(--teal); color: #fff;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 4px 16px rgba(8,104,96,0.22);
+}
+.carousel-arrow svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2.2; }
+.carousel-arrow-prev { left: -14px; }
+.carousel-arrow-next { right: -14px; }
+
+/* Carousel dots */
+.carousel-dots {
+  display: flex; justify-content: center; gap: 0.45rem;
+  margin-top: 1rem;
+}
+.carousel-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--border); border: none; padding: 0; cursor: pointer;
+  transition: background 0.25s, transform 0.25s, width 0.25s;
+}
+.carousel-dot.active {
+  background: var(--teal); width: 18px; border-radius: 100px;
+  transform: none;
+}
+
+/* Stat float & ticker — unchanged */
 .stat-float {
   position: absolute; bottom: 3.5rem; left: -2rem;
   background: var(--card); border: 1px solid var(--border);
@@ -323,12 +388,67 @@
       </a>
     </div>
   </div>
+
+  <!-- TEAM CAROUSEL -->
   <div class="hero-right">
     <div class="blob"></div>
-    <div class="portrait-wrap">
-      <div class="portrait-placeholder">Your photo here — warm, natural light</div>
-      <div class="portrait-caption">Dimple Kishnani · Founder, Clinical Psychologist</div>
-    </div>
+
+    <div class="portrait-carousel" id="heroCarousel">
+      <div class="portrait-track-wrap">
+        <div class="portrait-track" id="carouselTrack">
+
+          <!-- Slide 1: Dimple Kishnani -->
+          <div class="portrait-slide">
+            <!-- Replace src with actual photo path, e.g. src="images/team/dimple.jpg" -->
+            <div class="portrait-slide-placeholder" style="background:linear-gradient(160deg,hsl(176,28%,68%),hsl(176,35%,55%))">DK</div>
+            <div class="portrait-slide-caption">
+              <div class="portrait-slide-name">Dimple Kishnani</div>
+              <div class="portrait-slide-role">Founder · Clinical Psychologist · 12 yrs</div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Armeet Narang -->
+          <div class="portrait-slide">
+            <div class="portrait-slide-placeholder" style="background:linear-gradient(160deg,hsl(200,28%,60%),hsl(200,35%,48%))">AN</div>
+            <div class="portrait-slide-caption">
+              <div class="portrait-slide-name">Armeet Narang</div>
+              <div class="portrait-slide-role">CBT · ACT · Queer-affirmative · 4 yrs</div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Nandini Keshwani -->
+          <div class="portrait-slide">
+            <div class="portrait-slide-placeholder" style="background:linear-gradient(160deg,hsl(155,28%,58%),hsl(155,35%,46%))">NK</div>
+            <div class="portrait-slide-caption">
+              <div class="portrait-slide-name">Nandini Keshwani</div>
+              <div class="portrait-slide-role">Queer-affirmative · Body positivity · 3 yrs</div>
+            </div>
+          </div>
+
+          <!-- Slide 4: Alina Tambuwala -->
+          <div class="portrait-slide">
+            <div class="portrait-slide-placeholder" style="background:linear-gradient(160deg,hsl(20,32%,62%),hsl(20,38%,50%))">AT</div>
+            <div class="portrait-slide-caption">
+              <div class="portrait-slide-name">Alina Tambuwala</div>
+              <div class="portrait-slide-role">CBT · Trauma-informed · Queer-affirmative · 3 yrs</div>
+            </div>
+          </div>
+
+        </div><!-- /portrait-track -->
+      </div><!-- /portrait-track-wrap -->
+
+      <!-- Prev / Next arrows -->
+      <button class="carousel-arrow carousel-arrow-prev" id="carouselPrev" aria-label="Previous team member">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-arrow carousel-arrow-next" id="carouselNext" aria-label="Next team member">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+
+      <!-- Dot indicators -->
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div><!-- /portrait-carousel -->
+
     <div class="stat-float">
       <div class="stat-float-num">8,000+</div>
       <div class="stat-float-label">people helped since 2016</div>
@@ -690,6 +810,9 @@
 <script src="js/content.js"></script>
 <script src="js/assessments.js"></script>
 <script src="js/main.js"></script>
+
+<!-- HERO CAROUSEL SCRIPT -->
+<script src="js/hero-carousel.js"></script>
 
 </body>
 </html>
