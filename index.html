@@ -30,7 +30,7 @@
 }
 .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
 
-/* ── HERO RIGHT: TEAM CAROUSEL ── */
+/* ── HERO RIGHT: TEAM DECK ── */
 .hero-right {
   position: relative; display: flex; align-items: center;
   justify-content: center; padding: 3rem 0;
@@ -49,54 +49,84 @@
   66%{border-radius:70% 30% 50% 50% / 40% 70% 30% 60%;transform:translate(-50%,-50%) translateY(6px)}
 }
 
-/* Portrait carousel container */
+/* Portrait deck container */
 .portrait-carousel {
   position: relative; z-index: 1;
   width: 280px;
 }
-.portrait-track-wrap {
-  width: 280px; aspect-ratio: 4/5;
+
+/* The deck: stacking context */
+.portrait-deck {
+  position: relative;
+  width: 280px;
+  /* height = card aspect ratio 4/5 = 350px */
+  height: 350px;
+  /* extra padding-bottom so rotated back cards don't clip */
+  margin-bottom: 0.5rem;
+}
+
+/* Each stacked card */
+.deck-card {
+  position: absolute; inset: 0;
+  width: 280px; height: 350px;
   border-radius: 2rem; overflow: hidden;
   box-shadow: var(--shadow-soft);
-  background: hsl(30,25%,72%);
-  position: relative;
+  transform-origin: center bottom;
+  will-change: transform, filter;
+  cursor: pointer;
+  /* transition set by JS per card */
 }
-.portrait-track {
-  display: flex; width: 100%; height: 100%;
-  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
-}
-.portrait-slide {
-  flex: 0 0 100%; width: 100%; height: 100%;
+
+/* Card image area */
+.deck-card-img {
+  width: 100%; height: 100%;
   position: relative; overflow: hidden;
 }
-.portrait-slide-placeholder {
+.deck-card-placeholder {
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--display); font-size: 3rem; font-weight: 400; font-style: italic;
   color: rgba(255,255,255,0.75); letter-spacing: -0.02em;
 }
-.portrait-slide img {
+.deck-card-img img {
   width: 100%; height: 100%; object-fit: cover; display: block;
 }
-.portrait-slide-caption {
+
+/* Caption overlay on the front card */
+.deck-card-caption {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 1.5rem 1.25rem 1.25rem;
   background: linear-gradient(to top, rgba(26,42,51,0.82) 0%, transparent 100%);
   color: #fff;
 }
-.portrait-slide-name {
+.deck-card-name {
   font-size: 0.82rem; font-weight: 500; color: #fff; letter-spacing: 0.01em;
   margin-bottom: 0.15rem;
 }
-.portrait-slide-role {
+.deck-card-role {
   font-size: 0.65rem; color: rgba(255,255,255,0.6); letter-spacing: 0.05em;
   font-family: var(--body);
 }
 
-/* Carousel nav arrows */
+/* "Click to see next" hint on front card */
+.deck-card-hint {
+  position: absolute; top: 1rem; right: 1rem;
+  background: rgba(247,246,242,0.18); backdrop-filter: blur(6px);
+  border: 1px solid rgba(247,246,242,0.25);
+  border-radius: 100px; padding: 0.3rem 0.65rem;
+  font-size: 0.6rem; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(255,255,255,0.7);
+  pointer-events: none; opacity: 1;
+  transition: opacity 0.3s;
+}
+.portrait-deck:hover .deck-card-hint { opacity: 0; }
+
+/* Arrow buttons — sit outside the deck, vertically centred on it */
 .carousel-arrow {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  z-index: 3; width: 30px; height: 30px; border-radius: 50%;
+  position: absolute;
+  top: calc(175px); /* half of 350px deck height */
+  transform: translateY(-50%);
+  z-index: 10; width: 30px; height: 30px; border-radius: 50%;
   background: rgba(247,246,242,0.92); border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
@@ -109,22 +139,21 @@
   box-shadow: 0 4px 16px rgba(8,104,96,0.22);
 }
 .carousel-arrow svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2.2; }
-.carousel-arrow-prev { left: -14px; }
-.carousel-arrow-next { right: -14px; }
+.carousel-arrow-prev { left: -18px; }
+.carousel-arrow-next { right: -18px; }
 
-/* Carousel dots */
+/* Dot indicators */
 .carousel-dots {
   display: flex; justify-content: center; gap: 0.45rem;
-  margin-top: 1rem;
+  margin-top: 1.25rem;
 }
 .carousel-dot {
   width: 5px; height: 5px; border-radius: 50%;
   background: var(--border); border: none; padding: 0; cursor: pointer;
-  transition: background 0.25s, transform 0.25s, width 0.25s;
+  transition: background 0.25s, width 0.25s;
 }
 .carousel-dot.active {
   background: var(--teal); width: 18px; border-radius: 100px;
-  transform: none;
 }
 
 /* Stat float & ticker — unchanged */
@@ -389,53 +418,65 @@
     </div>
   </div>
 
-  <!-- TEAM CAROUSEL -->
+  <!-- TEAM DECK -->
   <div class="hero-right">
     <div class="blob"></div>
 
     <div class="portrait-carousel" id="heroCarousel">
-      <div class="portrait-track-wrap">
-        <div class="portrait-track" id="carouselTrack">
 
-          <!-- Slide 1: Dimple Kishnani -->
-          <div class="portrait-slide">
-            <!-- Replace src with actual photo path, e.g. src="images/team/dimple.jpg" -->
-            <div class="portrait-slide-placeholder" style="background:linear-gradient(160deg,hsl(176,28%,68%),hsl(176,35%,55%))">DK</div>
-            <div class="portrait-slide-caption">
-              <div class="portrait-slide-name">Dimple Kishnani</div>
-              <div class="portrait-slide-role">Founder · Clinical Psychologist · 12 yrs</div>
-            </div>
+      <!-- Stacked deck -->
+      <div class="portrait-deck" id="carouselDeck">
+
+        <!-- Card 1: Dimple Kishnani (starts on top) -->
+        <!-- To use a real photo: replace the deck-card-placeholder div with <img src="images/team/dimple.jpg" alt="Dimple Kishnani"> -->
+        <div class="deck-card">
+          <div class="deck-card-img">
+            <div class="deck-card-placeholder" style="background:linear-gradient(160deg,hsl(176,28%,68%),hsl(176,35%,55%))">DK</div>
           </div>
-
-          <!-- Slide 2: Armeet Narang -->
-          <div class="portrait-slide">
-            <div class="portrait-slide-placeholder" style="background:linear-gradient(160deg,hsl(200,28%,60%),hsl(200,35%,48%))">AN</div>
-            <div class="portrait-slide-caption">
-              <div class="portrait-slide-name">Armeet Narang</div>
-              <div class="portrait-slide-role">CBT · ACT · Queer-affirmative · 4 yrs</div>
-            </div>
+          <div class="deck-card-caption">
+            <div class="deck-card-name">Dimple Kishnani</div>
+            <div class="deck-card-role">Founder · Clinical Psychologist · 12 yrs</div>
           </div>
+          <div class="deck-card-hint">tap to browse</div>
+        </div>
 
-          <!-- Slide 3: Nandini Keshwani -->
-          <div class="portrait-slide">
-            <div class="portrait-slide-placeholder" style="background:linear-gradient(160deg,hsl(155,28%,58%),hsl(155,35%,46%))">NK</div>
-            <div class="portrait-slide-caption">
-              <div class="portrait-slide-name">Nandini Keshwani</div>
-              <div class="portrait-slide-role">Queer-affirmative · Body positivity · 3 yrs</div>
-            </div>
+        <!-- Card 2: Armeet Narang -->
+        <div class="deck-card">
+          <div class="deck-card-img">
+            <div class="deck-card-placeholder" style="background:linear-gradient(160deg,hsl(200,28%,60%),hsl(200,35%,48%))">AN</div>
           </div>
-
-          <!-- Slide 4: Alina Tambuwala -->
-          <div class="portrait-slide">
-            <div class="portrait-slide-placeholder" style="background:linear-gradient(160deg,hsl(20,32%,62%),hsl(20,38%,50%))">AT</div>
-            <div class="portrait-slide-caption">
-              <div class="portrait-slide-name">Alina Tambuwala</div>
-              <div class="portrait-slide-role">CBT · Trauma-informed · Queer-affirmative · 3 yrs</div>
-            </div>
+          <div class="deck-card-caption">
+            <div class="deck-card-name">Armeet Narang</div>
+            <div class="deck-card-role">CBT · ACT · Queer-affirmative · 4 yrs</div>
           </div>
+          <div class="deck-card-hint">tap to browse</div>
+        </div>
 
-        </div><!-- /portrait-track -->
-      </div><!-- /portrait-track-wrap -->
+        <!-- Card 3: Nandini Keshwani -->
+        <div class="deck-card">
+          <div class="deck-card-img">
+            <div class="deck-card-placeholder" style="background:linear-gradient(160deg,hsl(155,28%,58%),hsl(155,35%,46%))">NK</div>
+          </div>
+          <div class="deck-card-caption">
+            <div class="deck-card-name">Nandini Keshwani</div>
+            <div class="deck-card-role">Queer-affirmative · Body positivity · 3 yrs</div>
+          </div>
+          <div class="deck-card-hint">tap to browse</div>
+        </div>
+
+        <!-- Card 4: Alina Tambuwala -->
+        <div class="deck-card">
+          <div class="deck-card-img">
+            <div class="deck-card-placeholder" style="background:linear-gradient(160deg,hsl(20,32%,62%),hsl(20,38%,50%))">AT</div>
+          </div>
+          <div class="deck-card-caption">
+            <div class="deck-card-name">Alina Tambuwala</div>
+            <div class="deck-card-role">CBT · Trauma-informed · Queer-affirmative · 3 yrs</div>
+          </div>
+          <div class="deck-card-hint">tap to browse</div>
+        </div>
+
+      </div><!-- /portrait-deck -->
 
       <!-- Prev / Next arrows -->
       <button class="carousel-arrow carousel-arrow-prev" id="carouselPrev" aria-label="Previous team member">
