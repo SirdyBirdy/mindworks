@@ -354,8 +354,17 @@
 
 /* MOBILE */
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; min-height: auto; padding: 2rem 1.25rem; }
-  .hero-right { display: none; }
+  .hero { grid-template-columns: 1fr; min-height: auto; padding: 2rem 1.25rem; gap: 1.5rem; }
+  .hero-right {
+    display: flex;
+    padding: 1rem 0 2.5rem;
+    overflow: visible;
+  }
+  .portrait-carousel { margin: 0 auto; }
+  .portrait-deck { width: 240px; height: 300px; }
+  .deck-card { width: 240px; height: 300px; }
+  .stat-float { bottom: 1rem; left: -0.25rem; }
+  .hero-ticker { top: 1rem; }
   .approach { grid-template-columns: 1fr; padding: 4rem 1.25rem; }
   .approach-right { grid-template-columns: 1fr; }
   .topics { padding: 4rem 1.25rem; }
