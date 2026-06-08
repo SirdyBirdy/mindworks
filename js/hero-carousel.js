@@ -27,6 +27,15 @@
   let   animating = false;
   let   timer     = null;
 
+  /* ── Arrow vertical position — read from actual deck height ── */
+  function positionArrows() {
+    const deckH = deck.offsetHeight;
+    if (prevBtn) prevBtn.style.top = (deckH / 2) + "px";
+    if (nextBtn) nextBtn.style.top = (deckH / 2) + "px";
+  }
+  positionArrows();
+  window.addEventListener("resize", positionArrows, { passive: true });
+
   /* ── Build dots ─────────────────────────────────────── */
   order.forEach((_, i) => {
     const dot = document.createElement("button");
