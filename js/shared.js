@@ -93,11 +93,11 @@
         width: auto;
         min-width: 160px;
         border-radius: 999px;
-        background: rgba(32, 178, 170, 0.18);
-        box-shadow: 0 4px 24px rgba(32,178,170,0.18), 0 1.5px 6px rgba(0,0,0,0.08);
+        background: rgba(32, 178, 170, 0.08);
+        box-shadow: 0 4px 24px rgba(32,178,170,0.08), 0 1.5px 6px rgba(0,0,0,0.06);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(32, 178, 170, 0.28);
+        border: 1px solid rgba(32, 178, 170, 0.14);
         overflow: hidden;
         transition: border-radius 0.35s cubic-bezier(0.4,0,0.2,1),
                     min-width 0.35s cubic-bezier(0.4,0,0.2,1);
