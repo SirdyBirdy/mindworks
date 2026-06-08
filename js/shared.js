@@ -107,18 +107,24 @@
       }
 
       /* ── Expanded links ── */
+      .island-nav-links-outer {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.42s cubic-bezier(0.4,0,0.2,1);
+      }
+      .mobile-island.island-open .island-nav-links-outer {
+        grid-template-rows: 1fr;
+      }
       .island-nav-links {
         display: flex;
         flex-direction: column;
-        max-height: 0;
         overflow: hidden;
         opacity: 0;
-        transition: max-height 0.38s cubic-bezier(0.4,0,0.2,1),
-                    opacity 0.25s ease;
+        transition: opacity 0.2s ease 0s;
       }
       .mobile-island.island-open .island-nav-links {
-        max-height: 260px;
         opacity: 1;
+        transition: opacity 0.28s ease 0.15s;
       }
       .island-nav-links a {
         display: block;
@@ -196,12 +202,14 @@
     <nav class="mobile-island" id="mobileIsland" role="navigation" aria-label="Site navigation">
 
       <!-- Expanded links (above trigger) -->
-      <div class="island-nav-links" id="islandNavLinks">
-        <a href="${root}index.html#therapists">Our therapists</a>
-        <a href="${root}index.html#assessments">Self-assessments</a>
-        <a href="${root}index.html#locations">Locations</a>
-        <a href="${root}blog/blog.html">Journal</a>
-        <a href="${WA_CALL}" target="_blank" rel="noopener">Schedule a discovery call →</a>
+      <div class="island-nav-links-outer">
+        <div class="island-nav-links" id="islandNavLinks">
+          <a href="${root}index.html#therapists">Our therapists</a>
+          <a href="${root}index.html#assessments">Self-assessments</a>
+          <a href="${root}index.html#locations">Locations</a>
+          <a href="${root}blog/blog.html">Journal</a>
+          <a href="${WA_CALL}" target="_blank" rel="noopener">Schedule a discovery call →</a>
+        </div>
       </div>
 
       <!-- Always-visible trigger -->
@@ -315,7 +323,7 @@
   function initIsland() {
     const island  = document.getElementById('mobileIsland');
     const toggle  = document.getElementById('islandMenuToggle');
-    const links   = document.getElementById('islandNavLinks');
+    const links   = island.querySelector('.island-nav-links');
     if (!island || !toggle) return;
 
     function openMenu() {
