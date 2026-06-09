@@ -76,153 +76,200 @@
 
   /* ─────────────────────────────────────────
      MOBILE FLOATING ISLAND
-     Collapsed: "mindworks  ≡" pill
-     Expanded:  grows upward to reveal nav links
+     Pill stays fixed. Menu card floats above it,
+     slides up + fades in on tap. Matches reference design.
   ───────────────────────────────────────── */
   const mobileIslandHTML = /* html */`
     <style>
-      .mobile-island {
+      /* ── Wrapper (positions pill + anchors the menu card) ── */
+      #mobileIsland {
         position: fixed;
         bottom: 28px;
         left: 50%;
         transform: translateX(-50%);
-        z-index: 900;
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        width: auto;
-        min-width: 160px;
-        border-radius: 999px;
-        background: rgba(10, 40, 38, 0.82);
-        box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 1.5px 6px rgba(0,0,0,0.2);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(32, 178, 170, 0.15);
-        overflow: hidden;
-        transition: border-radius 0.35s cubic-bezier(0.4,0,0.2,1),
-                    min-width 0.35s cubic-bezier(0.4,0,0.2,1);
-      }
-      .mobile-island.island-open {
-        border-radius: 20px;
+        z-index: 9000;
       }
 
-      /* ── Expanded links ── */
-      .island-nav-links-outer {
-        display: grid;
-        grid-template-rows: 0fr;
-        transition: grid-template-rows 0.42s cubic-bezier(0.4,0,0.2,1);
-      }
-      .mobile-island.island-open .island-nav-links-outer {
-        grid-template-rows: 1fr;
-      }
-      .island-nav-links {
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        opacity: 0;
-        transition: opacity 0.2s ease 0s;
-      }
-      .mobile-island.island-open .island-nav-links {
-        opacity: 1;
-        transition: opacity 0.28s ease 0.15s;
-      }
-      .island-nav-links a {
-        display: block;
-        padding: 13px 28px;
-        font-size: 0.97rem;
-        font-weight: 500;
-        color: rgba(255,255,255,0.92);
-        text-decoration: none;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        white-space: nowrap;
-        transition: background 0.15s, color 0.15s;
-        -webkit-tap-highlight-color: transparent;
-      }
-      .island-nav-links a:last-child { border-bottom: none; }
-      .island-nav-links a:active,
-      .island-nav-links a:hover {
-        background: rgba(255,255,255,0.1);
-        color: #fff;
-      }
-
-      /* ── Collapsed trigger bar ── */
-      .island-trigger {
+      /* ── The pill ── */
+      .island-pill {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 13px 20px;
+        gap: 14px;
+        padding: 10px 20px;
+        border-radius: 100px;
+        background: rgba(10, 38, 35, 0.82);
+        backdrop-filter: blur(20px) saturate(1.6);
+        -webkit-backdrop-filter: blur(20px) saturate(1.6);
+        border: 1px solid rgba(32, 178, 170, 0.18);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.16);
         cursor: pointer;
-        background: none;
-        border: none;
-        width: 100%;
+        user-select: none;
+        white-space: nowrap;
+        transition: background 0.25s ease;
         -webkit-tap-highlight-color: transparent;
       }
-      .island-trigger-label {
-        font-size: 0.9rem;
-        font-weight: 600;
-        letter-spacing: 0.04em;
+      .island-pill:hover {
+        background: rgba(15, 52, 48, 0.9);
+      }
+      .island-pill-logo {
+        font-size: 1rem;
+        font-weight: 400;
         color: rgba(255,255,255,0.95);
         font-style: italic;
+        letter-spacing: 0.01em;
       }
-      .island-trigger-label em {
-        font-style: normal;
+      .island-pill-divider {
+        width: 1px;
+        height: 16px;
+        background: rgba(255,255,255,0.18);
+        flex-shrink: 0;
+      }
+      .island-pill-menu {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.6);
+        font-weight: 400;
       }
       .island-hamburger {
         display: flex;
         flex-direction: column;
-        gap: 4px;
-        flex-shrink: 0;
+        gap: 3.5px;
       }
       .island-hamburger span {
         display: block;
-        width: 18px;
+        width: 16px;
         height: 1.5px;
-        background: rgba(255,255,255,0.9);
+        background: rgba(255,255,255,0.75);
         border-radius: 2px;
         transform-origin: center;
-        transition: transform 0.28s ease, opacity 0.2s ease, width 0.28s ease;
+        transition: transform 0.3s ease, opacity 0.2s ease;
       }
-      .mobile-island.island-open .island-hamburger span:nth-child(1) {
-        transform: translateY(5.5px) rotate(45deg);
-      }
-      .mobile-island.island-open .island-hamburger span:nth-child(2) {
+      #mobileIsland.island-open .island-hamburger span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+      #mobileIsland.island-open .island-hamburger span:nth-child(2) { opacity: 0; }
+      #mobileIsland.island-open .island-hamburger span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+      /* ── Menu card (floats above the pill) ── */
+      .island-menu-card {
+        position: absolute;
+        bottom: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(-50%) translateY(12px);
+        background: rgba(255,255,255,0.84);
+        backdrop-filter: blur(24px) saturate(1.8);
+        -webkit-backdrop-filter: blur(24px) saturate(1.8);
+        border: 1px solid rgba(255,255,255,0.5);
+        border-radius: 24px;
+        padding: 10px;
+        min-width: 260px;
+        box-shadow: 0 24px 64px rgba(0,0,0,0.14), 0 4px 16px rgba(0,0,0,0.06);
         opacity: 0;
-        width: 0;
+        pointer-events: none;
+        transition: opacity 0.35s cubic-bezier(0.16,1,0.3,1),
+                    transform 0.35s cubic-bezier(0.16,1,0.3,1);
       }
-      .mobile-island.island-open .island-hamburger span:nth-child(3) {
-        transform: translateY(-5.5px) rotate(-45deg);
+      #mobileIsland.island-open .island-menu-card {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      /* ── Nav links inside the card ── */
+      .island-menu-links {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .island-menu-links a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        border-radius: 14px;
+        font-size: 0.9rem;
+        color: #2A2420;
+        text-decoration: none;
+        transition: background 0.18s;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .island-menu-links a:hover,
+      .island-menu-links a:active {
+        background: rgba(242,237,228,0.75);
+      }
+      .island-menu-links a .arrow {
+        color: #9E9088;
+        font-size: 0.85rem;
+      }
+      .island-menu-divider {
+        height: 1px;
+        background: rgba(232,223,208,0.65);
+        margin: 6px 8px;
+      }
+      .island-menu-cta {
+        padding: 8px 6px 6px;
+      }
+      .island-menu-cta a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        padding: 12px;
+        border-radius: 12px;
+        background: #2A2420;
+        color: #fff;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background 0.2s;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .island-menu-cta a:hover { background: #3d3530; }
+      .island-menu-cta svg {
+        width: 16px; height: 16px;
+        fill: #fff; flex-shrink: 0;
       }
 
       @media (min-width: 768px) {
-        .mobile-island { display: none !important; }
+        #mobileIsland { display: none !important; }
       }
     </style>
 
-    <nav class="mobile-island" id="mobileIsland" role="navigation" aria-label="Site navigation">
+    <div id="mobileIsland">
 
-      <!-- Expanded links (above trigger) -->
-      <div class="island-nav-links-outer">
-        <div class="island-nav-links" id="islandNavLinks">
-          <a href="${root}index.html#therapists">Our therapists</a>
-          <a href="${root}index.html#assessments">Self-assessments</a>
-          <a href="${root}index.html#locations">Locations</a>
-          <a href="${root}blog/blog.html">Journal</a>
-          <a href="${WA_CALL}" target="_blank" rel="noopener">Schedule a discovery call →</a>
+      <!-- Menu card (shown above pill when open) -->
+      <div class="island-menu-card" id="islandMenuCard" role="menu">
+        <div class="island-menu-links">
+          <a href="${root}index.html#therapists">Our therapists <span class="arrow">→</span></a>
+          <a href="${root}index.html#assessments">Self-assessments <span class="arrow">→</span></a>
+          <a href="${root}index.html#locations">Locations <span class="arrow">→</span></a>
+          <a href="${root}blog/blog.html">Journal <span class="arrow">→</span></a>
+        </div>
+        <div class="island-menu-divider"></div>
+        <div class="island-menu-cta">
+          <a href="${WA_CALL}" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Schedule a discovery call
+          </a>
         </div>
       </div>
 
-      <!-- Always-visible trigger -->
-      <button class="island-trigger" id="islandMenuToggle"
-              aria-expanded="false" aria-controls="islandNavLinks"
+      <!-- Pill (always visible) -->
+      <button class="island-pill" id="islandMenuToggle"
+              aria-expanded="false" aria-controls="islandMenuCard"
               aria-label="Toggle navigation menu">
-        <span class="island-trigger-label"><em>mind</em>works</span>
-        <span class="island-hamburger" aria-hidden="true">
-          <span></span><span></span><span></span>
+        <span class="island-pill-logo"><em>mind</em>works</span>
+        <span class="island-pill-divider" aria-hidden="true"></span>
+        <span class="island-pill-menu">
+          <span class="island-hamburger" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          Menu
         </span>
       </button>
 
-    </nav>
+    </div>
   `;
 
   /* ─────────────────────────────────────────
@@ -323,25 +370,18 @@
   function initIsland() {
     const island  = document.getElementById('mobileIsland');
     const toggle  = document.getElementById('islandMenuToggle');
-    const links   = island.querySelector('.island-nav-links');
+    const card    = document.getElementById('islandMenuCard');
     if (!island || !toggle) return;
 
-    function openMenu() {
-      island.classList.add('island-open');
-      toggle.setAttribute('aria-expanded', 'true');
-    }
-
-    function closeMenu() {
-      island.classList.remove('island-open');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
+    function openMenu()  { island.classList.add('island-open');    toggle.setAttribute('aria-expanded', 'true');  }
+    function closeMenu() { island.classList.remove('island-open'); toggle.setAttribute('aria-expanded', 'false'); }
 
     toggle.addEventListener('click', () => {
       island.classList.contains('island-open') ? closeMenu() : openMenu();
     });
 
     // Close when a nav link is tapped
-    links?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    card?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
     // Close on outside tap
     document.addEventListener('click', e => {
