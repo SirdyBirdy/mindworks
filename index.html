@@ -59,9 +59,7 @@
 .portrait-deck {
   position: relative;
   width: 280px;
-  /* height = card aspect ratio 4/5 = 350px */
   height: 350px;
-  /* extra padding-bottom so rotated back cards don't clip */
   margin-bottom: 0.5rem;
 }
 
@@ -74,7 +72,6 @@
   transform-origin: center bottom;
   will-change: transform, filter;
   cursor: pointer;
-  /* transition set by JS per card */
 }
 
 /* Card image area */
@@ -121,10 +118,10 @@
 }
 .portrait-deck:hover .deck-card-hint { opacity: 0; }
 
-/* Arrow buttons — sit outside the deck, vertically centred on it */
+/* Arrow buttons */
 .carousel-arrow {
   position: absolute;
-  top: calc(175px); /* half of 350px deck height */
+  top: calc(175px);
   transform: translateY(-50%);
   z-index: 10; width: 30px; height: 30px; border-radius: 50%;
   background: rgba(247,246,242,0.92); border: 1px solid var(--border);
@@ -156,7 +153,7 @@
   background: var(--teal); width: 18px; border-radius: 100px;
 }
 
-/* Stat float & ticker — unchanged */
+/* Stat float & ticker */
 .stat-float {
   position: absolute; bottom: 3.5rem; left: -2rem;
   background: var(--card); border: 1px solid var(--border);
@@ -355,11 +352,7 @@
 /* MOBILE */
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; min-height: auto; padding: 2rem 1.25rem; gap: 1.5rem; }
-  .hero-right {
-    display: flex;
-    padding: 1rem 0 2.5rem;
-    overflow: visible;
-  }
+  .hero-right { display: flex; padding: 1rem 0 2.5rem; overflow: visible; }
   .portrait-carousel { margin: 0 auto; }
   .portrait-deck { width: 240px; height: 300px; }
   .deck-card { width: 240px; height: 300px; }
@@ -405,459 +398,45 @@
 <div id="mw-mobile-island"></div>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-left">
-    <div class="eyebrow">
-      <span class="eyebrow-line"></span>
-      <span class="eyebrow-text">01 — Pune & Online · Est. 2016</span>
-    </div>
-    <h1 class="hero-h1">
-      No couches.<br>No clichés.<br><em>Just the work.</em>
-    </h1>
-    <p class="hero-body">A small Pune-based practice. Certified, supervised psychologists who help you figure out what's loud, what's stuck, and what's quietly waiting to be said.</p>
-    <div class="hero-actions">
-      <a href="https://wa.me/919067485858?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20discovery%20call" class="btn-primary" target="_blank" rel="noopener">
-        <span>Schedule a discovery call</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-      </a>
-      <a href="#therapists" class="btn-secondary">
-        Meet the team
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-      </a>
-    </div>
-  </div>
-
-  <!-- TEAM DECK -->
-  <div class="hero-right">
-    <div class="blob"></div>
-
-    <div class="portrait-carousel" id="heroCarousel">
-
-      <!-- Stacked deck -->
-      <div class="portrait-deck" id="carouselDeck">
-
-        <!-- Card 1: Dimple Kishnani (starts on top) -->
-        <!-- To use a real photo: replace the deck-card-placeholder div with <img src="images/team/dimple.jpg" alt="Dimple Kishnani"> -->
-        <div class="deck-card">
-          <div class="deck-card-img">
-            <div class="deck-card-placeholder" style="background:linear-gradient(160deg,hsl(176,28%,68%),hsl(176,35%,55%))">DK</div>
-          </div>
-          <div class="deck-card-caption">
-            <div class="deck-card-name">Dimple Kishnani</div>
-            <div class="deck-card-role">Founder · Clinical Psychologist · 12 yrs</div>
-          </div>
-          <div class="deck-card-hint">tap to browse</div>
-        </div>
-
-        <!-- Card 2: Armeet Narang -->
-        <div class="deck-card">
-          <div class="deck-card-img">
-            <div class="deck-card-placeholder" style="background:linear-gradient(160deg,hsl(200,28%,60%),hsl(200,35%,48%))">AN</div>
-          </div>
-          <div class="deck-card-caption">
-            <div class="deck-card-name">Armeet Narang</div>
-            <div class="deck-card-role">CBT · ACT · Queer-affirmative · 4 yrs</div>
-          </div>
-          <div class="deck-card-hint">tap to browse</div>
-        </div>
-
-        <!-- Card 3: Nandini Keshwani -->
-        <div class="deck-card">
-          <div class="deck-card-img">
-            <div class="deck-card-placeholder" style="background:linear-gradient(160deg,hsl(155,28%,58%),hsl(155,35%,46%))">NK</div>
-          </div>
-          <div class="deck-card-caption">
-            <div class="deck-card-name">Nandini Keshwani</div>
-            <div class="deck-card-role">Queer-affirmative · Body positivity · 3 yrs</div>
-          </div>
-          <div class="deck-card-hint">tap to browse</div>
-        </div>
-
-        <!-- Card 4: Alina Tambuwala -->
-        <div class="deck-card">
-          <div class="deck-card-img">
-            <div class="deck-card-placeholder" style="background:linear-gradient(160deg,hsl(20,32%,62%),hsl(20,38%,50%))">AT</div>
-          </div>
-          <div class="deck-card-caption">
-            <div class="deck-card-name">Alina Tambuwala</div>
-            <div class="deck-card-role">CBT · Trauma-informed · Queer-affirmative · 3 yrs</div>
-          </div>
-          <div class="deck-card-hint">tap to browse</div>
-        </div>
-
-      </div><!-- /portrait-deck -->
-
-      <!-- Prev / Next arrows -->
-      <button class="carousel-arrow carousel-arrow-prev" id="carouselPrev" aria-label="Previous team member">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <button class="carousel-arrow carousel-arrow-next" id="carouselNext" aria-label="Next team member">
-        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-
-      <!-- Dot indicators -->
-      <div class="carousel-dots" id="carouselDots"></div>
-    </div><!-- /portrait-carousel -->
-
-    <div class="stat-float">
-      <div class="stat-float-num">8,000+</div>
-      <div class="stat-float-label">people helped since 2016</div>
-    </div>
-    <div class="hero-ticker">
-      <span class="ticker-dot"></span>
-      <span class="hero-ticker-text">Next available: Today, 4 PM</span>
-    </div>
-  </div>
-</section>
+<section class="hero" id="hero"></section>
 
 <!-- MARQUEE -->
-<div class="marquee-wrap" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="m-item">Burnout that won't quit</span>
-    <span class="m-item">The relationship you keep replaying</span>
-    <span class="m-item">Queer-affirmative</span>
-    <span class="m-item">Trauma-informed</span>
-    <span class="m-item">Free discovery call</span>
-    <span class="m-item">Certified & supervised</span>
-    <span class="m-item">Burnout that won't quit</span>
-    <span class="m-item">The relationship you keep replaying</span>
-    <span class="m-item">Queer-affirmative</span>
-    <span class="m-item">Trauma-informed</span>
-    <span class="m-item">Free discovery call</span>
-    <span class="m-item">Certified & supervised</span>
-  </div>
-</div>
+<div class="marquee-wrap" aria-hidden="true" id="mw-marquee"></div>
 
 <!-- APPROACH -->
-<section class="approach reveal" id="approach">
-  <div class="approach-left">
-    <div class="eyebrow">
-      <span class="eyebrow-line"></span>
-      <span class="eyebrow-text">02 — Approach</span>
-    </div>
-    <h2>How we<br><em style="font-style:italic;color:var(--accent)">actually work</em></h2>
-    <p>We don't fix — we sit with you while you sort through what's loud, what's stuck, and what's quietly waiting to be said.</p>
-  </div>
-  <div class="approach-right">
-    <div class="approach-card reveal reveal-d1">
-      <div class="ac-num">/01</div>
-      <div class="ac-title">Talk before you commit</div>
-      <div class="ac-body">Free discovery call. Get a feel for the approach before spending a rupee or signing anything.</div>
-    </div>
-    <div class="approach-card reveal reveal-d2">
-      <div class="ac-num">/02</div>
-      <div class="ac-title">Matched by fit, not algorithm</div>
-      <div class="ac-body">Paired based on what you're working through, your schedule, and what you're looking for.</div>
-    </div>
-    <div class="approach-card reveal reveal-d3">
-      <div class="ac-num">/03</div>
-      <div class="ac-title">Sessions on your terms</div>
-      <div class="ac-body">Video, audio, or text. Weekly or fortnightly. From wherever you are in India.</div>
-    </div>
-    <div class="approach-card reveal reveal-d4">
-      <div class="ac-num">/04</div>
-      <div class="ac-title">Track how things shift</div>
-      <div class="ac-body">Free self-assessments between sessions. See how you're actually moving, not just feel it.</div>
-    </div>
-  </div>
-</section>
+<section class="approach reveal" id="approach"></section>
 
 <!-- TOPICS / BENTO -->
-<section class="topics reveal" id="topics">
-  <div class="topics-header">
-    <div>
-      <div class="eyebrow"><span class="eyebrow-line"></span>03 — What we work on</div>
-      <h2>Whatever's<br><em style="font-style:italic;color:var(--accent)">weighing on you</em></h2>
-    </div>
-  </div>
-  <div class="bento">
-    <div class="bento-cell bento-large reveal reveal-d1">
-      <div class="bc-num">Most talked about</div>
-      <div class="bc-text">Burnout that won't quit</div>
-    </div>
-    <div class="bento-cell reveal reveal-d2">
-      <div class="bc-num">01</div>
-      <div class="bc-text">The relationship you keep replaying</div>
-    </div>
-    <div class="bento-cell reveal reveal-d3">
-      <div class="bc-num">02</div>
-      <div class="bc-text">Anger you can't place</div>
-    </div>
-    <div class="bento-cell reveal reveal-d1">
-      <div class="bc-num">03</div>
-      <div class="bc-text">Anxiety before you even get out of bed</div>
-    </div>
-    <div class="bento-cell reveal reveal-d2">
-      <div class="bc-num">04</div>
-      <div class="bc-text">The version of yourself you keep putting off</div>
-    </div>
-    <div class="bento-cell reveal reveal-d3">
-      <div class="bc-num">05</div>
-      <div class="bc-text">Grief that doesn't follow a timeline</div>
-    </div>
-    <div class="bento-cell bento-large reveal reveal-d4">
-      <div class="bc-num">Also</div>
-      <div class="bc-text">Queer identity · neurodivergence · family dynamics · chronic illness · performance pressure</div>
-    </div>
-  </div>
-</section>
+<section class="topics reveal" id="topics"></section>
 
 <!-- THERAPISTS -->
-<section class="therapists reveal" id="therapists">
-  <div class="therapists-top">
-    <div>
-      <div class="eyebrow"><span class="eyebrow-line"></span>04 — The team</div>
-      <h2 class="therapists-h">People you'll<br><em>actually talk to</em></h2>
-    </div>
-    <a href="therapists/" style="font-size:0.78rem;color:rgba(249,244,235,0.4);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s" onmouseover="this.style.color='rgba(249,244,235,0.8)'" onmouseout="this.style.color='rgba(249,244,235,0.4)'">
-      View all
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-    </a>
-  </div>
-  <div class="t-grid">
-    <div class="t-card reveal reveal-d1">
-      <div class="t-img">DK</div>
-      <div class="t-body">
-        <div class="t-name">Dimple Kishnani</div>
-        <div class="t-spec">Clinical disorders · Relationships · Performance coaching</div>
-        <div class="t-foot">
-          <span class="t-exp">12 yrs experience</span>
-          <span class="t-price">₹3,500</span>
-        </div>
-        <div class="t-actions">
-          <a href="therapists/dimple-kishnani.html" class="t-profile-link">View profile →</a>
-          <a href="https://wa.me/919067485858?text=Hi%2C%20I%20would%20like%20to%20book%20an%20appointment%20with%20Dimple" class="t-book-btn" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" width="11" height="11"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Book with Dimple
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="t-card reveal reveal-d2">
-      <div class="t-img">AN</div>
-      <div class="t-body">
-        <div class="t-name">Armeet Narang</div>
-        <div class="t-spec">CBT · ACT · REBT · Queer-affirmative</div>
-        <div class="t-foot">
-          <span class="t-exp">4 yrs experience</span>
-          <span class="t-price">₹2,000</span>
-        </div>
-        <div class="t-actions">
-          <a href="therapists/armeet-narang.html" class="t-profile-link">View profile →</a>
-          <a href="https://wa.me/919067485858?text=Hi%2C%20I%20would%20like%20to%20book%20an%20appointment%20with%20Armeet" class="t-book-btn" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" width="11" height="11"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Book with Armeet
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="t-card reveal reveal-d3">
-      <div class="t-img">NK</div>
-      <div class="t-body">
-        <div class="t-name">Nandini Keshwani</div>
-        <div class="t-spec">Queer-affirmative · Body positivity · Growth</div>
-        <div class="t-foot">
-          <span class="t-exp">3 yrs experience</span>
-          <span class="t-price">₹1,500</span>
-        </div>
-        <div class="t-actions">
-          <a href="therapists/nandini-keshwani.html" class="t-profile-link">View profile →</a>
-          <a href="https://wa.me/919067485858?text=Hi%2C%20I%20would%20like%20to%20book%20an%20appointment%20with%20Nandini" class="t-book-btn" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" width="11" height="11"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Book with Nandini
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="t-card reveal reveal-d4">
-      <div class="t-img">AT</div>
-      <div class="t-body">
-        <div class="t-name">Alina Tambuwala</div>
-        <div class="t-spec">CBT · Queer-affirmative · Trauma-informed</div>
-        <div class="t-foot">
-          <span class="t-exp">3 yrs experience</span>
-          <span class="t-price">₹1,400</span>
-        </div>
-        <div class="t-actions">
-          <a href="therapists/alina-tambuwala.html" class="t-profile-link">View profile →</a>
-          <a href="https://wa.me/919067485858?text=Hi%2C%20I%20would%20like%20to%20book%20an%20appointment%20with%20Alina" class="t-book-btn" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" width="11" height="11"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Book with Alina
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="therapists reveal" id="therapists"></section>
 
 <!-- ASSESSMENTS -->
-<section class="assess reveal" id="assessments">
-  <div class="assess-top">
-    <div>
-      <div class="eyebrow"><span class="eyebrow-line"></span>05 — Free tools</div>
-      <h2>Know where<br><em style="font-style:italic;color:var(--accent)">you stand</em></h2>
-    </div>
-    <p class="assess-sub">Clinically validated. Free. Share your score with your counsellor to start the conversation.</p>
-  </div>
-  <div class="assess-grid">
-    <div class="assess-card reveal reveal-d1">
-      <div class="assess-q">21 questions · BDI-II</div>
-      <div class="assess-title">Depression check</div>
-      <div class="assess-desc">The Beck Depression Inventory — a clinically validated tool to understand your current emotional state. Shareable with your therapist.</div>
-      <button class="assess-link" onclick="openAssessmentModal('bdi')">
-        Take the test
-        <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-      </button>
-    </div>
-    <div class="assess-card reveal reveal-d2">
-      <div class="assess-q">21 questions · BAI</div>
-      <div class="assess-title">Anxiety gauge</div>
-      <div class="assess-desc">The Beck Anxiety Inventory — see how anxiety is affecting your daily functioning. Instant results with a breakdown to share.</div>
-      <button class="assess-link" onclick="openAssessmentModal('bai')">
-        Take the test
-        <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-      </button>
-    </div>
-  </div>
-</section>
+<section class="assess reveal" id="assessments"></section>
 
 <!-- PULL QUOTE -->
-<section class="pull-quote reveal">
-  <div>
-    <div class="pq-label">06 — What people say</div>
-    <div class="pq-accent-line"></div>
-  </div>
-  <div>
-    <p class="pq-text">"Six months in, I have words for things I couldn't describe before. That's changed more than I expected."</p>
-    <p class="pq-attr">— Client, 29 · Online sessions since 2023</p>
-  </div>
-</section>
+<section class="pull-quote reveal" id="pull-quote"></section>
 
 <!-- LOCATIONS -->
-<section class="locations reveal" id="locations">
-  <div class="locations-top">
-    <div>
-      <div class="eyebrow"><span class="eyebrow-line"></span>07 — Find us</div>
-      <h2>Where we<br><em style="font-style:italic;color:var(--accent)">meet you</em></h2>
-    </div>
-    <p class="locations-sub">In-person sessions in Pune, or online from anywhere in India and the world.</p>
-  </div>
-  <div class="locations-grid">
-    <div class="loc-card reveal reveal-d1">
-      <div class="loc-map">
-        <div class="loc-map-pulse"></div>
-        <div class="loc-map-pin">
-          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-          <span class="loc-map-label">Viman Nagar</span>
-        </div>
-      </div>
-      <div class="loc-body">
-        <span class="loc-tag"><span class="loc-tag-dot"></span>Main clinic</span>
-        <div class="loc-name">Viman Nagar</div>
-        <div class="loc-address">109, 10Biz Park, Next to Symbiosis Law School,<br>Viman Nagar, Pune 4110114</div>
-        <div class="loc-details">
-          <div class="loc-detail">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-           By Appointments Only
-          </div>
-          <div class="loc-detail">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-            Dimple · Armeet · Nandini · Alina
-          </div>
-        </div>
-        <div class="loc-actions">
-          <a href="google.com/maps/dir//206+,+second+floor+,+denthealth+centre,+MindWorks+Counselling+-+Viman+Nagar+%7C+Online+Counselling+%7C+Psychological+Counselling+%7C+Therapist,+near+Airport,+Viman+Nagar,+Pune,+Maharashtra+411014/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3bc2c067fb44534f:0x8e263168bf60838d?sa=X&ved=1t:57443&ictx=111" class="loc-directions" target="_blank" rel="noopener">
-            Get directions
-            <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="loc-card reveal reveal-d2">
-      <div class="loc-map">
-        <div class="loc-map-pulse"></div>
-        <div class="loc-map-pin">
-          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-          <span class="loc-map-label">Baner</span>
-        </div>
-      </div>
-      <div class="loc-body">
-        <span class="loc-tag"><span class="loc-tag-dot"></span>Second clinic</span>
-        <div class="loc-name">Baner</div>
-        <div class="loc-address">Replace with full address,<br>Baner, Pune 411045</div>
-        <div class="loc-details">
-          <div class="loc-detail">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Tue – Sun, 10 AM – 6 PM
-          </div>
-          <div class="loc-detail">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-            Alina · Nandini
-          </div>
-        </div>
-        <div class="loc-actions">
-          <a href="https://maps.google.com/?q=Baner+Pune" class="loc-directions" target="_blank" rel="noopener">
-            Get directions
-            <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="loc-card reveal reveal-d3">
-      <div class="loc-map" style="background: var(--ink);">
-        <div class="loc-map-pin">
-          <svg viewBox="0 0 24 24" style="stroke: rgba(247,246,242,0.5)"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-          <span class="loc-map-label" style="color: rgba(247,246,242,0.5)">Anywhere in India</span>
-        </div>
-      </div>
-      <div class="loc-body">
-        <span class="loc-tag"><span class="loc-tag-dot"></span>Online</span>
-        <div class="loc-name">Across India</div>
-        <div class="loc-address">Video, audio, or text sessions.<br>All you need is a quiet space.</div>
-        <div class="loc-details">
-          <div class="loc-detail">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            7 days a week, flexible slots
-          </div>
-          <div class="loc-detail">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-            All four therapists available
-          </div>
-        </div>
-        <div class="loc-actions">
-          <a href="https://wa.me/919067485858?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20discovery%20call" class="loc-directions" target="_blank" rel="noopener">
-            Book online session
-            <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="locations reveal" id="locations"></section>
 
 <!-- FOOTER CTA -->
-<div class="footer-cta reveal">
-  <div class="fcta-bg" aria-hidden="true">mindworks</div>
-  <div class="fcta-eyebrow">Ready when you are</div>
-  <h2 class="fcta-h">Let's start<br><em>talking.</em></h2>
-  <p class="fcta-sub">First call is free.<br>No pressure, no paperwork — just a real conversation on WhatsApp.</p>
-  <div class="fcta-actions">
-    <a href="https://wa.me/919067485858?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20discovery%20call" class="btn-cream" target="_blank" rel="noopener">
-      <span>Schedule a discovery call</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-    </a>
-    <a href="https://wa.me/919067485858" class="btn-ghost-dark" target="_blank" rel="noopener">Message us on WhatsApp</a>
-  </div>
-</div>
+<div class="footer-cta reveal" id="footer-cta"></div>
 
 <!-- SHARED: footer injected here -->
 <div id="mw-footer"></div>
+
+<!-- CONTENT (must load first) -->
+<script src="js/content.js"></script>
+
+<!-- PAGE RENDERER: builds all sections from CONTENT -->
+<script src="js/homepage.js"></script>
 
 <!-- SHARED NAV + FOOTER SCRIPT (root-level: no ../ prefix needed) -->
 <script src="js/shared.js"></script>
 
 <!-- PAGE-SPECIFIC SCRIPTS -->
-<script src="js/content.js"></script>
 <script src="js/assessments.js"></script>
 <script src="js/main.js"></script>
 
