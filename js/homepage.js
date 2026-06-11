@@ -98,9 +98,8 @@
   /* ── 3. APPROACH ─────────────────────────────────────── */
   (function buildApproach() {
     const a = CONTENT.approach;
-    const delays = ['reveal-d1','reveal-d2','reveal-d3','reveal-d4'];
     const cardsHTML = a.cards.map((c, i) => `
-      <div class="approach-card reveal ${delays[i]}">
+      <div class="approach-card">
         <div class="ac-num">${c.num}</div>
         <div class="ac-title">${c.title}</div>
         <div class="ac-body">${c.body}</div>
@@ -122,13 +121,10 @@
   /* ── 4. TOPICS / BENTO ───────────────────────────────── */
   (function buildTopics() {
     const t = CONTENT.topics;
-    const delays = ['reveal-d1','reveal-d2','reveal-d3','reveal-d4'];
-    let di = 0;
     const cellsHTML = t.cells.map(c => {
       const large = c.size === 'large' ? ' bento-large' : '';
-      const d = delays[di % delays.length]; di++;
       return `
-        <div class="bento-cell${large} reveal ${d}">
+        <div class="bento-cell${large}">
           <div class="bc-num">${c.label}</div>
           <div class="bc-text">${c.text}</div>
         </div>
@@ -151,10 +147,9 @@
   /* ── 5. THERAPISTS ───────────────────────────────────── */
   (function buildTherapists() {
     const th = CONTENT.therapists;
-    const delays = ['reveal-d1','reveal-d2','reveal-d3','reveal-d4'];
 
     const cardsHTML = th.list.map((t, i) => `
-      <div class="t-card reveal ${delays[i]}">
+      <div class="t-card">
         <div class="t-img">
           ${t.photo ? `<img src="${t.photo}" alt="${t.name}">` : t.initials}
         </div>
@@ -199,10 +194,9 @@
   /* ── 6. ASSESSMENTS ──────────────────────────────────── */
   (function buildAssessments() {
     const a = CONTENT.assessments;
-    const delays = ['reveal-d1','reveal-d2'];
 
     const cardsHTML = a.cards.map((c, i) => `
-      <div class="assess-card reveal ${delays[i]}">
+      <div class="assess-card">
         <div class="assess-q">${c.label}</div>
         <div class="assess-title">${c.title}</div>
         <div class="assess-desc">${c.description}</div>
@@ -245,7 +239,6 @@
   /* ── 8. LOCATIONS ────────────────────────────────────── */
   (function buildLocations() {
     const lc = CONTENT.locations;
-    const delays = ['reveal-d1','reveal-d2','reveal-d3'];
 
     const cardsHTML = lc.list.map((loc, i) => {
       const mapInner = loc.online
@@ -264,7 +257,7 @@
            </div>`;
 
       return `
-        <div class="loc-card reveal ${delays[i]}">
+        <div class="loc-card">
           ${mapInner}
           <div class="loc-body">
             <span class="loc-tag"><span class="loc-tag-dot"></span>${loc.tag}</span>
