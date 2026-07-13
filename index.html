@@ -48,122 +48,59 @@
   33%{border-radius:50% 50% 40% 60% / 60% 40% 60% 40%;transform:translate(-50%,-50%) translateY(-12px)}
   66%{border-radius:70% 30% 50% 50% / 40% 70% 30% 60%;transform:translate(-50%,-50%) translateY(6px)}
 }
-
-/* Portrait deck container */
-.portrait-carousel {
-  position: relative; z-index: 1;
-  width: 280px;
-}
-
-/* The deck: stacking context */
+.portrait-carousel { position: relative; z-index: 1; width: 280px; }
 .portrait-deck {
-  position: relative;
-  width: 280px;
-  height: 350px;
-  margin-bottom: 0.5rem;
+  position: relative; width: 280px; height: 350px; margin-bottom: 0.5rem;
 }
-
-/* Each stacked card */
 .deck-card {
-  position: absolute; inset: 0;
-  width: 280px; height: 350px;
-  border-radius: 2rem; overflow: hidden;
-  box-shadow: var(--shadow-soft);
-  transform-origin: center bottom;
-  will-change: transform, filter;
-  cursor: pointer;
+  position: absolute; inset: 0; width: 280px; height: 350px;
+  border-radius: 2rem; overflow: hidden; box-shadow: var(--shadow-soft);
+  transform-origin: center bottom; will-change: transform, filter; cursor: pointer;
 }
-
-/* Card image area */
-.deck-card-img {
-  width: 100%; height: 100%;
-  position: relative; overflow: hidden;
-}
+.deck-card-img { width: 100%; height: 100%; position: relative; overflow: hidden; }
 .deck-card-placeholder {
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
   font-family: var(--display); font-size: 3rem; font-weight: 400; font-style: italic;
   color: rgba(255,255,255,0.75); letter-spacing: -0.02em;
 }
-.deck-card-img img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-}
-
-/* Caption overlay on the front card */
+.deck-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .deck-card-caption {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 1.5rem 1.25rem 1.25rem;
   background: linear-gradient(to top, rgba(26,42,51,0.82) 0%, transparent 100%);
   color: #fff;
 }
-.deck-card-name {
-  font-size: 0.82rem; font-weight: 500; color: #fff; letter-spacing: 0.01em;
-  margin-bottom: 0.15rem;
-}
-.deck-card-role {
-  font-size: 0.65rem; color: rgba(255,255,255,0.6); letter-spacing: 0.05em;
-  font-family: var(--body);
-}
-
-/* "Click to see next" hint on front card */
+.deck-card-name { font-size: 0.82rem; font-weight: 500; color: #fff; letter-spacing: 0.01em; margin-bottom: 0.15rem; }
+.deck-card-role { font-size: 0.65rem; color: rgba(255,255,255,0.6); letter-spacing: 0.05em; font-family: var(--body); }
 .deck-card-hint {
   position: absolute; top: 1rem; right: 1rem;
   background: rgba(247,246,242,0.18); backdrop-filter: blur(6px);
-  border: 1px solid rgba(247,246,242,0.25);
-  border-radius: 100px; padding: 0.3rem 0.65rem;
-  font-size: 0.6rem; font-weight: 500; letter-spacing: 0.08em;
-  text-transform: uppercase; color: rgba(255,255,255,0.7);
-  pointer-events: none; opacity: 1;
-  transition: opacity 0.3s;
+  border: 1px solid rgba(247,246,242,0.25); border-radius: 100px; padding: 0.3rem 0.65rem;
+  font-size: 0.6rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.7); pointer-events: none; opacity: 1; transition: opacity 0.3s;
 }
 .portrait-deck:hover .deck-card-hint { opacity: 0; }
-
-/* Arrow buttons */
 .carousel-arrow {
-  position: absolute;
-  top: calc(175px);
-  transform: translateY(-50%);
+  position: absolute; top: calc(175px); transform: translateY(-50%);
   z-index: 10; width: 30px; height: 30px; border-radius: 50%;
   background: rgba(247,246,242,0.92); border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 12px rgba(8,104,96,0.12); color: var(--ink);
-  padding: 0;
+  box-shadow: 0 2px 12px rgba(8,104,96,0.12); color: var(--ink); padding: 0;
 }
-.carousel-arrow:hover {
-  background: var(--teal); color: #fff;
-  transform: translateY(-50%) scale(1.08);
-  box-shadow: 0 4px 16px rgba(8,104,96,0.22);
-}
+.carousel-arrow:hover { background: var(--teal); color: #fff; transform: translateY(-50%) scale(1.08); box-shadow: 0 4px 16px rgba(8,104,96,0.22); }
 .carousel-arrow svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2.2; }
 .carousel-arrow-prev { left: -18px; }
 .carousel-arrow-next { right: -18px; }
-
-/* Dot indicators */
-.carousel-dots {
-  display: flex; justify-content: center; gap: 0.45rem;
-  margin-top: 1.25rem;
-}
-.carousel-dot {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--border); border: none; padding: 0; cursor: pointer;
-  transition: background 0.25s, width 0.25s;
-}
-.carousel-dot.active {
-  background: var(--teal); width: 18px; border-radius: 100px;
-}
-
-/* Stat float & ticker */
+.carousel-dots { display: flex; justify-content: center; gap: 0.45rem; margin-top: 1.25rem; }
+.carousel-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--border); border: none; padding: 0; cursor: pointer; transition: background 0.25s, width 0.25s; }
+.carousel-dot.active { background: var(--teal); width: 18px; border-radius: 100px; }
 .stat-float {
   position: absolute; bottom: 3.5rem; left: -2rem;
   background: var(--card); border: 1px solid var(--border);
-  border-radius: 1rem; padding: 1rem 1.25rem;
-  box-shadow: var(--shadow-card); z-index: 2;
+  border-radius: 1rem; padding: 1rem 1.25rem; box-shadow: var(--shadow-card); z-index: 2;
 }
-.stat-float-num {
-  font-family: var(--display); font-size: 1.75rem; font-style: italic;
-  color: var(--ink); line-height: 1; letter-spacing: -0.02em;
-}
+.stat-float-num { font-family: var(--display); font-size: 1.75rem; font-style: italic; color: var(--ink); line-height: 1; letter-spacing: -0.02em; }
 .stat-float-label { font-size: 0.7rem; color: var(--muted); margin-top: 0.2rem; }
 .hero-ticker {
   position: absolute; top: 2rem; right: 0;
@@ -226,19 +163,10 @@
 .therapists-h { font-family: var(--display); font-size: clamp(2.2rem,4vw,3.5rem); font-weight: 400; line-height: 1.05; letter-spacing: -0.03em; color: var(--cream); margin-top: 0.75rem; }
 .therapists-h em { font-style: italic; color: var(--accent); }
 .t-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; }
-.t-card {
-  background: rgba(249,244,235,0.05); border: 1px solid rgba(249,244,235,0.1);
-  border-radius: 1.5rem; overflow: hidden;
-  transition: background 0.2s, border-color 0.2s; cursor: pointer;
-}
+.t-card { background: rgba(249,244,235,0.05); border: 1px solid rgba(249,244,235,0.1); border-radius: 1.5rem; overflow: hidden; transition: background 0.2s, border-color 0.2s; cursor: pointer; }
 .t-card:hover { background: rgba(249,244,235,0.09); border-color: rgba(249,244,235,0.2); }
 .t-card:nth-child(2), .t-card:nth-child(4) { margin-top: 1.5rem; }
-.t-img {
-  aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;
-  font-family: var(--display); font-size: 2rem; font-style: italic;
-  color: rgba(249,244,235,0.5); background: rgba(249,244,235,0.04);
-  border-bottom: 1px solid rgba(249,244,235,0.08); overflow: hidden;
-}
+.t-img { aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 2rem; font-style: italic; color: rgba(249,244,235,0.5); background: rgba(249,244,235,0.04); border-bottom: 1px solid rgba(249,244,235,0.08); overflow: hidden; }
 .t-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .t-body { padding: 1.25rem 1.25rem 1.4rem; }
 .t-name { font-weight: 500; font-size: 0.92rem; margin-bottom: 0.3rem; color: var(--cream); }
@@ -253,23 +181,12 @@
 .assess-top h2 { font-family: var(--display); font-size: clamp(2rem,3.5vw,3rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; color: var(--ink); margin-top: 0.75rem; }
 .assess-sub { font-size: 0.82rem; color: var(--muted); max-width: 260px; text-align: right; line-height: 1.65; }
 .assess-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem; max-width: 720px; }
-.assess-card {
-  border: 1px solid var(--border); border-radius: 1.5rem;
-  background: var(--card); padding: 2rem 1.75rem;
-  display: flex; flex-direction: column; gap: 0.85rem;
-  transition: border-color 0.2s, transform 0.2s; cursor: pointer;
-}
+.assess-card { border: 1px solid var(--border); border-radius: 1.5rem; background: var(--card); padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 0.85rem; transition: border-color 0.2s, transform 0.2s; cursor: pointer; }
 .assess-card:hover { border-color: var(--ink); transform: translateY(-3px); }
 .assess-q { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
 .assess-title { font-family: var(--display); font-size: 1.4rem; font-weight: 400; font-style: italic; line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); }
 .assess-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.65; }
-.assess-link {
-  margin-top: auto; font-size: 0.78rem; font-weight: 500;
-  color: var(--accent); text-decoration: none;
-  display: inline-flex; align-items: center; gap: 0.35rem;
-  transition: gap 0.2s; background: none; border: none; cursor: pointer;
-  padding: 0; font-family: var(--body);
-}
+.assess-link { margin-top: auto; font-size: 0.78rem; font-weight: 500; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; transition: gap 0.2s; background: none; border: none; cursor: pointer; padding: 0; font-family: var(--body); }
 .assess-link:hover { gap: 0.6rem; }
 .assess-link svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
 
@@ -290,53 +207,24 @@
 .locations-top h2 { font-family: var(--display); font-size: clamp(2rem,3.5vw,3rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; color: var(--ink); margin-top: 0.75rem; }
 .locations-sub { font-size: 0.82rem; color: var(--muted); max-width: 260px; text-align: right; line-height: 1.65; }
 .locations-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
-.loc-card {
-  border: 1px solid var(--border); border-radius: 1.5rem;
-  background: var(--card); overflow: hidden;
-  transition: border-color 0.2s, transform 0.2s;
-}
+.loc-card { border: 1px solid var(--border); border-radius: 1.5rem; background: var(--card); overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
 .loc-card:hover { border-color: var(--teal-20); transform: translateY(-3px); }
-.loc-map {
-  aspect-ratio: 16/9; background: var(--teal-soft);
-  display: flex; align-items: center; justify-content: center;
-  border-bottom: 1px solid var(--border); overflow: hidden; position: relative;
-}
-.loc-map-pin {
-  display: flex; flex-direction: column; align-items: center; gap: 0.3rem;
-}
+.loc-map { aspect-ratio: 16/9; background: var(--teal-soft); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); overflow: hidden; position: relative; }
+.loc-map-pin { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
 .loc-map-pin svg { width: 32px; height: 32px; stroke: var(--teal); fill: none; stroke-width: 1.5; }
 .loc-map-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); }
-.loc-map-pulse {
-  position: absolute; width: 12px; height: 12px; border-radius: 50%;
-  background: var(--teal); opacity: 0.35;
-  animation: locPulse 2.5s ease-in-out infinite;
-}
-@keyframes locPulse {
-  0%,100% { transform: scale(1); opacity: 0.35; }
-  50% { transform: scale(2.5); opacity: 0; }
-}
+.loc-map-pulse { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--teal); opacity: 0.35; animation: locPulse 2.5s ease-in-out infinite; }
+@keyframes locPulse { 0%,100% { transform: scale(1); opacity: 0.35; } 50% { transform: scale(2.5); opacity: 0; } }
 .loc-body { padding: 1.5rem 1.5rem 1.75rem; display: flex; flex-direction: column; gap: 1rem; }
-.loc-tag {
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  font-size: 0.62rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--teal); background: var(--teal-soft); padding: 0.3rem 0.7rem;
-  border-radius: 100px; align-self: flex-start;
-}
+.loc-tag { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); background: var(--teal-soft); padding: 0.3rem 0.7rem; border-radius: 100px; align-self: flex-start; }
 .loc-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); }
 .loc-name { font-family: var(--display); font-size: 1.3rem; font-weight: 400; letter-spacing: -0.02em; line-height: 1.2; color: var(--ink); }
 .loc-address { font-size: 0.8rem; color: var(--muted); line-height: 1.7; }
 .loc-details { display: flex; flex-direction: column; gap: 0.45rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
-.loc-detail {
-  display: flex; align-items: flex-start; gap: 0.6rem;
-  font-size: 0.78rem; color: var(--muted); line-height: 1.5;
-}
+.loc-detail { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
 .loc-detail svg { width: 14px; height: 14px; stroke: var(--teal); fill: none; stroke-width: 1.5; flex-shrink: 0; margin-top: 1px; }
 .loc-actions { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.25rem; flex-wrap: wrap; }
-.loc-directions {
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  font-size: 0.78rem; font-weight: 500; color: var(--teal);
-  text-decoration: none; transition: gap 0.2s;
-}
+.loc-directions { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; font-weight: 500; color: var(--teal); text-decoration: none; transition: gap 0.2s; }
 .loc-directions:hover { gap: 0.65rem; }
 .loc-directions svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; }
 
@@ -398,49 +286,165 @@
 <div id="mw-mobile-island"></div>
 
 <!-- HERO -->
-<section class="hero" id="hero"></section>
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text"></span>
+    </div>
+    <h1 class="hero-h1"></h1>
+    <p class="hero-body"></p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary" target="_blank" rel="noopener">
+        <span></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+      <a href="#therapists" class="btn-secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="blob"></div>
+    <div class="portrait-carousel" id="heroCarousel">
+      <div class="portrait-deck" id="carouselDeck">
+        <!-- Cards injected by hero-carousel.js reading CONTENT.hero.deckCards -->
+      </div>
+      <button class="carousel-arrow carousel-arrow-prev" id="carouselPrev" aria-label="Previous team member">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-arrow carousel-arrow-next" id="carouselNext" aria-label="Next team member">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+    <div class="stat-float">
+      <div class="stat-float-num"></div>
+      <div class="stat-float-label"></div>
+    </div>
+    <div class="hero-ticker">
+      <span class="ticker-dot"></span>
+      <span class="hero-ticker-text"></span>
+    </div>
+  </div>
+</section>
 
 <!-- MARQUEE -->
-<div class="marquee-wrap" aria-hidden="true" id="mw-marquee"></div>
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track"></div>
+</div>
 
 <!-- APPROACH -->
-<section class="approach reveal" id="approach"></section>
+<section class="approach reveal" id="approach">
+  <div class="approach-left">
+    <div class="eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text"></span>
+    </div>
+    <h2></h2>
+    <p></p>
+  </div>
+  <div class="approach-right">
+    <div class="approach-card reveal reveal-d1"><div class="ac-num"></div><div class="ac-title"></div><div class="ac-body"></div></div>
+    <div class="approach-card reveal reveal-d2"><div class="ac-num"></div><div class="ac-title"></div><div class="ac-body"></div></div>
+    <div class="approach-card reveal reveal-d3"><div class="ac-num"></div><div class="ac-title"></div><div class="ac-body"></div></div>
+    <div class="approach-card reveal reveal-d4"><div class="ac-num"></div><div class="ac-title"></div><div class="ac-body"></div></div>
+  </div>
+</section>
 
 <!-- TOPICS / BENTO -->
-<section class="topics reveal" id="topics"></section>
+<section class="topics reveal" id="topics">
+  <div class="topics-header">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span></div>
+      <h2></h2>
+    </div>
+  </div>
+  <div class="bento">
+    <!-- Cells injected by main.js reading CONTENT.topics.cells -->
+  </div>
+</section>
 
 <!-- THERAPISTS -->
-<section class="therapists reveal" id="therapists"></section>
+<section class="therapists reveal" id="therapists">
+  <div class="therapists-top">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span></div>
+      <h2 class="therapists-h"></h2>
+    </div>
+    <a href="therapists/" style="font-size:0.78rem;color:rgba(249,244,235,0.4);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s" onmouseover="this.style.color='rgba(249,244,235,0.8)'" onmouseout="this.style.color='rgba(249,244,235,0.4)'">
+      View all
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+  </div>
+  <div class="t-grid">
+    <!-- Cards injected by main.js reading CONTENT.therapists.list -->
+  </div>
+</section>
 
 <!-- ASSESSMENTS -->
-<section class="assess reveal" id="assessments"></section>
+<section class="assess reveal" id="assessments">
+  <div class="assess-top">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span></div>
+      <h2></h2>
+    </div>
+    <p class="assess-sub"></p>
+  </div>
+  <div class="assess-grid">
+    <!-- Cards injected by main.js reading CONTENT.assessments.cards -->
+  </div>
+</section>
 
 <!-- PULL QUOTE -->
-<section class="pull-quote reveal" id="pull-quote"></section>
+<section class="pull-quote reveal">
+  <div>
+    <div class="pq-label"></div>
+    <div class="pq-accent-line"></div>
+  </div>
+  <div>
+    <p class="pq-text"></p>
+    <p class="pq-attr"></p>
+  </div>
+</section>
 
 <!-- LOCATIONS -->
-<section class="locations reveal" id="locations"></section>
+<section class="locations reveal" id="locations">
+  <div class="locations-top">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span></div>
+      <h2></h2>
+    </div>
+    <p class="locations-sub"></p>
+  </div>
+  <div class="locations-grid">
+    <!-- Cards injected by main.js reading CONTENT.locations.list -->
+  </div>
+</section>
 
 <!-- FOOTER CTA -->
-<div class="footer-cta reveal" id="footer-cta"></div>
+<div class="footer-cta reveal">
+  <div class="fcta-bg" aria-hidden="true">mindworks</div>
+  <div class="fcta-eyebrow"></div>
+  <h2 class="fcta-h"></h2>
+  <p class="fcta-sub"></p>
+  <div class="fcta-actions">
+    <a href="#" class="btn-cream" target="_blank" rel="noopener">
+      <span></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+    <a href="#" class="btn-ghost-dark" target="_blank" rel="noopener"></a>
+  </div>
+</div>
 
 <!-- SHARED: footer injected here -->
 <div id="mw-footer"></div>
 
-<!-- CONTENT (must load first) -->
+<!-- SCRIPTS -->
 <script src="js/content.js"></script>
-
-<!-- PAGE RENDERER: builds all sections from CONTENT -->
-<script src="js/homepage.js"></script>
-
-<!-- SHARED NAV + FOOTER SCRIPT (root-level: no ../ prefix needed) -->
 <script src="js/shared.js"></script>
-
-<!-- PAGE-SPECIFIC SCRIPTS -->
 <script src="js/assessments.js"></script>
 <script src="js/main.js"></script>
-
-<!-- HERO CAROUSEL SCRIPT -->
 <script src="js/hero-carousel.js"></script>
 
 </body>
