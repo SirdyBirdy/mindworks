@@ -162,6 +162,7 @@
 
 <script src="../js/shared.js"></script>
 <script src="../js/content.js"></script>
+<script src="../js/blog-content.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof CONTENT === 'undefined' || !CONTENT.blog) return;
@@ -200,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
     grid.innerHTML = filtered.map((post, i) => {
       const isFeatured = post.featured && activeTag === 'all';
       return `
-        <a href="${post.slug}.html" class="post-card${isFeatured ? ' featured' : ''} reveal reveal-d${(i % 4) + 1}">
+        <a href="/${post.slug}" class="post-card${isFeatured ? ' featured' : ''} reveal reveal-d${(i % 4) + 1}">
           <div class="post-thumb" data-num="${String(i + 1).padStart(2,'0')}">
             <span class="post-thumb-tag">${post.tag || 'Article'}</span>
           </div>
