@@ -1,14 +1,16 @@
 // blog-content.js
 // Blog (Journal) content — split out from content.js so blog posts can be
-// managed separately. Load AFTER content.js in blog/index.html and every
-// blog/{slug}.html page:
+// managed separately.
+//
+// IMPORTANT: this file assumes `content.js` has ALREADY run and declared
+// `const CONTENT = {...}` earlier in the same page. It must be loaded
+// AFTER content.js, as a plain (non-module) script, so it shares that
+// global scope:
 //   <script src="../js/content.js"></script>
 //   <script src="../js/blog-content.js"></script>
 //
 // NOTE: remove the old `blog: { ... }` key from CONTENT in content.js —
 // this file replaces it entirely so there's no duplicate/conflicting key.
-
-window.CONTENT = window.CONTENT || {};
 
 CONTENT.blog = {
   eyebrow:  "Journal",
