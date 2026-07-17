@@ -1,10 +1,19 @@
 // blog-content.js
-// Blog post metadata for the Journal index + post pages.
-// Loaded via <script src="../js/blog-content.js"></script> alongside content.js
+// Blog (Journal) content — split out from content.js so blog posts can be
+// managed separately. Load AFTER content.js in blog/index.html and every
+// blog/{slug}.html page:
+//   <script src="../js/content.js"></script>
+//   <script src="../js/blog-content.js"></script>
+//
+// NOTE: remove the old `blog: { ... }` key from CONTENT in content.js —
+// this file replaces it entirely so there's no duplicate/conflicting key.
 
 window.CONTENT = window.CONTENT || {};
 
 CONTENT.blog = {
+  eyebrow:  "Journal",
+  h1:       "Words worth<br><em>sitting with</em>",
+  subtitle: "Writing from the Mindworks team. On therapy, mistakes, and the quieter things.",
   posts: [
     {
       slug: "how-to-be-productive",
