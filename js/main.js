@@ -132,6 +132,35 @@ document.addEventListener("DOMContentLoaded", () => {
     else secondaryBtn.firstChild && (secondaryBtn.firstChild.textContent = h.ctaSecondary.label);
   }
 
+  /* ── HERO TEAM DECK (carousel cards) ──────────────────────
+     Builds the .deck-card elements inside #carouselDeck from
+     CONTENT.hero.deckCards. This MUST run before hero-carousel.js
+     initializes, since that script just animates whatever
+     .deck-card elements already exist — it doesn't create them.
+     (hero-carousel.js is wrapped in its own DOMContentLoaded
+     listener registered after this one, so ordering is safe.)
+  ───────────────────────────────────────────────────────────── */
+  const carouselDeck = $("#carouselDeck");
+  if (carouselDeck && Array.isArray(h.deckCards)) {
+    carouselDeck.innerHTML = h.deckCards.map(card => `
+      <div class="deck-card" style="background:${card.gradient || 'var(--teal)'}">
+        <div class="deck-card-img">
+          ${card.photo
+            ? `<img src="${card.photo}" alt="${card.name}" loading="lazy">`
+            : `<div class="deck-card-placeholder">${card.initials}</div>`}
+        </div>
+        <div class="deck-card-caption">
+          <div class="deck-card-name">${card.name}</div>
+          <div class="deck-card-role">${card.role}</div>
+        </div>
+        <div class="deck-card-hint">Tap to cycle</div>
+      </div>`).join("");
+
+    // Let hero-carousel.js know the cards are ready, in case it's
+    // listening (see hero-carousel.js changes).
+    document.dispatchEvent(new CustomEvent("mw:deckCardsReady"));
+  }
+
   /* ─────────────────────────────────────────────────────────
      MARQUEE
   ───────────────────────────────────────────────────────── */
