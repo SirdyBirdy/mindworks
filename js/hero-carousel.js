@@ -3,11 +3,18 @@
  *  MINDWORKS — HERO TEAM DECK
  *  Stacked card deck with blurred/dimmed back cards peeking.
  *  Click front card or arrows to cycle. Back cards fan on hover.
- *  To add photos: replace portrait-slide-placeholder with <img>.
+ *
+ *  NOTE: the actual .deck-card elements are built by main.js
+ *  (reading CONTENT.hero.deckCards) — this file only animates
+ *  whatever cards already exist in the DOM. That's why this is
+ *  wrapped in DOMContentLoaded and registered AFTER main.js's
+ *  <script> tag in index.html: main.js's DOMContentLoaded
+ *  listener (registered first) injects the cards, then this
+ *  listener (registered second) runs and finds them ready.
  * ============================================================
  */
 
-(function () {
+document.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
   const AUTOSCROLL_DELAY = 4200;
@@ -23,6 +30,8 @@
 
   const cards = Array.from(deck.querySelectorAll(".deck-card"));
   const total  = cards.length;
+  if (!total) return; // nothing to animate (e.g. CONTENT.hero.deckCards was empty)
+
   let   order  = cards.map((_, i) => i); // order[0] = index of front card
   let   animating = false;
   let   timer     = null;
@@ -202,4 +211,4 @@
     if (e.key === "ArrowLeft")  { cyclePrev(true); e.preventDefault(); }
   });
 
-})();
+});
