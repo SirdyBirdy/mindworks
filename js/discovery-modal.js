@@ -3,12 +3,10 @@
  *  MINDWORKS — DISCOVERY CALL MODAL
  *  A richer, faster path to WhatsApp than a single generic link.
  *
- *  Auto-wiring: any <a> whose href is exactly the general
- *  "schedule a discovery call" WhatsApp link (WA_GENERAL, set
- *  in content.js) gets intercepted — clicking it opens this
- *  modal instead of jumping straight out. Per-therapist booking
- *  links are untouched, since those already go to the right
- *  person.
+ *  Trigger: shows automatically once a visitor scrolls past 50%
+ *  of the page, once per browser session. Regular "Schedule a
+ *  discovery call" buttons across the site are NOT intercepted —
+ *  clicking those still goes straight to WhatsApp as normal.
  *
  *  Include on every page, after content.js:
  *    <script src="js/content.js"></script>
@@ -28,8 +26,8 @@
     if (typeof CONTENT === "undefined") return;
     injectStyles();
     injectMarkup();
-    wireTriggers();
     wireModalBehavior();
+    wireScrollAutoPopup();
   }
 
   /* ── Styles ──────────────────────────────────────────── */
@@ -238,22 +236,47 @@
     return (heroMatch && heroMatch.gradient) || "var(--teal, #4a8a7f)";
   }
 
-  /* ── Wire up triggers (auto-intercept existing CTAs) ──── */
-  function wireTriggers() {
-    const waGeneral = CONTENT.hero?.ctaPrimary?.href || CONTENT.site?.whatsappLink;
-    if (!waGeneral) return;
+  /* ── Scroll-depth auto-popup (once per session) ─────────
+     Fires the first time the visitor scrolls past SCROLL_THRESHOLD
+     of the page, but only once per browser session, and only if
+     the modal hasn't already been shown (manually or automatically)
+     this session.
+  ───────────────────────────────────────────────────────── */
+  const SESSION_KEY = "mw_dm_shown";
+  const SCROLL_THRESHOLD = 0.5; // 50% down the page
 
-    document.querySelectorAll(`a[href="${cssEscape(waGeneral)}"]`).forEach(a => {
-      a.addEventListener("click", e => {
-        e.preventDefault();
-        openDiscoveryModal();
-      });
-    });
+  function wireScrollAutoPopup() {
+    if (sessionShown()) return;
+
+    let ticking = false;
+    function checkScroll() {
+      ticking = false;
+      if (sessionShown()) { window.removeEventListener("scroll", onScroll); return; }
+
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = scrollable > 0 ? window.scrollY / scrollable : 0;
+
+      if (pct >= SCROLL_THRESHOLD) {
+        window.removeEventListener("scroll", onScroll);
+        // Don't interrupt if a modal-triggering click is already open
+        const overlay = document.getElementById("discoveryModal");
+        if (overlay && !overlay.classList.contains("open")) {
+          openDiscoveryModal();
+        }
+      }
+    }
+    function onScroll() {
+      if (!ticking) { ticking = true; requestAnimationFrame(checkScroll); }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
   }
 
-  function cssEscape(str) {
-    // Minimal escaping for use inside an attribute selector string
-    return str.replace(/"/g, '\\"');
+  function sessionShown() {
+    try { return sessionStorage.getItem(SESSION_KEY) === "1"; }
+    catch (e) { return false; } // sessionStorage unavailable (e.g. private mode edge cases)
+  }
+  function markSessionShown() {
+    try { sessionStorage.setItem(SESSION_KEY, "1"); } catch (e) { /* no-op */ }
   }
 
   /* ── Open / close behavior ─────────────────────────────── */
@@ -283,6 +306,7 @@
     lastFocused = document.activeElement;
     document.body.style.overflow = "hidden";
     overlay.classList.add("open");
+    markSessionShown();
     const closeBtn = overlay.querySelector(".dm-close");
     closeBtn && closeBtn.focus();
   };
