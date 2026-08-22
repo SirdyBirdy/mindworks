@@ -139,11 +139,15 @@ document.addEventListener("DOMContentLoaded", () => {
      .deck-card elements already exist — it doesn't create them.
      (hero-carousel.js is wrapped in its own DOMContentLoaded
      listener registered after this one, so ordering is safe.)
+
+     Each card gets a data-href attribute (from CONTENT.hero.
+     deckCards[i].href) so hero-carousel.js can navigate to that
+     therapist's profile page when the front card is clicked.
   ───────────────────────────────────────────────────────────── */
   const carouselDeck = $("#carouselDeck");
   if (carouselDeck && Array.isArray(h.deckCards)) {
     carouselDeck.innerHTML = h.deckCards.map(card => `
-      <div class="deck-card" style="background:${card.gradient || 'var(--teal)'}">
+      <div class="deck-card" data-href="${card.href || ''}" style="background:${card.gradient || 'var(--teal)'}">
         <div class="deck-card-img">
           ${card.photo
             ? `<img src="${card.photo}" alt="${card.name}" loading="lazy">`
@@ -153,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="deck-card-name">${card.name}</div>
           <div class="deck-card-role">${card.role}</div>
         </div>
-        <div class="deck-card-hint">Tap to cycle</div>
+        <div class="deck-card-hint">Tap to view profile</div>
       </div>`).join("");
 
     // Let hero-carousel.js know the cards are ready, in case it's
@@ -202,6 +206,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ─────────────────────────────────────────────────────────
      THERAPISTS
+     The whole .t-card navigates to the therapist's profile page
+     on click. The "Book with X" button stops the click from
+     bubbling so it still opens WhatsApp in a new tab instead of
+     also triggering the card's navigation.
   ───────────────────────────────────────────────────────── */
   const tgEy = $(".therapists .eyebrow");
   if (tgEy) tgEy.innerHTML = `<span class="eyebrow-line"></span>${CONTENT.therapists.eyebrow}`;
@@ -212,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const tGrid = $(".t-grid");
   if (tGrid) tGrid.innerHTML = CONTENT.therapists.list.map((t, i) => `
-    <div class="t-card reveal reveal-d${(i%4)+1}">
+    <div class="t-card reveal reveal-d${(i%4)+1}" data-href="${t.profileHref}" style="cursor:pointer">
       <div class="t-img">${t.photo
         ? `<img src="${t.photo}" alt="${t.name}" loading="lazy">`
         : t.initials}</div>
@@ -224,13 +232,21 @@ document.addEventListener("DOMContentLoaded", () => {
           <span class="t-price">${t.price}</span>
         </div>
         <div class="t-actions">
-          <a href="therapists/${t.id}.html" class="t-profile-link">View profile →</a>
-          <a href="${t.bookingLink}" target="_blank" rel="noopener" class="t-book-btn">
+          <a href="${t.profileHref}" class="t-profile-link" onclick="event.stopPropagation()">View profile →</a>
+          <a href="${t.bookingLink}" target="_blank" rel="noopener" class="t-book-btn" onclick="event.stopPropagation()">
             ${WA_ICON_SVG} Book with ${t.name.split(" ")[0]}
           </a>
         </div>
       </div>
     </div>`).join("");
+
+  // Whole-card click → profile page (ignored for clicks already
+  // handled by the nested links above, since those stopPropagation).
+  $$(".t-card[data-href]").forEach(card => {
+    card.addEventListener("click", () => {
+      if (card.dataset.href) window.location.href = card.dataset.href;
+    });
+  });
 
   /* ─────────────────────────────────────────────────────────
      ASSESSMENTS
