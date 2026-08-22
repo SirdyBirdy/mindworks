@@ -20,11 +20,18 @@
      CONFIGURATION — edit paths & content here
   ───────────────────────────────────────── */
 
-  const depth = (document.currentScript?.src || '')
-    .replace(location.origin, '')
-    .split('/')
-    .filter(Boolean)
-    .length - 2;
+  // IMPORTANT: we read the RAW, unresolved src attribute (not
+  // document.currentScript.src, which the browser resolves to a full
+  // absolute URL). Resolving to an absolute URL and counting path
+  // segments breaks under a GitHub Pages *project* page URL
+  // (https://user.github.io/repo-name/...), because "repo-name" gets
+  // miscounted as an extra folder of depth, inflating every root-
+  // relative link/path by one level. Counting "../" in the literal,
+  // authored src attribute instead only reflects how deep THIS page
+  // is (based on how its own <script> tag was written), and is
+  // completely unaffected by domain, subpath, or hosting setup.
+  const rawSrc = document.currentScript?.getAttribute('src') || '';
+  const depth  = (rawSrc.match(/\.\.\//g) || []).length;
 
   const root = depth > 0 ? '../'.repeat(depth) : './';
 
