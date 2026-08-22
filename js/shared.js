@@ -28,6 +28,14 @@
 
   const root = depth > 0 ? '../'.repeat(depth) : './';
 
+  // Expose for other scripts (e.g. main.js, therapist-profile.js) that
+  // need to resolve root-relative asset paths (like team photos) from
+  // whatever depth the current page happens to be at. This must run
+  // synchronously here (not inside DOMContentLoaded) so it's available
+  // by the time later scripts execute, since script tags without
+  // defer/async run in document order.
+  window.MW_ROOT = root;
+
   const WA_NUMBER   = '919067485858';
   const WA_CALL_MSG = encodeURIComponent("Hi, I'd like to schedule a discovery call");
   const WA_PLAIN    = `https://wa.me/${WA_NUMBER}`;
