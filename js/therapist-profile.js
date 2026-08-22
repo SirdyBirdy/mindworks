@@ -28,7 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (portrait && therapistId && typeof CONTENT !== 'undefined') {
     const t = CONTENT.therapists.list.find(x => x.id === therapistId);
     if (t && t.photo) {
-      portrait.innerHTML = `<img src="${t.photo}" alt="${t.name}" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;">`;
+      // t.photo is root-relative (e.g. "images/team/x.jpeg", no leading
+      // slash) — prefix with window.MW_ROOT (set synchronously by
+      // shared.js) so it resolves correctly from this page's depth
+      // (profile pages sit one level down, in /therapists/).
+      const root = window.MW_ROOT || '../';
+      portrait.innerHTML = `<img src="${root}${t.photo}" alt="${t.name}" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;">`;
     }
   }
 
