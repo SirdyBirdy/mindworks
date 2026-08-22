@@ -65,15 +65,19 @@ const CONTENT = {
     statLabel:    "people helped since 2016",
     availability: "Next available: Today, 4 PM",
     // Team cards shown in the hero portrait deck (in display order).
-    // `href` must match the corresponding entry's profileHref below
-    // (minus the "therapists/" prefix depends on this file's own
-    // location — since index.html sits at root, the full relative
-    // path from root is used here).
+    // `photo` paths are root-relative (no leading slash) and get
+    // prefixed with window.MW_ROOT (set by shared.js) at render time
+    // in main.js, so they resolve correctly whether the current page
+    // is index.html, a page one level deep like therapists/x.html, or
+    // previewed under a GitHub Pages subpath. Don't hardcode a leading
+    // "/" here — that breaks on any subpath-served preview.
+    // `href` is only ever used from index.html (the hero deck only
+    // renders there), so it stays a plain relative path.
     deckCards: [
       {
         initials: "DK",
         gradient: "linear-gradient(160deg,hsl(176,28%,68%),hsl(176,35%,55%))",
-        photo:    "/images/team/dimple-kishnani.jpeg",
+        photo:    "images/team/dimple-kishnani.jpeg",
         name:     "Dimple Kishnani",
         role:     "Founder · Clinical Psychologist · 12 yrs",
         href:     "therapists/dimple-kishnani.html",
@@ -81,7 +85,7 @@ const CONTENT = {
       {
         initials: "AN",
         gradient: "linear-gradient(160deg,hsl(200,28%,60%),hsl(200,35%,48%))",
-        photo:    "/images/team/armeet-narang.jpeg",
+        photo:    "images/team/armeet-narang.jpeg",
         name:     "Armeet Narang",
         role:     "CBT · ACT · Queer-affirmative · 4 yrs",
         href:     "therapists/armeet-narang.html",
@@ -89,7 +93,7 @@ const CONTENT = {
       {
         initials: "NK",
         gradient: "linear-gradient(160deg,hsl(155,28%,58%),hsl(155,35%,46%))",
-        photo:    "/images/team/nandini-keshwani.jpeg",
+        photo:    "images/team/nandini-keshwani.jpeg",
         name:     "Nandini Keshwani",
         role:     "Queer-affirmative · Body positivity · 3 yrs",
         href:     "therapists/nandini-keshwani.html",
@@ -97,7 +101,7 @@ const CONTENT = {
       {
         initials: "AT",
         gradient: "linear-gradient(160deg,hsl(20,32%,62%),hsl(20,38%,50%))",
-        photo:    "/images/team/alina-tambuwala.jpeg",
+        photo:    "images/team/alina-tambuwala.jpeg",
         name:     "Alina Tambuwala",
         role:     "CBT · Trauma-informed · Queer-affirmative · 3 yrs",
         href:     "therapists/alina-tambuwala.html",
@@ -105,7 +109,7 @@ const CONTENT = {
       {
         initials: "AJ",
         gradient: "linear-gradient(160deg,hsl(265,28%,64%),hsl(265,35%,52%))",
-        photo:    "/images/team/annie-john.jpeg",
+        photo:    "images/team/annie-john.jpeg",
         name:     "Annie John",
         role:     "Trauma-informed · Queer-affirmative CBT · 1 yr",
         href:     "therapists/annie-john.html",
@@ -151,7 +155,13 @@ const CONTENT = {
     ],
   },
 
-  /* ── THERAPISTS ────────────────────────────────────────── */
+  /* ── THERAPISTS ────────────────────────────────────────────
+     NOTE: `photo` paths here are root-relative (no leading slash),
+     same reasoning as hero.deckCards above — main.js and
+     therapist-profile.js prefix them with window.MW_ROOT at render
+     time so they resolve correctly at any page depth / preview
+     subpath. Don't add a leading "/".
+  ───────────────────────────────────────────────────────── */
   therapists: {
     eyebrow:      "04 — The team",
     h2:           "People you’ll<br><em>actually talk to</em>",
@@ -162,7 +172,7 @@ const CONTENT = {
         id:           "dimple-kishnani",
         name:         "Dimple Kishnani",
         initials:     "DK",
-        photo:        "/images/team/dimple-kishnani.jpeg",
+        photo:        "images/team/dimple-kishnani.jpeg",
         specialisms:  ["Clinical disorders", "Relationships", "Performance coaching"],
         experience:   "12 yrs experience",
         price:        "₹3,500",
@@ -174,7 +184,7 @@ const CONTENT = {
         id:           "armeet-narang",
         name:         "Armeet Narang",
         initials:     "AN",
-        photo:        "/images/team/armeet-narang.jpeg",
+        photo:        "images/team/armeet-narang.jpeg",
         specialisms:  ["CBT", "ACT", "REBT", "Queer-affirmative"],
         experience:   "4 yrs experience",
         price:        "₹2,000",
@@ -186,7 +196,7 @@ const CONTENT = {
         id:           "nandini-keshwani",
         name:         "Nandini Keshwani",
         initials:     "NK",
-        photo:        "/images/team/nandini-keshwani.jpeg",
+        photo:        "images/team/nandini-keshwani.jpeg",
         specialisms:  ["Queer-affirmative", "Body positivity", "Growth"],
         experience:   "3 yrs experience",
         price:        "₹1,500",
@@ -198,7 +208,7 @@ const CONTENT = {
         id:           "alina-tambuwala",
         name:         "Alina Tambuwala",
         initials:     "AT",
-        photo:        "/images/team/alina-tambuwala.jpeg",
+        photo:        "images/team/alina-tambuwala.jpeg",
         specialisms:  ["CBT", "Queer-affirmative", "Trauma-informed"],
         experience:   "3 yrs experience",
         price:        "₹1,400",
@@ -210,7 +220,7 @@ const CONTENT = {
         id:           "annie-john",
         name:         "Annie John",
         initials:     "AJ",
-        photo:        "/images/team/annie-john.jpeg",
+        photo:        "images/team/annie-john.jpeg",
         specialisms:  ["Trauma-informed", "Queer-affirmative CBT", "Narrative therapy"],
         experience:   "1 yr experience",
         price:        "₹1,000",
