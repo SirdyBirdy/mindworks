@@ -281,7 +281,7 @@ nav#mainNav.scrolled { box-shadow: 0 4px 20px rgba(8,104,96,0.08); }
   position: relative; z-index: 1; width: 280px; aspect-ratio: 4/5;
   border-radius: 2rem; overflow: hidden; background: hsl(30,25%,72%); box-shadow: var(--shadow-soft);
 }
-.portrait-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.portrait-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
 .portrait-placeholder {
   width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
   background: linear-gradient(160deg, hsl(176,28%,68%), hsl(176,35%,55%));
@@ -308,6 +308,14 @@ nav#mainNav.scrolled { box-shadow: 0 4px 20px rgba(8,104,96,0.08); }
 }
 .ticker-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+/* ── HERO TEAM DECK (carousel) ──────────────────────────────
+   NOTE: object-position biases the crop toward the top of the
+   photo so faces aren't cut off by object-fit: cover. Tweak the
+   vertical percentage per-photo later if a specific portrait
+   still needs adjusting once real photos are in place.
+────────────────────────────────────────────────────────────── */
+.deck-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; object-position: center 20%; }
 
 /* ─────────────────────────────────────────────────────────────────
    APPROACH
@@ -376,7 +384,7 @@ nav#mainNav.scrolled { box-shadow: 0 4px 20px rgba(8,104,96,0.08); }
   color: rgba(249,244,235,0.5); background: rgba(249,244,235,0.04);
   border-bottom: 1px solid rgba(249,244,235,0.08); overflow: hidden;
 }
-.t-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.t-img img { width: 100%; height: 100%; object-fit: cover; display: block; object-position: center 20%; }
 .t-body { padding: 1.25rem 1.25rem 1.4rem; }
 .t-name { font-weight: 500; font-size: 0.92rem; margin-bottom: 0.3rem; color: var(--cream); }
 .t-spec { font-size: 0.75rem; color: rgba(249,244,235,0.45); line-height: 1.55; margin-bottom: 1rem; }
