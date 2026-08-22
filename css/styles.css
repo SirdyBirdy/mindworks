@@ -371,7 +371,7 @@ nav#mainNav.scrolled { box-shadow: 0 4px 20px rgba(8,104,96,0.08); }
 .therapists-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
 .therapists-h { font-family: var(--display); font-size: clamp(2.2rem,4vw,3.5rem); font-weight: 400; line-height: 1.05; letter-spacing: -0.03em; color: var(--cream); margin-top: 0.75rem; }
 .therapists-h em { font-style: italic; color: var(--accent); }
-.t-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; }
+.t-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; align-items: start; }
 .t-card {
   background: rgba(249,244,235,0.05); border: 1px solid rgba(249,244,235,0.1);
   border-radius: 1.5rem; overflow: hidden; transition: background 0.2s, border-color 0.2s; cursor: pointer;
@@ -379,12 +379,16 @@ nav#mainNav.scrolled { box-shadow: 0 4px 20px rgba(8,104,96,0.08); }
 .t-card:hover { background: rgba(249,244,235,0.09); border-color: rgba(249,244,235,0.2); }
 .t-card:nth-child(2), .t-card:nth-child(4) { margin-top: 1.5rem; }
 .t-img {
-  aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   font-family: var(--display); font-size: 2rem; font-style: italic;
   color: rgba(249,244,235,0.5); background: rgba(249,244,235,0.04);
   border-bottom: 1px solid rgba(249,244,235,0.08); overflow: hidden;
+  min-height: 180px; /* fallback box height only used when there's no photo yet (initials placeholder) */
 }
-.t-img img { width: 100%; height: 100%; object-fit: cover; display: block; object-position: center 20%; }
+/* Once a real photo is present, let the card follow the image's own
+   height instead of forcing it into a fixed box + cropping it. */
+.t-img:has(img) { min-height: 0; }
+.t-img img { width: 100%; height: auto; display: block; }
 .t-body { padding: 1.25rem 1.25rem 1.4rem; }
 .t-name { font-weight: 500; font-size: 0.92rem; margin-bottom: 0.3rem; color: var(--cream); }
 .t-spec { font-size: 0.75rem; color: rgba(249,244,235,0.45); line-height: 1.55; margin-bottom: 1rem; }
