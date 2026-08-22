@@ -1,22 +1,36 @@
 /**
  * MINDWORKS — THERAPIST PROFILE JS
- * Handles: FAQ accordion, scroll reveal, sticky nav, mobile menu
+ * Handles: photo injection from CONTENT, FAQ accordion,
+ * scroll reveal, sticky nav, mobile menu
  */
 
 // ── FAQ TOGGLE ───────────────────────────────────────────────────
 function toggleFaq(el) {
   const item = el.closest('.faq-item');
   const isOpen = item.classList.contains('open');
-
   // Close all others first
   document.querySelectorAll('.faq-item.open').forEach(openItem => {
     if (openItem !== item) openItem.classList.remove('open');
   });
-
   item.classList.toggle('open', !isOpen);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  // ── PHOTO INJECTION ────────────────────────────────────────────
+  // Each profile page's <body> carries data-therapist-id="..."
+  // matching an id in CONTENT.therapists.list (content.js). This
+  // means the photo only ever needs to be set in one place —
+  // content.js — and it'll show up here, on the homepage grid,
+  // and in the homepage hero deck automatically.
+  const portrait = document.querySelector('.profile-portrait');
+  const therapistId = document.body.dataset.therapistId;
+  if (portrait && therapistId && typeof CONTENT !== 'undefined') {
+    const t = CONTENT.therapists.list.find(x => x.id === therapistId);
+    if (t && t.photo) {
+      portrait.innerHTML = `<img src="${t.photo}" alt="${t.name}" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;">`;
+    }
+  }
 
   // ── SCROLL REVEAL ──────────────────────────────────────────────
   const obs = new IntersectionObserver(entries => {
@@ -36,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.querySelector('.nav-hamburger');
   const mobileMenu = document.querySelector('.mobile-menu');
   const mobileClose = document.querySelector('.mobile-menu-close');
-
   if (hamburger && mobileMenu) {
     hamburger.addEventListener('click', () => {
       mobileMenu.style.display = 'flex';
@@ -44,12 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(() => mobileMenu.classList.add('open'));
       hamburger.setAttribute('aria-expanded', 'true');
     });
-
     const closeMenu = () => {
       mobileMenu.classList.remove('open');
       hamburger.setAttribute('aria-expanded', 'false');
     };
-
     if (mobileClose) mobileClose.addEventListener('click', closeMenu);
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
@@ -77,5 +88,4 @@ document.addEventListener('DOMContentLoaded', () => {
       navCta.addEventListener('mouseleave', () => tip.classList.remove('visible'));
     }
   }
-
 });
