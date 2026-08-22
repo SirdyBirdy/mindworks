@@ -14,6 +14,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const $$ = (sel, ctx = document) => ctx.querySelectorAll(sel);
   const set = (sel, prop, val, ctx = document) => { const el = $(sel, ctx); if (el) el[prop] = val; };
 
+  // Resolves a root-relative asset path (e.g. content.js photo fields,
+  // which are written like "images/team/x.jpeg" with no leading slash)
+  // against window.MW_ROOT — set synchronously by shared.js based on
+  // how deep the current page is. This is what makes the same photo
+  // path in content.js work correctly from index.html, from a page one
+  // level deep like therapists/x.html, and under a GitHub Pages preview
+  // subpath, without needing separate absolute/relative variants.
+  const assetPath = (path) => (window.MW_ROOT || './') + path;
+
   /* ─────────────────────────────────────────────────────────
      STICKY BAR
   ───────────────────────────────────────────────────────── */
@@ -150,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="deck-card" data-href="${card.href || ''}" style="background:${card.gradient || 'var(--teal)'}">
         <div class="deck-card-img">
           ${card.photo
-            ? `<img src="${card.photo}" alt="${card.name}" loading="lazy">`
+            ? `<img src="${assetPath(card.photo)}" alt="${card.name}" loading="lazy">`
             : `<div class="deck-card-placeholder">${card.initials}</div>`}
         </div>
         <div class="deck-card-caption">
@@ -222,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (tGrid) tGrid.innerHTML = CONTENT.therapists.list.map((t, i) => `
     <div class="t-card reveal reveal-d${(i%4)+1}" data-href="${t.profileHref}" style="cursor:pointer">
       <div class="t-img">${t.photo
-        ? `<img src="${t.photo}" alt="${t.name}" loading="lazy">`
+        ? `<img src="${assetPath(t.photo)}" alt="${t.name}" loading="lazy">`
         : t.initials}</div>
       <div class="t-body">
         <div class="t-name">${t.name}</div>
