@@ -2,7 +2,9 @@
  * ============================================================
  *  MINDWORKS — HERO TEAM DECK
  *  Stacked card deck with blurred/dimmed back cards peeking.
- *  Click front card or arrows to cycle. Back cards fan on hover.
+ *  Arrows, dots, swipe, keyboard, and autoplay cycle the deck.
+ *  Clicking the FRONT card navigates to that therapist's
+ *  profile page (via its data-href, set by main.js).
  *
  *  NOTE: the actual .deck-card elements are built by main.js
  *  (reading CONTENT.hero.deckCards) — this file only animates
@@ -169,11 +171,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (userAction) resetTimer();
   }
 
-  /* ── Click front card ───────────────────────────────── */
+  /* ── Click front card → go to that therapist's profile ──
+     (cycling is handled entirely by the arrows/dots/swipe/
+     keyboard/autoplay below, not by clicking the card itself)
+  ─────────────────────────────────────────────────────── */
   deck.addEventListener("click", e => {
     const front = cards[order[0]];
     if (front.contains(e.target) || e.target === front) {
-      cycleNext(true);
+      const href = front.dataset.href;
+      if (href) window.location.href = href;
     }
   });
 
