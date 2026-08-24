@@ -74,6 +74,7 @@
       <a href="${root}index.html" class="logo"><em>mind</em>works</a>
       <div class="nav-mid">
         <a href="${root}index.html#therapists">Our therapists</a>
+        <a href="${root}index.html#topics">Conditions we treat</a>
         <a href="${root}index.html#assessments">Self-assessments</a>
         <a href="${root}index.html#locations">Locations</a>
         <a href="${root}blog/blog.html">Journal</a>
@@ -257,6 +258,7 @@
       <div class="island-menu-card" id="islandMenuCard" role="menu">
         <div class="island-menu-links">
           <a href="${root}index.html#therapists">Our therapists <span class="arrow">→</span></a>
+          <a href="${root}index.html#topics">Conditions we treat <span class="arrow">→</span></a>
           <a href="${root}index.html#assessments">Self-assessments <span class="arrow">→</span></a>
           <a href="${root}index.html#locations">Locations <span class="arrow">→</span></a>
           <a href="${root}blog/blog.html">Journal <span class="arrow">→</span></a>
@@ -308,6 +310,7 @@
         <div class="f-label">Navigate</div>
         <div class="f-links">
           <a href="${root}index.html#therapists">Our therapists</a>
+          <a href="${root}index.html#topics">Conditions we treat</a>
           <a href="${root}index.html#locations">Locations</a>
           <a href="${root}blog/blog.html">Journal</a>
         </div>
