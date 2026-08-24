@@ -310,12 +310,62 @@ nav#mainNav.scrolled { box-shadow: 0 4px 20px rgba(8,104,96,0.08); }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
 
 /* ── HERO TEAM DECK (carousel) ──────────────────────────────
-   NOTE: object-position biases the crop toward the top of the
-   photo so faces aren't cut off by object-fit: cover. Tweak the
-   vertical percentage per-photo later if a specific portrait
-   still needs adjusting once real photos are in place.
+   This structural CSS used to live only in index.html's inline
+   <style> block and was never added to this shared stylesheet.
+   It's the stacked-card carousel built by main.js + animated by
+   hero-carousel.js — moved here so index.html can stay clean
+   with just one stylesheet link, with no risk of it silently
+   overriding this file again.
 ────────────────────────────────────────────────────────────── */
+.portrait-carousel { position: relative; z-index: 1; width: 280px; }
+.portrait-deck { position: relative; width: 280px; height: 350px; margin-bottom: 0.5rem; }
+.deck-card {
+  position: absolute; inset: 0; width: 280px; height: 350px;
+  border-radius: 2rem; overflow: hidden; box-shadow: var(--shadow-soft);
+  transform-origin: center bottom; will-change: transform, filter; cursor: pointer;
+}
+.deck-card-img { width: 100%; height: 100%; position: relative; overflow: hidden; }
+.deck-card-placeholder {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-size: 3rem; font-weight: 400; font-style: italic;
+  color: rgba(255,255,255,0.75); letter-spacing: -0.02em;
+}
+/* NOTE: object-position biases the crop toward the top of the photo
+   so faces aren't cut off by object-fit: cover. Tweak the vertical
+   percentage per-photo later if a specific portrait still needs
+   adjusting once real photos are in place. */
 .deck-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; object-position: center 20%; }
+.deck-card-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 1.5rem 1.25rem 1.25rem;
+  background: linear-gradient(to top, rgba(26,42,51,0.82) 0%, transparent 100%);
+  color: #fff;
+}
+.deck-card-name { font-size: 0.82rem; font-weight: 500; color: #fff; letter-spacing: 0.01em; margin-bottom: 0.15rem; }
+.deck-card-role { font-size: 0.65rem; color: rgba(255,255,255,0.6); letter-spacing: 0.05em; font-family: var(--body); }
+.deck-card-hint {
+  position: absolute; top: 1rem; right: 1rem;
+  background: rgba(247,246,242,0.18); backdrop-filter: blur(6px);
+  border: 1px solid rgba(247,246,242,0.25); border-radius: 100px; padding: 0.3rem 0.65rem;
+  font-size: 0.6rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.7); pointer-events: none; opacity: 1; transition: opacity 0.3s;
+}
+.portrait-deck:hover .deck-card-hint { opacity: 0; }
+.carousel-arrow {
+  position: absolute; top: calc(175px); transform: translateY(-50%);
+  z-index: 10; width: 30px; height: 30px; border-radius: 50%;
+  background: rgba(247,246,242,0.92); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px rgba(8,104,96,0.12); color: var(--ink); padding: 0;
+}
+.carousel-arrow:hover { background: var(--teal); color: #fff; transform: translateY(-50%) scale(1.08); box-shadow: 0 4px 16px rgba(8,104,96,0.22); }
+.carousel-arrow svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2.2; }
+.carousel-arrow-prev { left: -18px; }
+.carousel-arrow-next { right: -18px; }
+.carousel-dots { display: flex; justify-content: center; gap: 0.45rem; margin-top: 1.25rem; }
+.carousel-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--border); border: none; padding: 0; cursor: pointer; transition: background 0.25s, width 0.25s; }
+.carousel-dot.active { background: var(--teal); width: 18px; border-radius: 100px; }
 
 /* ─────────────────────────────────────────────────────────────────
    APPROACH
@@ -608,8 +658,13 @@ footer a:hover { color: var(--cream); }
    RESPONSIVE
 ───────────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; min-height: auto; padding: 2rem 1.25rem; }
-  .hero-right { display: none; }
+  .hero { grid-template-columns: 1fr; min-height: auto; padding: 2rem 1.25rem; gap: 1.5rem; }
+  .hero-right { display: flex; padding: 1rem 0 2.5rem; overflow: visible; }
+  .portrait-carousel { margin: 0 auto; }
+  .portrait-deck { width: 240px; height: 300px; }
+  .deck-card { width: 240px; height: 300px; }
+  .stat-float { bottom: 1rem; left: -0.25rem; }
+  .hero-ticker { top: 1rem; }
   .approach { grid-template-columns: 1fr; padding: 4rem 1.25rem; }
   .approach-right { grid-template-columns: 1fr; }
   .topics { padding: 4rem 1.25rem; }
