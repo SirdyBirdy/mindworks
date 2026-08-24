@@ -26,13 +26,20 @@ const CONTENT = {
     copyright:     "© 2025 Mindworks Counselling",
   },
 
-  /* ── NAV ───────────────────────────────────────────────── */
+  /* ── NAV ───────────────────────────────────────────────────
+     NOTE: shared.js currently builds the actual nav/mobile-island
+     markup from its OWN hardcoded HTML strings — it does not read
+     this object. Keeping this in sync anyway so it doesn't silently
+     drift from what's shown, and so a future refactor of shared.js
+     to read from CONTENT has accurate data to start from.
+  ───────────────────────────────────────────────────────── */
   nav: {
     links: [
-      { label: "Our therapists",   href: "#therapists"  },
-      { label: "Self-assessments", href: "#assessments" },
-      { label: "Locations",        href: "#locations"   },
-      { label: "Journal",          href: "blog/index.html" },
+      { label: "Our therapists",     href: "#therapists"  },
+      { label: "Conditions we treat", href: "#topics"      },
+      { label: "Self-assessments",   href: "#assessments" },
+      { label: "Locations",          href: "#locations"   },
+      { label: "Journal",            href: "blog/index.html" },
     ],
     cta: {
       label:   "Schedule a discovery call",
@@ -40,10 +47,11 @@ const CONTENT = {
       tooltip: "First 15 minutes are free. No paperwork, no commitment.",
     },
     mobileLinks: [
-      { label: "Our therapists",   href: "#therapists"  },
-      { label: "Self-assessments", href: "#assessments" },
-      { label: "Locations",        href: "#locations"   },
-      { label: "Journal",          href: "blog/index.html" },
+      { label: "Our therapists",     href: "#therapists"  },
+      { label: "Conditions we treat", href: "#topics"      },
+      { label: "Self-assessments",   href: "#assessments" },
+      { label: "Locations",          href: "#locations"   },
+      { label: "Journal",            href: "blog/index.html" },
     ],
     mobileCta: { label: "Schedule a discovery call →", href: WA_GENERAL },
   },
@@ -140,15 +148,23 @@ const CONTENT = {
     ],
   },
 
-  /* ── TOPICS / BENTO ────────────────────────────────────── */
+  /* ── TOPICS / BENTO ────────────────────────────────────────
+     NOTE: `href`, where present, is root-relative (no leading
+     slash) — same convention as the photo paths above. It's
+     consumed by js/topics-links.js, a small progressive-enhancement
+     script that runs AFTER main.js renders these cells and makes
+     the matching .bento-cell clickable. main.js itself doesn't need
+     to know about `href` at all — leave it out of a cell entirely
+     and it just renders as plain, non-clickable text like before.
+  ───────────────────────────────────────────────────────── */
   topics: {
     eyebrow: "03 — What we work on",
     h2:      "Whatever’s<br><em>weighing on you</em>",
     cells: [
-      { size: "large",  label: "Most talked about", text: "Burnout that won’t quit" },
-      { size: "normal", label: "01", text: "The relationship you keep replaying" },
+      { size: "large",  label: "Most talked about", text: "Burnout that won’t quit", href: "stress-burnout/" },
+      { size: "normal", label: "01", text: "The relationship you keep replaying", href: "relationship-counselling/" },
       { size: "normal", label: "02", text: "Anger you can’t place" },
-      { size: "normal", label: "03", text: "Anxiety before you even get out of bed" },
+      { size: "normal", label: "03", text: "Anxiety before you even get out of bed", href: "anxiety/" },
       { size: "normal", label: "04", text: "The version of yourself you keep putting off" },
       { size: "normal", label: "05", text: "Grief that doesn’t follow a timeline" },
       { size: "large",  label: "Also", text: "Queer identity · neurodivergence · family dynamics · chronic illness · performance pressure" },
@@ -328,6 +344,7 @@ const CONTENT = {
         heading: "Navigate",
         links: [
           { label: "Our therapists", href: "#therapists" },
+          { label: "Conditions we treat", href: "#topics" },
           { label: "Locations",     href: "#locations"  },
           { label: "Journal",       href: "blog/index.html" },
         ],
