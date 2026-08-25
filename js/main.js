@@ -286,6 +286,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ─────────────────────────────────────────────────────────
      LOCATIONS
+     Each card's .loc-map shows a real photo when CONTENT.locations
+     .list[i].image is set (root-relative, resolved via assetPath —
+     same convention as therapist/hero photos). If `image` is empty
+     (or the location is the online entry, which has no physical
+     photo to show), it falls back to the original pin/globe SVG +
+     pulse-dot treatment exactly as before. This is a pure fallback:
+     nothing breaks for locations that don't have a photo yet.
   ───────────────────────────────────────────────────────── */
   const locEy = $(".locations .eyebrow");
   if (locEy) locEy.innerHTML = `<span class="eyebrow-line"></span>${CONTENT.locations.eyebrow}`;
@@ -293,16 +300,25 @@ document.addEventListener("DOMContentLoaded", () => {
   set(".locations-sub",    "textContent", CONTENT.locations.subtitle);
 
   const locGrid = $(".locations-grid");
-  if (locGrid) locGrid.innerHTML = CONTENT.locations.list.map((loc, i) => `
-    <div class="loc-card reveal reveal-d${i+1}">
-      <div class="loc-map"${loc.online ? ' style="background:var(--ink)"' : ''}>
+  if (locGrid) locGrid.innerHTML = CONTENT.locations.list.map((loc, i) => {
+    const hasPhoto = !loc.online && loc.image;
+
+    const mapInner = hasPhoto
+      ? `<img src="${assetPath(loc.image)}" alt="${loc.name} — Mindworks Counselling" loading="lazy">
+         <div class="loc-map-photo-badge"><span class="loc-map-pulse"></span>${loc.name}</div>`
+      : `
         ${!loc.online ? '<div class="loc-map-pulse"></div>' : ''}
         <div class="loc-map-pin${loc.online ? '-dark' : ''}">
           ${loc.online
             ? `<svg viewBox="0 0 24 24" style="stroke:rgba(247,246,242,0.5);fill:none;stroke-width:1.5;width:32px;height:32px"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>`
             : `<svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>`}
           <span class="loc-map-label"${loc.online ? ' style="color:rgba(247,246,242,0.5)"' : ''}>${loc.name}</span>
-        </div>
+        </div>`;
+
+    return `
+    <div class="loc-card reveal reveal-d${i+1}">
+      <div class="loc-map${hasPhoto ? ' loc-map-photo' : ''}"${loc.online ? ' style="background:var(--ink)"' : ''}>
+        ${mapInner}
       </div>
       <div class="loc-body">
         <span class="loc-tag"><span class="loc-tag-dot"></span>${loc.tag}</span>
@@ -325,7 +341,8 @@ document.addEventListener("DOMContentLoaded", () => {
           </a>
         </div>
       </div>
-    </div>`).join("");
+    </div>`;
+  }).join("");
 
   /* ─────────────────────────────────────────────────────────
      FOOTER CTA
