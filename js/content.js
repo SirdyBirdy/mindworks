@@ -278,7 +278,15 @@ const CONTENT = {
     attribution: "— Client, 29 · Online sessions since 2023",
   },
 
-  /* ── LOCATIONS ─────────────────────────────────────────── */
+  /* ── LOCATIONS ─────────────────────────────────────────────
+     `image`, where set, is root-relative (no leading slash) —
+     same convention as photo paths elsewhere in this file — and
+     gets prefixed with window.MW_ROOT by main.js's assetPath().
+     Leave it as "" until a real photo exists for that location:
+     main.js falls back to the icon/pin placeholder automatically
+     whenever `image` is empty, so there's no risk of a broken
+     image icon showing up before you've uploaded one.
+  ───────────────────────────────────────────────────────── */
   locations: {
     eyebrow:  "07 — Find us",
     h2:       "Where we<br><em>meet you</em>",
@@ -294,17 +302,19 @@ const CONTENT = {
         mapsHref:   "https://google.com/maps/dir//206+,+second+floor+,+denthealth+centre,+MindWorks+Counselling+-+Viman+Nagar+%7C+Online+Counselling+%7C+Psychological+Counselling+%7C+Therapist,+near+Airport,+Viman+Nagar,+Pune,+Maharashtra+411014/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3bc2c067fb44534f:0x8e263168bf60838d?sa=X&ved=1t:57443&ictx=111",
         mapsLabel:  "Get directions",
         online:     false,
+        image:      "",
       },
       {
         tag:        "Second clinic",
-        mapLabel:   "NIBM",
-        name:       "NIBM",
-        address:    "208, 2nd Floor, Raheja Vista Center Point, NIBM, 411060",
-        hours:      "By Appointment Online",
-        therapists: "Armeet · Dimple",
-        mapsHref:   "https://maps.app.goo.gl/eVNTbuKQ8DAYd3yf7",
+        mapLabel:   "Baner",
+        name:       "Baner",
+        address:    "Replace with full address,<br>Baner, Pune 411045",
+        hours:      "Tue – Sun, 10 AM – 6 PM",
+        therapists: "Alina · Nandini",
+        mapsHref:   "https://maps.google.com/?q=Baner+Pune",
         mapsLabel:  "Get directions",
         online:     false,
+        image:      "",
       },
       {
         tag:        "Online",
@@ -316,6 +326,7 @@ const CONTENT = {
         mapsHref:   WA_GENERAL,
         mapsLabel:  "Book online session",
         online:     true,
+        image:      "",
       },
     ],
   },
