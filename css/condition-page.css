@@ -111,6 +111,35 @@
 }
 .cp-faq-item.open .cp-faq-a { padding: 0 1.4rem 1.25rem; }
 
+/* ── CONDITIONS HUB GRID (used by /conditions/index.html) ── */
+.ch-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+  max-width: 1000px;
+}
+.ch-card {
+  display: flex; flex-direction: column; gap: 0.75rem;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 1.5rem; padding: 1.75rem;
+  text-decoration: none; transition: border-color 0.2s, transform 0.2s;
+}
+.ch-card:hover { border-color: var(--teal-20); transform: translateY(-3px); }
+.ch-card-tag {
+  font-size: 0.62rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--teal); background: var(--teal-soft); padding: 0.3rem 0.7rem;
+  border-radius: 100px; align-self: flex-start;
+}
+.ch-card-title {
+  font-family: var(--display); font-size: 1.3rem; font-weight: 400;
+  letter-spacing: -0.02em; line-height: 1.2; color: var(--ink);
+}
+.ch-card-teaser { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+.ch-card-link {
+  margin-top: auto; font-size: 0.78rem; font-weight: 500; color: var(--accent);
+  display: inline-flex; align-items: center; gap: 0.35rem; transition: gap 0.2s;
+}
+.ch-card:hover .ch-card-link { gap: 0.6rem; }
+.ch-card-link svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
+
 /* ── MOBILE ── */
 @media (max-width: 900px) {
   .cp-breadcrumb { padding: 1.25rem 1.25rem 0; }
@@ -118,4 +147,5 @@
   .cp-section { padding: 3.5rem 1.25rem; }
   .cp-signs-grid { grid-template-columns: 1fr; }
   .cp-team-prompt { flex-direction: column; align-items: flex-start; }
+  .ch-grid { grid-template-columns: 1fr; }
 }
