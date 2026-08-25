@@ -2,44 +2,37 @@
  * topics-links.js — Mindworks Counselling
  *
  * Progressive enhancement for the homepage Topics/bento section.
- * main.js renders CONTENT.topics.cells into .bento-cell elements; this
- * script runs afterwards and, for any cell that has an `href` set in
- * content.js, makes the matching rendered cell clickable.
+ * Makes every rendered .bento-cell clickable, leading to the
+ * /conditions/ hub page (which then leads to each specific
+ * condition page). Deliberately one shared destination for the
+ * whole grid, not per-cell deep links — keeps content.js's bento
+ * copy free to change without needing to stay in sync with which
+ * condition pages exist yet.
  *
- * Deliberately does NOT touch main.js. It only reads the DOM main.js
- * already produced, and bails out safely if that markup doesn't look
- * like what it expects (e.g. main.js changes cell count or structure),
- * rather than risk breaking the homepage render.
+ * Does NOT touch main.js. Only reads the DOM main.js already
+ * produced, and bails out safely if there's nothing to enhance.
  *
  * Load order on index.html: content.js, shared.js, main.js, THEN this.
  */
 (function () {
   function init() {
-    const cells = window.CONTENT && window.CONTENT.topics && window.CONTENT.topics.cells;
-    const wrap  = document.querySelector('.bento');
-    if (!Array.isArray(cells) || !wrap) return;
+    const wrap = document.querySelector('.bento');
+    if (!wrap) return;
 
-    const nodes = wrap.querySelectorAll('.bento-cell');
-    // Guard: only proceed if main.js rendered exactly one cell per
-    // content entry. If main.js's markup ever changes shape, this
-    // script just does nothing instead of linking the wrong cell.
-    if (!nodes.length || nodes.length !== cells.length) return;
-
+    const dest = (window.CONTENT && window.CONTENT.topics && window.CONTENT.topics.viewAllHref) || 'conditions/';
     const root = window.MW_ROOT || './';
+    const url  = root + dest;
 
-    cells.forEach(function (cell, i) {
-      if (!cell.href) return;
-      const el = nodes[i];
-      if (!el) return;
+    const cells = wrap.querySelectorAll('.bento-cell');
+    if (!cells.length) return;
 
+    cells.forEach(function (el) {
       el.style.cursor = 'pointer';
       el.setAttribute('role', 'link');
       el.setAttribute('tabindex', '0');
-      el.setAttribute('aria-label', cell.text ? cell.text.replace(/<[^>]+>/g, '') : 'Learn more');
+      el.setAttribute('aria-label', 'See all conditions we treat');
 
-      const go = function () {
-        window.location.href = root + cell.href;
-      };
+      const go = function () { window.location.href = url; };
 
       el.addEventListener('click', go);
       el.addEventListener('keydown', function (e) {

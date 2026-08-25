@@ -149,22 +149,23 @@ const CONTENT = {
   },
 
   /* ── TOPICS / BENTO ────────────────────────────────────────
-     NOTE: `href`, where present, is root-relative (no leading
-     slash) — same convention as the photo paths above. It's
-     consumed by js/topics-links.js, a small progressive-enhancement
-     script that runs AFTER main.js renders these cells and makes
-     the matching .bento-cell clickable. main.js itself doesn't need
-     to know about `href` at all — leave it out of a cell entirely
-     and it just renders as plain, non-clickable text like before.
+     NOTE: cells are plain display text again — the whole bento
+     grid now leads to the /conditions/ hub as one destination
+     (see js/topics-links.js), rather than individual cells linking
+     to individual condition pages. viewAllHref/viewAllLabel below
+     are for the hardcoded "View all" link in index.html's Topics
+     header (same pattern as therapists.viewAllHref).
   ───────────────────────────────────────────────────────── */
   topics: {
-    eyebrow: "03 — What we work on",
-    h2:      "Whatever’s<br><em>weighing on you</em>",
+    eyebrow:      "03 — What we work on",
+    h2:           "Whatever’s<br><em>weighing on you</em>",
+    viewAllHref:  "conditions/",
+    viewAllLabel: "View all",
     cells: [
-      { size: "large",  label: "Most talked about", text: "Burnout that won’t quit", href: "stress-burnout/" },
-      { size: "normal", label: "01", text: "The relationship you keep replaying", href: "relationship-counselling/" },
+      { size: "large",  label: "Most talked about", text: "Burnout that won’t quit" },
+      { size: "normal", label: "01", text: "The relationship you keep replaying" },
       { size: "normal", label: "02", text: "Anger you can’t place" },
-      { size: "normal", label: "03", text: "Anxiety before you even get out of bed", href: "anxiety/" },
+      { size: "normal", label: "03", text: "Anxiety before you even get out of bed" },
       { size: "normal", label: "04", text: "The version of yourself you keep putting off" },
       { size: "normal", label: "05", text: "Grief that doesn’t follow a timeline" },
       { size: "large",  label: "Also", text: "Queer identity · neurodivergence · family dynamics · chronic illness · performance pressure" },
