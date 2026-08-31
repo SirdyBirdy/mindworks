@@ -7,8 +7,63 @@
 <meta name="description" content="Nandini Keshwani — Psychologist at Mindworks Counselling. Queer-affirmative, body positivity, growth. Online sessions across India.">
 <link rel="stylesheet" href="../css/styles.css">
 <link rel="stylesheet" href="../css/therapist-profile.css">
+<style>
+.profile-intro-pull {
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-style: italic; font-weight: 300;
+  line-height: 1.65; color: var(--ink);
+  border-left: 3px solid var(--teal);
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.fit-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+.fit-item {
+  background: var(--teal-soft);
+  border: 1px solid var(--teal-20);
+  border-radius: 0.85rem;
+  padding: 0.85rem 1rem;
+  font-size: 0.82rem; color: var(--teal-dark); line-height: 1.5;
+}
+.fit-item::before { content: '→ '; font-weight: 600; color: var(--teal); }
+.outside-sessions {
+  background: var(--teal-soft);
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  margin-top: 0.75rem;
+}
+.outside-sessions p {
+  font-size: 0.92rem !important;
+  color: var(--teal-dark) !important;
+  margin-bottom: 0 !important;
+}
+.wish-block {
+  background: var(--teal);
+  border-radius: 1.25rem;
+  padding: 1.75rem 2rem;
+  margin-top: 0.75rem;
+}
+.wish-block p {
+  font-family: var(--display);
+  font-size: 1.2rem !important;
+  font-style: italic;
+  color: var(--cream) !important;
+  line-height: 1.6 !important;
+  margin-bottom: 0 !important;
+}
+</style>
 </head>
 <body data-therapist-id="nandini-keshwani">
+
+<!-- NEED INPUT SUMMARY (Nandini):
+1. Credentials: questionnaire says "MSc Clinical Psychology" — live site said "MA Counselling Psychology." Confirm the correct degree title before publishing.
+2. Languages: questionnaire lists English, Hindi, Gujarati. Live site listed English, Hindi, Marathi. This is a meaningful discrepancy — please confirm which is accurate. The FAQ below currently asks about Marathi; if Gujarati is correct, that FAQ needs updating (a draft Gujarati version is included, marked for review).
+3. Session format: questionnaire says both online and offline now. Live site only listed Video. Need the in-person location (Pune clinic?) confirmed before we publish "In-person."
+4. Her story section below touches on her mother's experience with depression, since she wrote about it herself in the questionnaire. Please confirm she's comfortable with that being public before it goes live — happy to soften or remove.
+-->
 
 <div id="mw-sticky-bar"></div>
 <div id="mw-nav"></div>
@@ -25,28 +80,29 @@
       <!-- Photo is injected automatically by therapist-profile.js from content.js -->
       <div class="profile-portrait-placeholder">NK</div>
     </div>
+    <!-- NEED INPUT: dropped "Queer-affirmative" tag since it wasn't mentioned in the new questionnaire — confirm if it should stay -->
     <div class="profile-tags">
-      <span class="profile-tag">Queer-affirmative</span>
-      <span class="profile-tag">Body positivity</span>
+      <span class="profile-tag">Trauma-informed</span>
+      <span class="profile-tag">Grief &amp; loss</span>
+      <span class="profile-tag">Body image</span>
       <span class="profile-tag">Self-worth</span>
-      <span class="profile-tag">Growth</span>
     </div>
   </div>
 
   <div class="profile-right">
     <div class="profile-eyebrow eyebrow">
       <span class="eyebrow-line"></span>
-      Psychologist · 3 years
+      Psychotherapist &amp; Clinical Psychologist · 3 years
     </div>
     <h1 class="profile-name">Nandini Keshwani</h1>
-    <div class="profile-role">Psychologist</div>
-    <div class="profile-credentials">MA Counselling Psychology</div>
+    <div class="profile-role">Psychotherapist &amp; Clinical Psychologist</div>
+    <div class="profile-credentials">MSc Clinical Psychology</div>
     <div class="profile-tagline">"You don't need to be in crisis to deserve support."</div>
 
     <div class="profile-meta">
       <div class="profile-meta-item">
         <div class="profile-meta-label">Session fee</div>
-        <div class="profile-meta-value">₹1,200 / session</div>
+        <div class="profile-meta-value">₹1,500 / session</div>
       </div>
       <div class="profile-meta-item">
         <div class="profile-meta-label">Duration</div>
@@ -58,11 +114,13 @@
       </div>
       <div class="profile-meta-item">
         <div class="profile-meta-label">Modes</div>
-        <div class="profile-meta-value">Video</div>
+        <!-- NEED INPUT: confirm in-person location before publishing "In-person" -->
+        <div class="profile-meta-value">Video · In-person</div>
       </div>
       <div class="profile-meta-item">
         <div class="profile-meta-label">Languages</div>
-        <div class="profile-meta-value">English · Hindi · Marathi</div>
+        <!-- NEED INPUT: questionnaire says Gujarati, site said Marathi — confirm which is correct -->
+        <div class="profile-meta-value">English · Hindi · Gujarati</div>
       </div>
       <div class="profile-meta-item">
         <div class="profile-meta-label">Discovery call</div>
@@ -83,25 +141,18 @@
 <div class="profile-body">
 
   <div class="profile-section reveal">
-    <div class="profile-section-label">About</div>
+    <div class="profile-section-label">What people bring</div>
     <div>
-      <h2>A bit about Nandini</h2>
-      <p>Nandini works with people who are figuring out who they are, what they want, and how to feel okay in their own skin. She brings warmth and a non-judgmental presence to questions around body image, identity, and growth.</p>
-      <p>Her sessions are unhurried and grounded. She believes that feeling better is possible, and that the work of getting there is worth taking slowly.</p>
-    </div>
-  </div>
-
-  <div class="profile-section reveal">
-    <div class="profile-section-label">Specialties</div>
-    <div>
-      <h2>What she works with</h2>
+      <h2>What do people most commonly come to you with?</h2>
       <ul class="specialty-list">
-        <li>Body image &amp; self-esteem</li>
-        <li>Queer identity &amp; self-acceptance</li>
-        <li>Anxiety &amp; social anxiety</li>
-        <li>Young adult transitions</li>
-        <li>Family &amp; relationship dynamics</li>
-        <li>Personal growth &amp; self-worth</li>
+        <li>Navigating grief and loss</li>
+        <li>Feeling lonely or disconnected from others</li>
+        <li>Relationship and interpersonal challenges</li>
+        <li>Healing from difficult or traumatic experiences</li>
+        <li>Anxiety and constant overthinking</li>
+        <li>Low mood and loss of motivation</li>
+        <li>Building a healthier relationship with body image</li>
+        <li>Strengthening self-worth and sense of identity</li>
       </ul>
     </div>
   </div>
@@ -110,19 +161,60 @@
     <div class="profile-section-label">Approach</div>
     <div>
       <h2>How she works</h2>
-      <p>Nandini draws from person-centred and humanistic traditions, with practical CBT tools where helpful. She works collaboratively — you bring the direction, she helps you walk it.</p>
-      <p>She pays attention to what's not being said as much as what is. In her experience, the things people hesitate to bring up are often the most important ones.</p>
+      <p class="profile-intro-pull">"A session with me is usually warm, collaborative, and non-judgmental. I aim to create a space where you can bring in whatever feels important, without feeling rushed or pressured."</p>
+      <p>Nandini works trauma-informed, drawing on humanistic therapy, CBT, and DBT depending on what's needed. Together, you make sense of your experiences at a pace that stays comfortable — not rushed toward a conclusion just because a session is running.</p>
+      <p><strong>Modalities she uses:</strong> Trauma-informed therapy · Humanistic approach · CBT · DBT</p>
     </div>
   </div>
 
   <div class="profile-section reveal">
-    <div class="profile-section-label">Education</div>
+    <div class="profile-section-label">Good fit</div>
     <div>
-      <h2>Qualifications</h2>
+      <h2>Who does she work especially well with?</h2>
+      <div class="fit-grid">
+        <div class="fit-item">Individuals navigating the impact of complex trauma</div>
+        <div class="fit-item">People balancing healing with everyday responsibilities</div>
+        <div class="fit-item">Those struggling with body image and self-esteem</div>
+        <div class="fit-item">People experiencing anxiety or persistent self-doubt</div>
+        <div class="fit-item">Those working through grief, loss, or a major life transition</div>
+        <div class="fit-item">Anyone looking to build a stronger sense of self</div>
+      </div>
+      <p style="margin-top:1.25rem;font-size:0.82rem;color:var(--muted)">
+        <strong>Who might not be the best fit:</strong> at this stage of her practice, Nandini isn't the right fit for anyone experiencing active psychosis or needing a higher level of psychiatric care.
+      </p>
+    </div>
+  </div>
+
+  <div class="profile-section reveal">
+    <div class="profile-section-label">Her story</div>
+    <div>
+      <h2>How did she get into this work?</h2>
+      <p>Growing up, Nandini watched her mother struggle with depression, and often felt helpless seeing someone she loved go through that much pain. That experience is what first sparked her curiosity about emotional wellbeing — and, eventually, about how people actually heal. <!-- NEED INPUT: confirm she's comfortable with this being public before publishing --></p>
+      <div class="outside-sessions">
+        <p>Outside of work, Nandini describes herself as pretty goofy — someone who romanticises the everyday and finds joy in small things. She's usually reading a psychological thriller, or occasionally a cheesy romance novel she won't quite defend, and spends a lot of time laughing and making memories with people she cares about.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-section reveal">
+    <div class="profile-section-label">Before you start</div>
+    <div>
+      <h2>What she wishes people knew before starting therapy</h2>
+      <div class="wish-block">
+        <p>"Therapy doesn't always have to look formal or clinical. Sometimes it simply looks like two people being as human as possible together."</p>
+      </div>
+      <p style="margin-top:1.25rem">You don't need the right words, a clear goal, or everything figured out before your first session. Nandini's aim is for you to be able to show up as yourself — whatever that looks like on a given day.</p>
+    </div>
+  </div>
+
+  <div class="profile-section reveal">
+    <div class="profile-section-label">Qualifications</div>
+    <div>
+      <h2>Education &amp; credentials</h2>
       <ul class="edu-list">
-        <li>MA in Counselling Psychology</li>
-        <li>Training in body-positive and weight-neutral therapy approaches</li>
-        <li>Person-centred practice training</li>
+        <li>MSc Clinical Psychology</li>
+        <li>Trauma-informed therapy training</li>
+        <li>Humanistic approach training</li>
       </ul>
     </div>
   </div>
@@ -145,12 +237,13 @@
         </div>
         <div class="faq-a">Primarily young adults and adults — roughly 18 to 40. I assess each enquiry individually, so if you're outside that range, feel free to reach out and we can discuss whether it's a good fit.</div>
       </div>
+      <!-- NEED INPUT: this FAQ has been updated to Gujarati per the new questionnaire (site previously said Marathi) — please confirm which language is correct before publishing -->
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
-          Do you offer sessions in Marathi?
+          Do you offer sessions in Gujarati?
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </div>
-        <div class="faq-a">Yes. If Marathi feels more natural for expressing certain things, that's completely fine. Sessions can be a mix of languages if that works better for you.</div>
+        <div class="faq-a">Yes. If Gujarati feels more natural for expressing certain things, that's completely fine. Sessions can be a mix of languages if that works better for you.</div>
       </div>
     </div>
   </div>

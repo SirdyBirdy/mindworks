@@ -7,8 +7,64 @@
 <meta name="description" content="Armeet Narang — Psychologist at Mindworks Counselling. CBT, ACT, REBT, queer-affirmative. Online sessions across India.">
 <link rel="stylesheet" href="../css/styles.css">
 <link rel="stylesheet" href="../css/therapist-profile.css">
+<style>
+.profile-intro-pull {
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-style: italic; font-weight: 300;
+  line-height: 1.65; color: var(--ink);
+  border-left: 3px solid var(--teal);
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.fit-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+.fit-item {
+  background: var(--teal-soft);
+  border: 1px solid var(--teal-20);
+  border-radius: 0.85rem;
+  padding: 0.85rem 1rem;
+  font-size: 0.82rem; color: var(--teal-dark); line-height: 1.5;
+}
+.fit-item::before { content: '→ '; font-weight: 600; color: var(--teal); }
+.outside-sessions {
+  background: var(--teal-soft);
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  margin-top: 0.75rem;
+}
+.outside-sessions p {
+  font-size: 0.92rem !important;
+  color: var(--teal-dark) !important;
+  margin-bottom: 0 !important;
+}
+.wish-block {
+  background: var(--teal);
+  border-radius: 1.25rem;
+  padding: 1.75rem 2rem;
+  margin-top: 0.75rem;
+}
+.wish-block p {
+  font-family: var(--display);
+  font-size: 1.2rem !important;
+  font-style: italic;
+  color: var(--cream) !important;
+  line-height: 1.6 !important;
+  margin-bottom: 0 !important;
+}
+</style>
 </head>
 <body data-therapist-id="armeet-narang">
+
+<!-- NEED INPUT SUMMARY (Armeet):
+1. Credentials now listed as "MA Clinical Psychology" per his questionnaire — site previously said "MA Counselling Psychology." Please confirm which is correct before publishing.
+2. Languages: questionnaire lists only English and Hindi. The live site also had Punjabi listed. Please confirm whether Punjabi should stay or be dropped — if it stays, the existing Punjabi FAQ below can remain as-is.
+3. Session format: questionnaire says he now offers both online and offline. Need the in-person location (Pune clinic, same as Dimple/Alina/Annie?) confirmed before we publish "In-person."
+4. Years of experience: eyebrow currently says "4 years" — not mentioned in the new questionnaire, kept as-is. Please confirm this is still accurate.
+5. QueerKey (the offline peer support group he facilitates) is mentioned in his bio answer — included below in his story section. Confirm he's happy with it being public.
+-->
 
 <div id="mw-sticky-bar"></div>
 <div id="mw-nav"></div>
@@ -36,17 +92,17 @@
   <div class="profile-right">
     <div class="profile-eyebrow eyebrow">
       <span class="eyebrow-line"></span>
-      Psychologist · 4 years
+      Psychologist &amp; Psychotherapist · 4 years
     </div>
     <h1 class="profile-name">Armeet Narang</h1>
-    <div class="profile-role">Psychologist</div>
-    <div class="profile-credentials">MA Counselling Psychology</div>
-    <div class="profile-tagline">"What you think, feel, and do — it's all connected."</div>
+    <div class="profile-role">Psychologist &amp; Psychotherapist</div>
+    <div class="profile-credentials">MA Clinical Psychology</div>
+    <div class="profile-tagline">"Therapy is almost never going to solve all your issues — but it can change how you carry them."</div>
 
     <div class="profile-meta">
       <div class="profile-meta-item">
         <div class="profile-meta-label">Session fee</div>
-        <div class="profile-meta-value">₹1,500 / session</div>
+        <div class="profile-meta-value">₹1,800 / session</div>
       </div>
       <div class="profile-meta-item">
         <div class="profile-meta-label">Duration</div>
@@ -58,11 +114,13 @@
       </div>
       <div class="profile-meta-item">
         <div class="profile-meta-label">Modes</div>
-        <div class="profile-meta-value">Video</div>
+        <!-- NEED INPUT: confirm in-person location before publishing "In-person" -->
+        <div class="profile-meta-value">Video · In-person</div>
       </div>
       <div class="profile-meta-item">
         <div class="profile-meta-label">Languages</div>
-        <div class="profile-meta-value">English · Hindi · Punjabi</div>
+        <!-- NEED INPUT: confirm whether Punjabi stays — questionnaire only lists English/Hindi -->
+        <div class="profile-meta-value">English · Hindi</div>
       </div>
       <div class="profile-meta-item">
         <div class="profile-meta-label">Discovery call</div>
@@ -83,25 +141,16 @@
 <div class="profile-body">
 
   <div class="profile-section reveal">
-    <div class="profile-section-label">About</div>
+    <div class="profile-section-label">What people bring</div>
     <div>
-      <h2>A bit about Armeet</h2>
-      <p>Armeet works across anxiety, identity, and life transitions — with particular focus on helping people who feel caught between who they are and who they're supposed to be.</p>
-      <p>He brings a practical, structured approach — drawing on CBT, ACT, and REBT — while staying genuinely curious about the person in front of him. Sessions are focused, but never mechanical.</p>
-    </div>
-  </div>
-
-  <div class="profile-section reveal">
-    <div class="profile-section-label">Specialties</div>
-    <div>
-      <h2>What he works with</h2>
+      <h2>What do people most commonly come to you with?</h2>
       <ul class="specialty-list">
-        <li>OCD &amp; intrusive thoughts</li>
-        <li>Anxiety &amp; panic</li>
-        <li>Queer identity</li>
-        <li>Self-worth &amp; perfectionism</li>
-        <li>Anger &amp; emotional regulation</li>
-        <li>Academic &amp; career stress</li>
+        <li>Anxiety that doesn't let up</li>
+        <li>Couples wanting to work through conflict together</li>
+        <li>Relationship patterns that keep repeating</li>
+        <li>Low mood and mood swings</li>
+        <li>Struggling with self-esteem and self-worth</li>
+        <li>Being queer and needing a space that doesn't require explaining that first</li>
       </ul>
     </div>
   </div>
@@ -110,19 +159,69 @@
     <div class="profile-section-label">Approach</div>
     <div>
       <h2>How he works</h2>
-      <p>Armeet tends to work in a structured way — CBT for behavioural patterns, ACT for the harder-to-shift stuff, REBT for the beliefs underneath. But the structure is always in service of the person, not the other way round.</p>
-      <p>He adapts. If one framework isn't landing, he'll move. The goal is what actually helps you, not what fits neatly into a model.</p>
+      <p>Armeet trained in CBT for anxiety and personality disorders at the Beck Institute, and in REBT through In Vivo. DBT and ACT inform his work too, though he doesn't apply them rigidly — which one shows up in a session depends on what's actually in front of him.</p>
+      <p><strong>Modalities he uses:</strong> CBT · REBT · DBT-informed · ACT-informed</p>
     </div>
   </div>
 
   <div class="profile-section reveal">
-    <div class="profile-section-label">Education</div>
+    <div class="profile-section-label">In the room</div>
     <div>
-      <h2>Qualifications</h2>
+      <h2>What does a session with Armeet actually feel like?</h2>
+      <p class="profile-intro-pull">Goal-directed and focused on the here and now — identifying thoughts, emotions, and behaviours, and working on wherever you're stuck.</p>
+      <p>The first few sessions tend to set the foundation — figuring out how your thoughts are actually getting in your way. He also uses metaphor and humour a fair amount; not every session needs to feel heavy to be doing something.</p>
+    </div>
+  </div>
+
+  <div class="profile-section reveal">
+    <div class="profile-section-label">Good fit</div>
+    <div>
+      <h2>Who does he work especially well with?</h2>
+      <div class="fit-grid">
+        <div class="fit-item">People dealing with anxiety and related disorders</div>
+        <div class="fit-item">Those working through depression</div>
+        <div class="fit-item">Clients who've felt stuck in the same pattern for a long time</div>
+        <div class="fit-item">People navigating interpersonal or relationship difficulties</div>
+        <div class="fit-item">Queer clients</div>
+        <div class="fit-item">Couples</div>
+      </div>
+      <p style="margin-top:1.25rem;font-size:0.82rem;color:var(--muted)">
+        <strong>Who might not be the best fit:</strong> if you're looking for a therapist who's mostly non-directive and won't crack a joke or reach for a metaphor mid-session, this probably isn't the right match. Armeet is goal-oriented, and he tells you so upfront.
+      </p>
+    </div>
+  </div>
+
+  <div class="profile-section reveal">
+    <div class="profile-section-label">His story</div>
+    <div>
+      <h2>How did he get into this work?</h2>
+      <p>Armeet did his bachelor's in business. He was fairly lost after finishing it, and it was a friend who suggested he look into psychology — not a calling he'd had since childhood, just a suggestion he followed, and it stuck. He's also the facilitator of QueerKey, an offline mental health support group based in Pune. <!-- NEED INPUT: confirm he's comfortable with QueerKey being named publicly, and whether to add a link/details --></p>
+      <div class="outside-sessions">
+        <p>Outside sessions, he's usually reading about geopolitics or talking about music. Health is something he pays close attention to for himself, and he spends a fair amount of time just watching people go about their day — which, unsurprisingly, tends to feed back into the work.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-section reveal">
+    <div class="profile-section-label">Before you start</div>
+    <div>
+      <h2>What he wishes people knew before starting therapy</h2>
+      <div class="wish-block">
+        <p>"It is almost never going to solve all your issues."</p>
+      </div>
+      <p style="margin-top:1.25rem">What it can do is help you understand what's interfering, and change your relationship to it. Armeet also likes to spend real time upfront on rapport — building the foundation of the working relationship before diving into the harder material.</p>
+    </div>
+  </div>
+
+  <div class="profile-section reveal">
+    <div class="profile-section-label">Qualifications</div>
+    <div>
+      <h2>Education &amp; credentials</h2>
       <ul class="edu-list">
-        <li>MA in Counselling Psychology</li>
-        <li>Training in ACT (Acceptance &amp; Commitment Therapy)</li>
-        <li>REBT practitioner training</li>
+        <li>MA Clinical Psychology</li>
+        <li>CBT training (anxiety and personality disorders) — Beck Institute</li>
+        <li>REBT training — In Vivo</li>
+        <li>DBT and ACT informed practice</li>
       </ul>
     </div>
   </div>
@@ -138,6 +237,7 @@
         </div>
         <div class="faq-a">ERP (Exposure Response Prevention) is very effective for OCD when done carefully. I use a structured, evidence-based approach that is gradual and collaborative. Nothing happens without your consent and readiness.</div>
       </div>
+      <!-- NEED INPUT: this FAQ assumes Punjabi is still offered — confirm before keeping it live -->
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
           Do you offer sessions in Punjabi?
