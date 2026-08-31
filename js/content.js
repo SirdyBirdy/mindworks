@@ -66,7 +66,7 @@ const CONTENT = {
   hero: {
     eyebrow:      "01 — Pune & Online · Est. 2016",
     h1:           "No couches.<br>No clichés.<br><em>Just the work.</em>",
-    body:         "A small Pune-based practice. Certified, supervised psychologists who help you figure out what’s loud, what’s stuck, and what’s quietly waiting to be said.",
+    body:         "A small practice in Pune, running since 2016. Five therapists, each certified and supervised, each working a little differently — because the thing that gets you unstuck rarely responds to a script.",
     ctaPrimary:   { label: "Schedule a discovery call", href: WA_GENERAL },
     ctaSecondary: { label: "Meet the team",             href: "#therapists" },
     statNumber:   "8,000+",
@@ -139,12 +139,12 @@ const CONTENT = {
   approach: {
     eyebrow: "02 — Approach",
     h2:      "How we<br><em>actually work</em>",
-    body:    "We don’t fix — we sit with you while you sort through what’s loud, what’s stuck, and what’s quietly waiting to be said.",
+    body:    "Nobody who walks in here is broken. Usually it's something that's been sitting too long without the right question asked of it — a fight that keeps repeating itself, a version of you that you gave up on somewhere along the way.",
     cards: [
-      { num: "/01", title: "Talk before you commit",        body: "Free discovery call. Get a feel for the approach before spending a rupee or signing anything." },
-      { num: "/02", title: "Matched by fit, not algorithm", body: "Paired based on what you’re working through, your schedule, and what you’re looking for." },
-      { num: "/03", title: "Sessions on your terms",        body: "Video, audio, or text. Weekly or fortnightly. From wherever you are in India." },
-      { num: "/04", title: "Track how things shift",        body: "Free self-assessments between sessions. See how you’re actually moving, not just feel it." },
+      { num: "/01", title: "Talk before you commit",        body: "Free discovery call, fifteen minutes. A chance to get a feel for someone before you spend a rupee or sign anything." },
+      { num: "/02", title: "Matched by fit, not algorithm", body: "Paired based on what you're actually working through and what your week looks like — not a personality quiz." },
+      { num: "/03", title: "Sessions on your terms",        body: "Video, audio, or text. Weekly, fortnightly, whatever fits. From wherever you are in India." },
+      { num: "/04", title: "Track how things shift",        body: "Free self-assessments between sessions, so you can see whether anything's actually moving instead of guessing." },
     ],
   },
 
@@ -252,20 +252,20 @@ const CONTENT = {
   assessments: {
     eyebrow:  "05 — Free tools",
     h2:       "Know where<br><em>you stand</em>",
-    subtitle: "Clinically validated. Free. Share your score with your counsellor to start the conversation.",
+    subtitle: "The same inventories used in a first clinical intake, just online and free — take one before you've even booked a call.",
     cards: [
       {
         id:          "bdi",
         label:       "21 questions · BDI-II",
         title:       "Depression check",
-        description: "The Beck Depression Inventory — a clinically validated tool to understand your current emotional state. Shareable with your therapist.",
+        description: "Twenty-one questions that get at what's actually going on under a mood you can't quite name. About ten minutes — the score is yours, share it with a therapist or don't.",
         linkLabel:   "Take the test",
       },
       {
         id:          "bai",
         label:       "21 questions · BAI",
         title:       "Anxiety gauge",
-        description: "The Beck Anxiety Inventory — see how anxiety is affecting your daily functioning. Instant results with a breakdown to share.",
+        description: "Same length, tuned to anxiety instead — the racing thoughts, the sleep, the physical stuff people forget to connect to being anxious until they see it written down.",
         linkLabel:   "Take the test",
       },
     ],
@@ -342,7 +342,7 @@ const CONTENT = {
 
   /* ── FOOTER ────────────────────────────────────────────── */
   footer: {
-    description: "A small Pune-based therapy practice. Certified, supervised, queer-affirmative. Online sessions across India.",
+    description: "A small practice in Pune, seeing people online right across India since 2016. Queer-affirmative isn't an add-on here — it's just how the therapists already work.",
     columns: [
       {
         heading: "Services",
