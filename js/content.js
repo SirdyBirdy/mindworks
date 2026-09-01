@@ -1,6 +1,6 @@
 /**
  * ============================================================
- *  MINDWORKS COUNSELLING — CONTENT
+ *  MINDWORKS COUNSELLING. CONTENT
  *  Single source of truth for ALL text, links, and data.
  *  Edit here; nothing else needs to change.
  * ============================================================
@@ -28,7 +28,7 @@ const CONTENT = {
 
   /* ── NAV ───────────────────────────────────────────────────
      NOTE: shared.js currently builds the actual nav/mobile-island
-     markup from its OWN hardcoded HTML strings — it does not read
+     markup from its OWN hardcoded HTML strings. It does not read
      this object. Keeping this in sync anyway so it doesn't silently
      drift from what's shown, and so a future refactor of shared.js
      to read from CONTENT has accurate data to start from.
@@ -58,15 +58,15 @@ const CONTENT = {
 
   /* ── STICKY BAR ────────────────────────────────────────── */
   stickyBar: {
-    text: "<em>mindworks</em> — Here when you're ready.",
+    text: "<em>mindworks</em>. Here when you're ready.",
     cta:  { label: "Schedule a discovery call", href: WA_GENERAL },
   },
 
   /* ── HERO ──────────────────────────────────────────────── */
   hero: {
-    eyebrow:      "01 — Pune & Online · Est. 2016",
+    eyebrow:      "01 · Pune & Online · Est. 2016",
     h1:           "No couches.<br>No clichés.<br><em>Just the work.</em>",
-    body:         "A small practice in Pune, running since 2016. Five therapists, each certified and supervised, each working a little differently — because the thing that gets you unstuck rarely responds to a script.",
+    body:         "A small practice in Pune, running since 2016. Five therapists, all certified and supervised. They don't all work the same way, and that's on purpose. What helps one person doesn't always help the next.",
     ctaPrimary:   { label: "Schedule a discovery call", href: WA_GENERAL },
     ctaSecondary: { label: "Meet the team",             href: "#therapists" },
     statNumber:   "8,000+",
@@ -78,7 +78,7 @@ const CONTENT = {
     // in main.js, so they resolve correctly whether the current page
     // is index.html, a page one level deep like therapists/x.html, or
     // previewed under a GitHub Pages subpath. Don't hardcode a leading
-    // "/" here — that breaks on any subpath-served preview.
+    // "/" here. That breaks on any subpath-served preview.
     // `href` is only ever used from index.html (the hero deck only
     // renders there), so it stays a plain relative path.
     deckCards: [
@@ -137,19 +137,19 @@ const CONTENT = {
 
   /* ── APPROACH ──────────────────────────────────────────── */
   approach: {
-    eyebrow: "02 — Approach",
+    eyebrow: "02 · Approach",
     h2:      "How we<br><em>actually work</em>",
-    body:    "Nobody who walks in here is broken. Usually it's something that's been sitting too long without the right question asked of it — a fight that keeps repeating itself, a version of you that you gave up on somewhere along the way.",
+    body:    "You don't need a diagnosis to start therapy. Most people come in because something's been bothering them for a while and they haven't had the space to actually work through it.",
     cards: [
       { num: "/01", title: "Talk before you commit",        body: "Free discovery call, fifteen minutes. A chance to get a feel for someone before you spend a rupee or sign anything." },
-      { num: "/02", title: "Matched by fit, not algorithm", body: "Paired based on what you're actually working through and what your week looks like — not a personality quiz." },
+      { num: "/02", title: "Matched by fit, not algorithm", body: "Paired based on what you're actually working through and your schedule. Not a personality quiz." },
       { num: "/03", title: "Sessions on your terms",        body: "Video, audio, or text. Weekly, fortnightly, whatever fits. From wherever you are in India." },
       { num: "/04", title: "Track how things shift",        body: "Free self-assessments between sessions, so you can see whether anything's actually moving instead of guessing." },
     ],
   },
 
   /* ── TOPICS / BENTO ────────────────────────────────────────
-     NOTE: cells are plain display text again — the whole bento
+     NOTE: cells are plain display text again. The whole bento
      grid now leads to the /conditions/ hub as one destination
      (see js/topics-links.js), rather than individual cells linking
      to individual condition pages. viewAllHref/viewAllLabel below
@@ -157,7 +157,7 @@ const CONTENT = {
      header (same pattern as therapists.viewAllHref).
   ───────────────────────────────────────────────────────── */
   topics: {
-    eyebrow:      "03 — What we work on",
+    eyebrow:      "03 · What we work on",
     h2:           "Whatever’s<br><em>weighing on you</em>",
     viewAllHref:  "conditions/",
     viewAllLabel: "View all",
@@ -174,13 +174,13 @@ const CONTENT = {
 
   /* ── THERAPISTS ────────────────────────────────────────────
      NOTE: `photo` paths here are root-relative (no leading slash),
-     same reasoning as hero.deckCards above — main.js and
+     same reasoning as hero.deckCards above. main.js and
      therapist-profile.js prefix them with window.MW_ROOT at render
      time so they resolve correctly at any page depth / preview
      subpath. Don't add a leading "/".
   ───────────────────────────────────────────────────────── */
   therapists: {
-    eyebrow:      "04 — The team",
+    eyebrow:      "04 · The team",
     h2:           "People you’ll<br><em>actually talk to</em>",
     viewAllHref:  "therapists/",
     viewAllLabel: "View all",
@@ -250,22 +250,22 @@ const CONTENT = {
 
   /* ── ASSESSMENTS ───────────────────────────────────────── */
   assessments: {
-    eyebrow:  "05 — Free tools",
+    eyebrow:  "05 · Free tools",
     h2:       "Know where<br><em>you stand</em>",
-    subtitle: "The same inventories used in a first clinical intake, just online and free — take one before you've even booked a call.",
+    subtitle: "The same inventories used in a first clinical intake, just online and free. Take one before you've even booked a call.",
     cards: [
       {
         id:          "bdi",
         label:       "21 questions · BDI-II",
         title:       "Depression check",
-        description: "Twenty-one questions that get at what's actually going on under a mood you can't quite name. About ten minutes — the score is yours, share it with a therapist or don't.",
+        description: "Twenty-one questions about how you've been feeling over the past two weeks. Takes about ten minutes. The score is yours to share with a therapist, or keep to yourself.",
         linkLabel:   "Take the test",
       },
       {
         id:          "bai",
         label:       "21 questions · BAI",
         title:       "Anxiety gauge",
-        description: "Same length, tuned to anxiety instead — the racing thoughts, the sleep, the physical stuff people forget to connect to being anxious until they see it written down.",
+        description: "Same format, tuned to anxiety instead. Covers physical symptoms too, a racing heart or trouble sleeping, things people don't always connect to anxiety until they see them written down.",
         linkLabel:   "Take the test",
       },
     ],
@@ -273,14 +273,14 @@ const CONTENT = {
 
   /* ── PULL QUOTE ────────────────────────────────────────── */
   pullQuote: {
-    eyebrow:     "06 — What people say",
+    eyebrow:     "06 · What people say",
     quote:       "Six months in, I have words for things I couldn’t describe before. That’s changed more than I expected.",
-    attribution: "— Client, 29 · Online sessions since 2023",
+    attribution: "Client, 29 · Online sessions since 2023",
   },
 
   /* ── LOCATIONS ─────────────────────────────────────────────
-     `image`, where set, is root-relative (no leading slash) —
-     same convention as photo paths elsewhere in this file — and
+     `image`, where set, is root-relative (no leading slash),
+     same convention as photo paths elsewhere in this file, and
      gets prefixed with window.MW_ROOT by main.js's assetPath().
      Leave it as "" until a real photo exists for that location:
      main.js falls back to the icon/pin placeholder automatically
@@ -288,7 +288,7 @@ const CONTENT = {
      image icon showing up before you've uploaded one.
   ───────────────────────────────────────────────────────── */
   locations: {
-    eyebrow:  "07 — Find us",
+    eyebrow:  "07 · Find us",
     h2:       "Where we<br><em>meet you</em>",
     subtitle: "In-person sessions in Pune, or online from anywhere in India and the world.",
     list: [
@@ -335,14 +335,14 @@ const CONTENT = {
   footerCta: {
     eyebrow:      "Ready when you are",
     h2:           "Let’s start<br><em>talking.</em>",
-    body:         "First call is free.<br>No pressure, no paperwork — just a real conversation on WhatsApp.",
+    body:         "First call is free.<br>No pressure, no paperwork. Just a real conversation on WhatsApp.",
     ctaPrimary:   { label: "Schedule a discovery call", href: WA_GENERAL },
     ctaSecondary: { label: "Message us on WhatsApp",    href: WA_BASE    },
   },
 
   /* ── FOOTER ────────────────────────────────────────────── */
   footer: {
-    description: "A small practice in Pune, seeing people online right across India since 2016. Queer-affirmative isn't an add-on here — it's just how the therapists already work.",
+    description: "A small practice in Pune, seeing people online right across India since 2016. Queer-affirmative isn't an add-on here. It's just how the therapists already work.",
     columns: [
       {
         heading: "Services",
@@ -373,6 +373,6 @@ const CONTENT = {
   },
 
   /* ── BLOG ──────────────────────────────────────────────── */
-  /* Moved to js/blog-content.js — CONTENT.blog is populated there. */
+  /* Moved to js/blog-content.js. CONTENT.blog is populated there. */
 
 }; // end CONTENT
