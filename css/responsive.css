@@ -1,0 +1,76 @@
+/**
+ * ============================================================
+ *  CSS / RESPONSIVE
+ *  Breakpoints for the home-page sections above. Kept as its
+ *  own file so the cascade order (tokens → components → page →
+ *  responsive) stays explicit; therapist-profile.css and
+ *  conditions.css keep their own @media blocks inline since
+ *  they're already scoped to one page type each.
+ * ============================================================
+ */
+
+/* ─────────────────────────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; padding: 2rem 1.25rem; gap: 1.5rem; }
+  .hero-right { display: flex; padding: 1rem 0 2.5rem; overflow: visible; }
+  .portrait-carousel { margin: 0 auto; }
+  .portrait-deck { width: 240px; height: 300px; }
+  .deck-card { width: 240px; height: 300px; }
+  .stat-float { bottom: 1rem; left: -0.25rem; }
+  .hero-ticker { top: 1rem; }
+  .approach { grid-template-columns: 1fr; padding: 4rem 1.25rem; }
+  .approach-right { grid-template-columns: 1fr; }
+  .topics { padding: 4rem 1.25rem; }
+  .bento { grid-template-columns: repeat(2,1fr); }
+  .therapists { padding: 4rem 1.25rem; }
+  .t-grid { grid-template-columns: repeat(2,1fr); }
+  .t-card:nth-child(2), .t-card:nth-child(4) { margin-top: 0; }
+  .assess { padding: 4rem 1.25rem; }
+  .assess-top { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  .assess-sub { text-align: left; }
+  .assess-grid { grid-template-columns: 1fr; max-width: 100%; }
+  .pull-quote { grid-template-columns: 1fr; padding: 4rem 1.25rem; }
+  .locations { padding: 4rem 1.25rem; }
+  .locations-top { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  .locations-sub { text-align: left; }
+  .locations-grid { grid-template-columns: 1fr; }
+  .footer-cta { padding: 5rem 1.25rem; }
+  .fcta-actions { flex-direction: column; align-items: center; }
+}
+
+@media (max-width: 768px) {
+  nav#mainNav { padding: 1rem 1.25rem; }
+  .nav-mid { display: none; }
+  .nav-hamburger { display: flex; }
+  .mobile-menu { display: flex; }
+  .mobile-island { display: flex; }
+  body { padding-bottom: 5rem; }
+  footer { grid-template-columns: 1fr 1fr; }
+  .f-brand, .f-desc { grid-column: span 2; }
+  .f-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+  .am-inner { padding: 1.75rem 1.25rem; }
+  .am-panel { border-radius: 1.25rem; max-height: 95vh; }
+  .sticky-bar { padding: 0.55rem 1.25rem; }
+  .sticky-bar-text { display: none; }
+}
+
+@media (max-width: 600px) {
+  .t-grid { grid-template-columns: 1fr; }
+  .bento { grid-template-columns: 1fr 1fr; }
+  .bento-large { grid-column: span 2; }
+  .hero-left { gap: 1.5rem; }
+  .topics-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+}
+
+@media (max-width: 480px) {
+  .am-result-actions { flex-direction: column; }
+  .am-action-btn { justify-content: center; }
+  .mobile-island { min-width: auto; padding: 0.5rem; }
+}
+
+/* ── CONSENT FORM ── */
+@media (max-width: 640px) {
+  .cf-row { grid-template-columns: 1fr; gap: 0; }
+}

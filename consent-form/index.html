@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consent Form — Mindworks Counselling</title>
+<meta name="description" content="Client intake consent form for Mindworks Counselling.">
+<link rel="canonical" href="https://www.mindworkscounselling.com/consent-form/">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/pages/conditions.css">
+<link rel="stylesheet" href="../css/pages/legal.css">
+<link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+<div id="mw-sticky-bar"></div>
+<div id="mw-nav"></div>
+<div id="mw-mobile-menu"></div>
+
+<nav class="cp-breadcrumb" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a><span class="cp-sep">/</span><span class="cp-current">Consent Form</span>
+</nav>
+
+<section class="cp-hero">
+  <div class="eyebrow"><span class="eyebrow-line"></span><span>Before your first session</span></div>
+  <h1>Consent <em>form</em></h1>
+  <p class="cp-hero-intro">A few details before we begin. This goes straight to us — nothing is stored on this page.</p>
+</section>
+
+<form class="cf-wrap" id="consentForm">
+
+  <!-- Honeypot: invisible to real users, filled in by most spam bots.
+       Web3Forms checks this field itself — must be named "botcheck". -->
+  <input type="checkbox" name="botcheck" id="cfBotcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+  <div class="cf-row">
+    <div class="cf-field">
+      <div class="cf-label">Full name</div>
+      <input type="text" class="cf-input" id="cfName" name="name" autocomplete="name" required>
+    </div>
+    <div class="cf-field">
+      <div class="cf-label">Age</div>
+      <input type="number" class="cf-input" id="cfAge" name="age" min="1" max="120" inputmode="numeric" required>
+    </div>
+  </div>
+
+  <div class="cf-field">
+    <div class="cf-label">Sex</div>
+    <div class="cf-options" data-group="sex">
+      <label class="cf-option"><input type="radio" name="sex" value="Male">Male</label>
+      <label class="cf-option"><input type="radio" name="sex" value="Female">Female</label>
+      <label class="cf-option"><input type="radio" name="sex" value="Prefer not to say">Prefer not to say</label>
+    </div>
+  </div>
+
+  <div class="cf-row">
+    <div class="cf-field">
+      <div class="cf-label">Contact number</div>
+      <input type="tel" class="cf-input" id="cfPhone" name="phone" autocomplete="tel" required>
+    </div>
+    <div class="cf-field">
+      <div class="cf-label">Emergency contact <span class="cf-optional">(optional)</span></div>
+      <input type="tel" class="cf-input" id="cfEmergency" name="emergency_contact" autocomplete="tel">
+    </div>
+  </div>
+
+  <div class="cf-field">
+    <div class="cf-label">Marital status</div>
+    <div class="cf-options" data-group="marital">
+      <label class="cf-option"><input type="radio" name="marital" value="Married">Married</label>
+      <label class="cf-option"><input type="radio" name="marital" value="Unmarried">Unmarried</label>
+      <label class="cf-option"><input type="radio" name="marital" value="Divorced">Divorced</label>
+    </div>
+  </div>
+
+  <div class="cf-field">
+    <div class="cf-label">Family background</div>
+    <div class="cf-options" data-group="family">
+      <label class="cf-option"><input type="radio" name="family" value="Nuclear">Nuclear</label>
+      <label class="cf-option"><input type="radio" name="family" value="Joint">Joint</label>
+      <label class="cf-option"><input type="radio" name="family" value="Extended">Extended</label>
+    </div>
+  </div>
+
+  <div class="cf-field">
+    <div class="cf-label">Mode of referral <span class="cf-optional">(optional)</span></div>
+    <input type="text" class="cf-input" id="cfReferral" name="referral" placeholder="e.g. Instagram, a friend, Google">
+  </div>
+
+  <label class="cf-consent">
+    <input type="checkbox" id="cfTncAgree">
+    <span>I have read, understood, and accepted the <a href="../tnc/" target="_blank" rel="noopener">Terms &amp; Conditions</a>.</span>
+  </label>
+
+  <div class="cf-error" id="cfError">Please fill in your name, age, sex, and contact number, and accept the Terms &amp; Conditions before submitting.</div>
+
+  <button type="submit" class="btn-primary cf-submit" id="cfSubmitBtn">
+    <span>Submit</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+  </button>
+  <p class="cf-note" id="cfNote">Submitted directly to the Mindworks team.</p>
+</form>
+
+<div id="mw-footer"></div>
+
+<script src="../js/core/paths.js"></script>
+<script src="../js/core/icons.js"></script>
+<script src="../content/site.js"></script>
+<script src="../js/core/chrome.js"></script>
+<script>
+  /**
+   * Consent form submission — via Web3Forms (web3forms.com).
+   * Free tier: 250 submissions/month, no backend needed.
+   *
+   * This access key is meant to be public — Web3Forms is designed
+   * to run entirely client-side, so this is safe to ship as-is.
+   * The worst a leaked key allows is someone sending fake
+   * submissions to the inbox this key is tied to (spam), not any
+   * access to real submissions or account data. The hidden
+   * "botcheck" field below (Web3Forms' documented honeypot) blocks
+   * most automated spam for free. True domain-locking is a Pro-only
+   * feature on Web3Forms' end — see their "Restrict to Domain"
+   * setting if this ever needs tightening further.
+   */
+  const WEB3FORMS_ACCESS_KEY = "27250d9a-4d01-4b8a-8726-3d4744be325c";
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.cf-options').forEach(group => {
+      group.querySelectorAll('input[type="radio"]').forEach(input => {
+        input.addEventListener('change', () => {
+          group.querySelectorAll('.cf-option').forEach(o => o.classList.remove('selected'));
+          input.closest('.cf-option').classList.add('selected');
+        });
+      });
+    });
+
+    const form = document.getElementById('consentForm');
+    const errorEl = document.getElementById('cfError');
+    const noteEl = document.getElementById('cfNote');
+    const btn = document.getElementById('cfSubmitBtn');
+    const btnLabel = btn.querySelector('span');
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const name = document.getElementById('cfName').value.trim();
+      const age = document.getElementById('cfAge').value.trim();
+      const phone = document.getElementById('cfPhone').value.trim();
+      const emergency = document.getElementById('cfEmergency').value.trim();
+      const referral = document.getElementById('cfReferral').value.trim();
+      const sex = form.querySelector('input[name="sex"]:checked')?.value;
+      const marital = form.querySelector('input[name="marital"]:checked')?.value;
+      const family = form.querySelector('input[name="family"]:checked')?.value;
+      const agreed = document.getElementById('cfTncAgree').checked;
+
+      if (!name || !age || !phone || !sex || !marital || !family || !agreed) {
+        errorEl.classList.add('show');
+        return;
+      }
+      errorEl.classList.remove('show');
+
+      if (WEB3FORMS_ACCESS_KEY === "YOUR_WEB3FORMS_ACCESS_KEY") {
+        errorEl.textContent = "This form isn't connected yet — add a Web3Forms access key in consent-form/index.html (see the comment in the code).";
+        errorEl.classList.add('show');
+        return;
+      }
+
+      btn.disabled = true;
+      btnLabel.textContent = 'Sending…';
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
+            subject: 'New consent form submission — Mindworks Counselling',
+            from_name: 'Mindworks website — Consent form',
+            botcheck: document.getElementById('cfBotcheck').checked,
+            'Full name': name,
+            Age: age,
+            Sex: sex,
+            'Contact number': phone,
+            'Emergency contact': emergency || 'Not provided',
+            'Marital status': marital,
+            'Family background': family,
+            'Mode of referral': referral || 'Not provided',
+            'Accepted Terms & Conditions': 'Yes',
+          }),
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          form.querySelectorAll('input, button').forEach(el => el.disabled = true);
+          btnLabel.textContent = 'Sent';
+          noteEl.textContent = "Thanks — that's been sent through. We'll be in touch shortly.";
+        } else {
+          throw new Error(data.message || 'Unknown error');
+        }
+      } catch (err) {
+        btn.disabled = false;
+        btnLabel.textContent = 'Submit';
+        errorEl.textContent = "Something went wrong sending this — please try again, or message us directly on WhatsApp.";
+        errorEl.classList.add('show');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

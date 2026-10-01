@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mindworks Counselling — five therapists working across two clinics in Pune and over video anywhere in India. Free 15-minute discovery call.">
+<title>Mindworks Counselling — Pune & Online</title>
+<link rel="canonical" href="https://www.mindworkscounselling.com/">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/home.css">
+<link rel="stylesheet" href="css/components-discovery-modal.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<div id="mw-sticky-bar"></div>
+<div id="mw-nav"></div>
+<div id="mw-mobile-menu"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text"></span></div>
+    <h1 class="hero-h1"></h1>
+    <p class="hero-body"></p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary" target="_blank" rel="noopener">
+        <span></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+      <a href="#therapists" class="btn-secondary"><span></span></a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="blob"></div>
+    <div class="portrait-carousel" id="heroCarousel">
+      <div class="portrait-deck" id="carouselDeck"><!-- filled by js/pages/home.js --></div>
+      <button class="carousel-arrow carousel-arrow-prev" id="carouselPrev" aria-label="Previous team member">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-arrow carousel-arrow-next" id="carouselNext" aria-label="Next team member">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+    <div class="stat-float"><div class="stat-float-num"></div><div class="stat-float-label"></div></div>
+    <div class="hero-ticker"><span class="ticker-dot"></span><span class="hero-ticker-text"></span></div>
+  </div>
+</section>
+
+<div class="marquee-wrap" aria-hidden="true"><div class="marquee-track"></div></div>
+
+<!-- APPROACH -->
+<section class="approach reveal" id="approach">
+  <div class="approach-left">
+    <div class="eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text"></span></div>
+    <h2></h2><p></p>
+  </div>
+  <div class="approach-right">
+    <div class="approach-card reveal reveal-d1"><div class="ac-num"></div><div class="ac-title"></div><div class="ac-body"></div></div>
+    <div class="approach-card reveal reveal-d2"><div class="ac-num"></div><div class="ac-title"></div><div class="ac-body"></div></div>
+    <div class="approach-card reveal reveal-d3"><div class="ac-num"></div><div class="ac-title"></div><div class="ac-body"></div></div>
+    <div class="approach-card reveal reveal-d4"><div class="ac-num"></div><div class="ac-title"></div><div class="ac-body"></div></div>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section class="topics reveal" id="topics">
+  <div class="topics-header">
+    <div><div class="eyebrow"><span class="eyebrow-line"></span></div><h2></h2></div>
+    <a href="conditions/" style="font-size:0.78rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">
+      View all
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+  </div>
+  <div class="bento"><!-- filled by js/pages/home.js --></div>
+</section>
+
+<!-- THERAPISTS -->
+<section class="therapists reveal" id="therapists">
+  <div class="therapists-top">
+    <div><div class="eyebrow"><span class="eyebrow-line"></span></div><h2 class="therapists-h"></h2></div>
+    <a href="therapists/" style="font-size:0.78rem;color:rgba(249,244,235,0.4);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s" onmouseover="this.style.color='rgba(249,244,235,0.8)'" onmouseout="this.style.color='rgba(249,244,235,0.4)'">
+      View all
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+  </div>
+  <div class="t-grid"><!-- filled by js/pages/home.js --></div>
+</section>
+
+<!-- ASSESSMENTS -->
+<section class="assess reveal" id="assessments">
+  <div class="assess-top">
+    <div><div class="eyebrow"><span class="eyebrow-line"></span></div><h2></h2></div>
+    <p class="assess-sub"></p>
+  </div>
+  <div class="assess-grid"><!-- filled by js/pages/home.js --></div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="pull-quote reveal">
+  <div><div class="pq-label"></div><div class="pq-accent-line"></div></div>
+  <div><p class="pq-text"></p><p class="pq-attr"></p></div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="locations reveal" id="locations">
+  <div class="locations-top">
+    <div><div class="eyebrow"><span class="eyebrow-line"></span></div><h2></h2></div>
+    <p class="locations-sub"></p>
+  </div>
+  <div class="locations-grid"><!-- filled by js/pages/home.js --></div>
+</section>
+
+<!-- FOOTER CTA -->
+<div class="footer-cta reveal">
+  <div class="fcta-bg" aria-hidden="true">mindworks</div>
+  <div class="fcta-eyebrow"></div>
+  <h2 class="fcta-h"></h2>
+  <p class="fcta-sub"></p>
+  <div class="fcta-actions">
+    <a href="#" class="btn-cream" target="_blank" rel="noopener">
+      <span></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+    <a href="#" class="btn-ghost-dark" target="_blank" rel="noopener"></a>
+  </div>
+</div>
+
+<div id="mw-footer"></div>
+
+<!-- SCRIPTS: core first, then content (order inside content/ matters:
+     site.js before anything that extends CONTENT), then features/page -->
+<script src="js/core/paths.js"></script>
+<script src="js/core/icons.js"></script>
+<script src="content/site.js"></script>
+<script src="content/home.js"></script>
+<script src="content/therapists.js"></script>
+<script src="content/assessment-questions.js"></script>
+<script src="js/core/chrome.js"></script>
+<script src="js/features/assessment-modal.js"></script>
+<script src="js/features/discovery-modal.js"></script>
+<script src="js/pages/home.js"></script>
+<script src="js/features/hero-carousel.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+/**
+ * ============================================================
+ *  CSS / TOKENS
+ *  Design tokens (colour, type, spacing, shadow) + base element
+ *  resets + the .reveal scroll-in-view animation. Every other
+ *  stylesheet in this folder depends on the variables defined
+ *  here, so this loads first on every page.
+ * ============================================================
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── TOKENS ── */
+:root {
+  --teal:        #086860;
+  --teal-dark:   #054d49;
+  --teal-mid:    #0d8a80;
+  --teal-soft:   hsl(176, 28%, 92%);
+  --teal-10:     rgba(8,104,96,0.10);
+  --teal-20:     rgba(8,104,96,0.20);
+  --cream:       #f7f6f2;
+  --ink:         #1c2b2a;
+  --muted:       hsl(176, 8%, 44%);
+  --border:      hsl(176, 14%, 84%);
+  --card:        hsl(176, 20%, 97%);
+  --accent:      var(--teal);
+  --display:     'Fraunces', Georgia, serif;
+  --body:        'DM Sans', system-ui, sans-serif;
+  --shadow-soft: 0 30px 60px -30px rgba(8,104,96,0.18);
+  --shadow-card: 0 1px 0 rgba(8,104,96,0.06), 0 20px 40px -24px rgba(8,104,96,0.12);
+  --radius-card: 1.5rem;
+  --radius-btn:  100px;
+}
+
+/* ── BASE ── */
+html { font-size: 16px; scroll-behavior: smooth; }
+body { font-family: var(--body); background: var(--cream); color: var(--ink); overflow-x: hidden; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; }
+
+/* grain texture overlay */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025; pointer-events: none; z-index: 999;
+}
+
+/* ── TYPOGRAPHY HELPERS ── */
+.eyebrow {
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); display: flex; align-items: center; gap: 0.75rem;
+}
+.eyebrow-line { width: 22px; height: 1px; background: var(--teal); flex-shrink: 0; }
+
+/* ── REVEAL ANIMATION ── */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: 0.05s; }
+.reveal-d2 { transition-delay: 0.1s; }
+.reveal-d3 { transition-delay: 0.15s; }
+.reveal-d4 { transition-delay: 0.2s; }
+
