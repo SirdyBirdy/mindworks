@@ -19,11 +19,11 @@ const CONTENT = {
           logoOnDark → shown in the footer (dark green background). Optional;
                        falls back to `logo` if empty.
           favicon    → browser tab icon (square PNG/SVG, 64×64 or larger). */
-    logo:         '',   // e.g. 'images/brand/logo.svg'
-    logoOnDark:   '',   // e.g. 'images/brand/logo-light.svg'
+    logo:         'images/brand/logo.png',   // e.g. 'images/brand/logo.svg'
+    logoOnDark:   'images/brand/logo-light.png',   // e.g. 'images/brand/logo-light.svg'
     logoAlt:      'Mindworks Counselling',
-    logoHeight:   30,   // px, height in the nav (width follows the image)
-    favicon:      '',   // e.g. 'images/brand/favicon.png'
+    logoHeight:   60,   // px, height in the nav (width follows the image)
+    favicon:      'images/brand/favicon.png',   // e.g. 'images/brand/favicon.png'
 
     wordmark:     '<em>mind</em>works',
     nameFull:     '<em>mind</em>works counselling',
