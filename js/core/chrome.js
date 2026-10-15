@@ -31,7 +31,9 @@
     const src = (onDark && site.logoOnDark) || site.logo;
     if (!src) return onDark ? site.nameFull : site.wordmark;
     const h = onDark ? Math.round((site.logoHeight || 30) * 0.9) : (site.logoHeight || 30);
-    return `<img class="brand-logo" src="${mwAsset(src)}" alt="${site.logoAlt || site.nameFull}" style="height:${h}px">`;
+    const fallback = (onDark ? site.nameFull : site.wordmark).replace(/'/g, '&#39;');
+    // If the image 404s (e.g. images/brand/ not uploaded), fall back to the text wordmark instead of a blank gap.
+    return `<img class="brand-logo" src="${mwAsset(src)}" alt="${site.logoAlt || site.nameFull}" style="height:${h}px" onerror="this.outerHTML='${fallback}'">`;
   }
 
   function setFavicon() {
